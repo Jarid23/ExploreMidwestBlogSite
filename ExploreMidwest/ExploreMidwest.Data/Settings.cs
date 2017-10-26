@@ -15,7 +15,7 @@ namespace ExploreMidwest.Data
         {
             if (string.IsNullOrEmpty(_connectionString))
             {
-                _connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+                _connectionString = ConfigurationManager.ConnectionStrings["ExploreMidwest"].ConnectionString;
 
             }
             return _connectionString;

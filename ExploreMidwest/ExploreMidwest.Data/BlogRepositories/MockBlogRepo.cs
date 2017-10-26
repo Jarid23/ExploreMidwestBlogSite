@@ -156,7 +156,7 @@ namespace ExploreMidwest.Data.BlogRepositories
 
         public List<Blog> GetNumberOfBlogs(int number, int set)
         {
-            throw new NotImplementedException();
+            return _blogs.Skip(number * set).Take(number).ToList();
         }
     }
 }

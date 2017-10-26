@@ -260,6 +260,10 @@
     <ProjectReference Include="..\ExploreMidwest.Model\ExploreMidwest.Model.csproj">
       <Project>{EBE3BAF2-28D6-47EF-BAE6-5B8848414D08}</Project>
 
+
+
+    </ProjectReference>
+
     <ProjectReference Include="..\ExploreMidwest.Data\ExploreMidwest.Data.csproj">
       <Project>{37a19755-89b0-4574-95a7-d096189f0fe7}</Project>
       <Name>ExploreMidwest.Data</Name>

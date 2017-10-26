@@ -34,7 +34,7 @@ namespace ExploreMidwest.Web.Controllers
         public ActionResult AddBlog(Blog blog)
         {
             var repo = BlogRepoFactory.Create();
-            
+
             if (ModelState.IsValid)
             {
                 repo.Add(blog);

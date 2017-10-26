@@ -47,7 +47,7 @@ namespace ExploreMidwest.Data.BlogRepositories
             {
                 BlogId = 2,
                 Title = "Corn Maze",
-                Body = "What a wonderful maze I found "
+                Body = "What a wonderful maze I found ",
                 Category = new Category
                 {
                     CategoryId = 2,

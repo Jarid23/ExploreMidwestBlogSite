@@ -19,24 +19,29 @@ namespace ExploreMidwest.Web.Controllers
         }
 
         [Route("blog/{id}")]
-        public string GetById(int id)
+        public Blog GetById(int id)
         {
-            return "value";
+            return new Blog();
         }
 
-        // POST api/values
-        public void Post([FromBody]string value)
+        [Route("blog/{property}/{parameter}")]
+        public List<Blog> GetByType(string property, string parameter)
         {
-        }
+            var toReturn = new List<Blog>();
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+            switch (parameter)
+            {
+                case "category":
+                    break;
+                case "tags":
+                    break;
+                case "date":
+                    break;
+                case "title":
+                    break;
+            }
 
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
+            return toReturn;
         }
     }
 }

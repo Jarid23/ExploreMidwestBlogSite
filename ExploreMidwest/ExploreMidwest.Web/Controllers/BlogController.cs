@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExploreMidwest.Data.BlogRepositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,16 +8,17 @@ using System.Web.Http;
 
 namespace ExploreMidwest.Web.Controllers
 {
-    public class ValuesController : ApiController
+    public class BlogController : ApiController
     {
-        // GET api/values
-        public IEnumerable<string> Get()
+      //  IBlogRepo repo = 
+        [Route("blogs/{number}")]
+        public IEnumerable<string> Get(int number)
         {
-            return new string[] { "value1", "value2" };
+            throw new NotImplementedException();
         }
 
-        // GET api/values/5
-        public string Get(int id)
+        [Route("blog/{id}")]
+        public string GetById(int id)
         {
             return "value";
         }

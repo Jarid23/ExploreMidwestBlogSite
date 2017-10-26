@@ -40,7 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlogRepositories\BlogRepoFactory.cs" />
+    <Compile Include="BlogRepositories\EFBlogRepo.cs" />
+    <Compile Include="BlogRepositories\MockBlogRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BlogRepositories\IBlogRepo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExploreMidwest.Model\ExploreMidwest.Model.csproj">
+      <Project>{ebe3baf2-28d6-47ef-bae6-5b8848414d08}</Project>
+      <Name>ExploreMidwest.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

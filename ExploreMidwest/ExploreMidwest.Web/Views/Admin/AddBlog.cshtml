@@ -1,0 +1,42 @@
+﻿@model ExploreMidwest.Model.Blog
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add a blog post</title>
+</head>
+<body>
+    <div class="col-xs-12">
+        <h3>Add Blog</h3>
+        @Html.ActionLink("Return to Admin Home", "Blog", "Admin")
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            @using (Html.BeginForm())
+            {
+                <div class="form-group">
+                    <label>Blog Post</label>
+                    @Html.TextBoxFor(b => b.BlogId, new { @class = "form-control", placeholder = "Blog" })
+                    @Html.ValidationMessageFor(b => b.BlogId)
+                </div>
+                <button type="submit" class="btn btn-sm btn-primary">Save</button>
+            }
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+  
+
+

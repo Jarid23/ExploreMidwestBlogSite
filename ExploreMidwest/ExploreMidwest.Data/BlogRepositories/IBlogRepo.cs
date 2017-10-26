@@ -9,6 +9,6 @@ namespace ExploreMidwest.Data.BlogRepositories
 {
     public interface IBlogRepo
     {
-        List<Blog> GetNumberOfBlogs(int number);
+        List<Blog> GetNumberOfBlogs(int number, int set);
     }
 }

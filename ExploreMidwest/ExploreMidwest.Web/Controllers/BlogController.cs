@@ -11,8 +11,8 @@ namespace ExploreMidwest.Web.Controllers
     public class BlogController : ApiController
     {
       //  IBlogRepo repo = 
-        [Route("blogs/{number}")]
-        public IEnumerable<string> Get(int number)
+        [Route("blogs/{number}/{set}")]
+        public IEnumerable<string> Get(int number, int set)
         {
             throw new NotImplementedException();
         }

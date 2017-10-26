@@ -48,13 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
+
     <Compile Include="BlogRepositories\BlogRepoFactory.cs" />
     <Compile Include="BlogRepositories\EFBlogRepo.cs" />
     <Compile Include="BlogRepositories\MockBlogRepo.cs" />
-=======
+
     <Compile Include="ExploreMidwestDBContext.cs" />
->>>>>>> 7c212fe33a5515688efd873288d3f81c53e4a4f1
+
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BlogRepositories\IBlogRepo.cs" />
   </ItemGroup>

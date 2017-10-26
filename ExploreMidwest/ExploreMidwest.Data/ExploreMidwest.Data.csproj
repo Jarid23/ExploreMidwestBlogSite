@@ -30,7 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,7 +48,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlogRepositories\BlogRepoFactory.cs" />
+    <Compile Include="BlogRepositories\EFBlogRepo.cs" />
+    <Compile Include="BlogRepositories\MockBlogRepo.cs" />
+    <Compile Include="ExploreMidwestDBContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BlogRepositories\IBlogRepo.cs" />
+    <Compile Include="Settings.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExploreMidwest.Model\ExploreMidwest.Model.csproj">
+      <Project>{ebe3baf2-28d6-47ef-bae6-5b8848414d08}</Project>
+      <Name>ExploreMidwest.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExploreMidwest.Model\ExploreMidwest.Model.csproj">
+      <Project>{ebe3baf2-28d6-47ef-bae6-5b8848414d08}</Project>
+      <Name>ExploreMidwest.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="App1.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

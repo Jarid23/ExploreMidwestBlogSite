@@ -9,6 +9,7 @@ namespace ExploreMidwest.Data.BlogRepositories
 {
     public class EFBlogRepo : IBlogRepo
     {
+        
         public List<Blog> GetNumberOfBlogs(int number)
         {
             throw new NotImplementedException();

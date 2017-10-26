@@ -1,4 +1,5 @@
 ﻿using ExploreMidwest.Data.BlogRepositories;
+using ExploreMidwest.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,11 @@ namespace ExploreMidwest.Web.Controllers
 {
     public class BlogController : ApiController
     {
-      //  IBlogRepo repo = 
+        IBlogRepo repo = BlogRepoFactory.Create();
         [Route("blogs/{number}/{set}")]
-        public IEnumerable<string> Get(int number, int set)
+        public List<Blog> Get(int number, int set)
         {
-            throw new NotImplementedException();
+            return repo.GetNumberOfBlogs(number, set);
         }
 
         [Route("blog/{id}")]

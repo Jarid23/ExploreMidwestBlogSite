@@ -106,7 +106,7 @@ namespace ExploreMidwest.Data.BlogRepositories
             {
                 BlogId = 4,
                 Title = "City Life",
-                Body = "Living in Minneapolis always has its challenges. It can be fun to ",
+                Body = "Living in Minneapolis always has its challenges. It can be fun too ",
                 Category = new Category
                 {
                     CategoryId = 1,

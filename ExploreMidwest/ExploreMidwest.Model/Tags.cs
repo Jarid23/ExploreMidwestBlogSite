@@ -8,7 +8,7 @@ namespace ExploreMidwest.Model
 {
     public class Tags
     {
-        public int TagId { get; set; }
+        public int TagsId { get; set; }
         public string TagName { get; set; }
     }
 }

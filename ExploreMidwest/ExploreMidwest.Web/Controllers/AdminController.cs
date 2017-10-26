@@ -22,6 +22,13 @@ namespace ExploreMidwest.Web.Controllers
             return View(new Blog());
         }
 
+        [HttpGet]
+        public ActionResult EditBlog(int BlogId)
+        {
+            var blog = BlogRepository.Get(BlogId);
+            return View(blog);
+        }
+
 
         [HttpPost]
         public ActionResult AddBlog(Blog blog)
@@ -31,6 +38,22 @@ namespace ExploreMidwest.Web.Controllers
             if (ModelState.IsValid)
             {
                 repo.Add(blog);
+                return RedirectToAction("Blog");
+            }
+            else
+            {
+                return View(blog);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditBlog(Blog blog)
+        {
+            var repo = BlogRepoFactory.Create();
+
+            if (ModelState.IsValid)
+            {
+                repo.Edit(blog);
                 return RedirectToAction("Blog");
             }
             else

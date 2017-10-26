@@ -25,17 +25,17 @@ namespace ExploreMidwest.Data.BlogRepositories
                 {
                     new Tags
                     {
-                        TagsId = 1,
+                        TagId = 1,
                         TagName = "#Funtime"
                     },
                     new Tags
                     {
-                        TagsId = 2,
+                        TagId = 2,
                         TagName = "#Rivers"
                     },
                     new Tags
                     {
-                        TagsId = 3,
+                        TagId = 3,
                         TagName = "#Rafting"
                     }
                 },
@@ -57,17 +57,17 @@ namespace ExploreMidwest.Data.BlogRepositories
                 {
                     new Tags
                     {
-                        TagsId = 4,
+                        TagId = 4,
                         TagName = "#Coolplaces"
                     },
                     new Tags
                     {
-                        TagsId = 5,
+                        TagId = 5,
                         TagName = "#Outdoors"
                     },
                     new Tags
                     {
-                        TagsId = 1,
+                        TagId = 1,
                         TagName = "#Funtime"
                     }
                 },
@@ -89,12 +89,12 @@ namespace ExploreMidwest.Data.BlogRepositories
                 {
                     new Tags
                     {
-                        TagsId = 1,
+                        TagId = 1,
                         TagName = "#Goteam"
                     },
                     new Tags
                     {
-                        TagsId = 2,
+                        TagId = 2,
                         TagName = "#Bigcity"
                     }
                 },
@@ -106,7 +106,7 @@ namespace ExploreMidwest.Data.BlogRepositories
             {
                 BlogId = 4,
                 Title = "City Life",
-                Body = "Living in Minneapolis always has its challenges. It can be fun to ",
+                Body = "Living in Minneapolis always has its challenges. It can be fun too ",
                 Category = new Category
                 {
                     CategoryId = 1,
@@ -118,42 +118,6 @@ namespace ExploreMidwest.Data.BlogRepositories
                 Date = DateTime.Parse("10/26/2017"),
             }
         };
-
-        public void AddBlog(Blog blog)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteBlog(int blogId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void EditBlog(Blog blog)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Blog> GetBlogsByCategory(string category)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Blog> GetBlogsByDate(string date)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Blog> GetBlogsByTag(string tag)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Blog> GetBlogsByTitle(string title)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Blog> GetNumberOfBlogs(int number, int set)
         {
             return _blogs.Skip(number * set).Take(number).ToList();

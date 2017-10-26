@@ -9,7 +9,7 @@ namespace ExploreMidwest.Data.BlogRepositories
 {
     public class MockBlogRepo : IBlogRepo
     {
-        public List<Blog> GetNumberOfBlogs(int number)
+        public List<Blog> GetNumberOfBlogs(int number, int set)
         {
             throw new NotImplementedException();
         }

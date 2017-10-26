@@ -25,17 +25,17 @@ namespace ExploreMidwest.Data.BlogRepositories
                 {
                     new Tags
                     {
-                        TagId = 1,
+                        TagsId = 1,
                         TagName = "#Funtime"
                     },
                     new Tags
                     {
-                        TagId = 2,
+                        TagsId = 2,
                         TagName = "#Rivers"
                     },
                     new Tags
                     {
-                        TagId = 3,
+                        TagsId = 3,
                         TagName = "#Rafting"
                     }
                 },
@@ -57,17 +57,17 @@ namespace ExploreMidwest.Data.BlogRepositories
                 {
                     new Tags
                     {
-                        TagId = 4,
+                        TagsId = 4,
                         TagName = "#Coolplaces"
                     },
                     new Tags
                     {
-                        TagId = 5,
+                        TagsId = 5,
                         TagName = "#Outdoors"
                     },
                     new Tags
                     {
-                        TagId = 1,
+                        TagsId = 1,
                         TagName = "#Funtime"
                     }
                 },
@@ -89,12 +89,12 @@ namespace ExploreMidwest.Data.BlogRepositories
                 {
                     new Tags
                     {
-                        TagId = 1,
+                        TagsId = 1,
                         TagName = "#Goteam"
                     },
                     new Tags
                     {
-                        TagId = 2,
+                        TagsId = 2,
                         TagName = "#Bigcity"
                     }
                 },

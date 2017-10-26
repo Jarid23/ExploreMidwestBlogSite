@@ -8,5 +8,6 @@ namespace ExploreMidwest.Data.BlogRepositories
 {
     public static class BlogRepoFactory
     {
+
     }
 }

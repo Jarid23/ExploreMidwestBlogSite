@@ -1,4 +1,5 @@
-﻿using ExploreMidwest.Model;
+﻿using ExploreMidwest.Data.BlogRepositories;
+using ExploreMidwest.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,23 +17,48 @@ namespace ExploreMidwest.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Blogs()
+        public ActionResult AddBlog()
         {
-            var model = BlogRepository.GetAll();
-            return View(model.ToList());
+            return View(new Blog());
         }
+
+        [HttpGet]
+        public ActionResult EditBlog(int BlogId)
+        {
+            var blog = BlogRepository.Get(BlogId);
+            return View(blog);
+        }
+
 
         [HttpPost]
         public ActionResult AddBlog(Blog blog)
         {
+            var repo = BlogRepoFactory.Create();
+            
             if (ModelState.IsValid)
             {
-                BlogRepository.Add(blog.BlogId);
+                repo.Add(blog);
                 return RedirectToAction("Blog");
             }
             else
             {
-                return View(new Blog());
+                return View(blog);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult EditBlog(Blog blog)
+        {
+            var repo = BlogRepoFactory.Create();
+
+            if (ModelState.IsValid)
+            {
+                repo.Edit(blog);
+                return RedirectToAction("Blog");
+            }
+            else
+            {
+                return View(blog);
             }
         }
     }

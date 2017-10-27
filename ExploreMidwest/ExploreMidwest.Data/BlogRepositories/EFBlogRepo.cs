@@ -9,7 +9,19 @@ namespace ExploreMidwest.Data.BlogRepositories
 {
     public class EFBlogRepo : IBlogRepo
     {
-        public void AddBlog(Blog blog)
+        public List<Blog> GetNumberOfBlogs(int number, int set)
+
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Blog> GetBlogsByCategory(string category)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public List<Blog> GetBlogsByDate(string date)
         {
             throw new NotImplementedException();
         }
@@ -24,15 +36,11 @@ namespace ExploreMidwest.Data.BlogRepositories
             throw new NotImplementedException();
         }
 
-        public List<Blog> GetBlogsByCategory(string category)
+        public void AddBlog(Blog blog)
         {
             throw new NotImplementedException();
         }
 
-        public List<Blog> GetBlogsByDate(string date)
-        {
-            throw new NotImplementedException();
-        }
 
         public List<Blog> GetBlogsByTag(string tag)
         {
@@ -44,10 +52,5 @@ namespace ExploreMidwest.Data.BlogRepositories
             throw new NotImplementedException();
         }
 
-        public List<Blog> GetNumberOfBlogs(int number, int set)
-
-        {
-            throw new NotImplementedException();
-        }
     }
 }

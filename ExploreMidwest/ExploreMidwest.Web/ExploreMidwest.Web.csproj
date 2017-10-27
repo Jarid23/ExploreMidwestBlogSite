@@ -224,6 +224,7 @@
       <DependentUpon>201710261832159_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -296,10 +297,10 @@
     <Content Include="Views\Admin\AddBlog.cshtml" />
     <Content Include="Views\Admin\DeleteBlog.cshtml" />
     <Content Include="Views\Admin\EditBlog.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

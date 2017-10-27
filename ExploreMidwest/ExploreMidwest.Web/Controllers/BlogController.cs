@@ -29,19 +29,19 @@ namespace ExploreMidwest.Web.Controllers
         {
             var toReturn = new List<Blog>();
 
-            switch (parameter)
+            switch (property)
             {
                 case "category":
-                    repo.GetBlogsByCategory(parameter);
+                    toReturn = repo.GetBlogsByCategory(parameter);
                     break;
                 case "tags":
-                    repo.GetBlogsByTag(parameter);
+                    toReturn = repo.GetBlogsByTag("#" + parameter);
                     break;
                 case "date":
-                    repo.GetBlogsByDate(parameter);
+                    toReturn = repo.GetBlogsByDate(parameter);
                     break;
                 case "title":
-                    repo.GetBlogsByTitle(parameter);
+                    toReturn = repo.GetBlogsByTitle(parameter);
                     break;
             }
 

@@ -21,6 +21,7 @@ function getNumber(number, sets){
 
             for (i; i < blogs.length; i++) {
                 if (blogs[i].IsFinished) {
+                    output += '<div class="col-xs-3 blogDiv">Image</div>'
                     output += '<div class="col-xs-9 blogDiv"><div class="col-xs-3 innerDiv"><h3>'
                     output += blogs[i].Title + '</h3><br /><h4>'
                     output += blogs[i].Category.CategoryType + '</h4><br />'

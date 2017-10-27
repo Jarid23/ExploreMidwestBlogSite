@@ -37,7 +37,6 @@ namespace ExploreMidwest.Web.Controllers
         {
             var repo = BlogRepoFactory.Create();
             
-
             return View(new Blog());
         }
 
@@ -91,6 +90,7 @@ namespace ExploreMidwest.Web.Controllers
                 return View(blog);
             }
         }
+
     }
 }
 

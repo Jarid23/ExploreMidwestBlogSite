@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace ExploreMidwest.Web.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         // GET: Admin
@@ -25,7 +26,17 @@ namespace ExploreMidwest.Web.Controllers
         [HttpGet]
         public ActionResult EditBlog(int BlogId)
         {
-            var blog = BlogRepository.Get(BlogId);
+            var repo = BlogRepoFactory.Create();
+            repo.EditBlog(blog);
+            return View(blog);
+        }
+
+        [HttpGet]
+        public ActionResult DeleteBlog(int BlogId)
+        {
+            var repo = BlogRepoFactory.Create();
+            repo.DeleteBlog(blog);
+
             return View(blog);
         }
 
@@ -37,7 +48,7 @@ namespace ExploreMidwest.Web.Controllers
             
             if (ModelState.IsValid)
             {
-                repo.Add(blog);
+                repo.AddBlog(blog);
                 return RedirectToAction("Blog");
             }
             else
@@ -53,7 +64,23 @@ namespace ExploreMidwest.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                repo.Edit(blog);
+                repo.EditBlog(blog);
+                return RedirectToAction("Blog");
+            }
+            else
+            {
+                return View(blog);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult DeleteBlog(Blog blog)
+        {
+            var repo = BlogRepoFactory.Create();
+
+            if (ModelState.IsValid)
+            {
+                repo.DeleteBlog(blog);
                 return RedirectToAction("Blog");
             }
             else

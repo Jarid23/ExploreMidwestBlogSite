@@ -10,6 +10,7 @@ namespace ExploreMidwest.Web.Controllers
 {
     public class AdminController : Controller
     {
+        IBlogRepo repo = 
         // GET: Admin
         public ActionResult Index()
         {

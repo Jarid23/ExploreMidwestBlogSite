@@ -3,6 +3,35 @@
     padding-bottom: 20px;
 }
 
+.divMain {
+    padding: 4px 4px 4px 4px;
+}
+
+.divTop {
+
+    height: 50px;
+}
+
+
+.blogDiv {
+    border: solid;
+    border-color: azure;
+    margin-bottom: 4px;
+    background-color: beige;
+    height: 175px;
+}
+
+.detailDiv {
+    border:solid;
+    border-color: darkcyan;
+    background-color: beige;
+}
+
+.innerDiv{
+
+}
+
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;

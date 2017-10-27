@@ -148,6 +148,18 @@ namespace ExploreMidwest.Data.BlogRepositories
             b = blog;
         }
 
+        public Blog GetBlogById(int BlogId)
+        {
+            foreach(var blog in _blogs)
+            {
+                if(blog.BlogId == BlogId)
+                {
+                    return blog;
+                }
+            }
+            return new Blog();
+        }
+
         public List<Blog> GetBlogsByCategory(string category)
         {
             return _blogs.Where(b => b.Category.CategoryType == category).ToList();

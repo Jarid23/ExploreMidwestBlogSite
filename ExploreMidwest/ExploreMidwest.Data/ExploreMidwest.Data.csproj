@@ -52,10 +52,13 @@
     <Compile Include="BlogRepositories\EFBlogRepo.cs" />
     <Compile Include="BlogRepositories\MockBlogRepo.cs" />
     <Compile Include="ExploreMidwestDBContext.cs" />
+<<<<<<< HEAD
     <Compile Include="PageRepositories\EFPageRepo.cs" />
     <Compile Include="PageRepositories\IPageRepo.cs" />
     <Compile Include="PageRepositories\MockPageRepo.cs" />
     <Compile Include="PageRepositories\PageRepoFactory.cs" />
+=======
+>>>>>>> b62fa365c2cf50749f6e36905d987ee09d007bda
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BlogRepositories\IBlogRepo.cs" />
     <Compile Include="Settings.cs" />

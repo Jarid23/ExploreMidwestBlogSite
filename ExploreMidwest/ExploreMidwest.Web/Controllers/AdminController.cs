@@ -22,44 +22,45 @@ namespace ExploreMidwest.Web.Controllers
             return View(new Blog());
         }
 
-        [HttpGet]
-        public ActionResult EditBlog(int BlogId)
-        {
-            var blog = BlogRepository.Get(BlogId);
-            return View(blog);
-        }
+        //[HttpGet]
+        //public ActionResult EditBlog(int BlogId)
+        //{
+        //    var blog = BlogRepository.Get(BlogId);
+        //    return View(blog);
+
+        //}
 
 
-        [HttpPost]
-        public ActionResult AddBlog(Blog blog)
-        {
-            var repo = BlogRepoFactory.Create();
+        //[HttpPost]
+        //public ActionResult AddBlog(Blog blog)
+        //{
+        //    var repo = BlogRepoFactory.Create();
             
-            if (ModelState.IsValid)
-            {
-                repo.Add(blog);
-                return RedirectToAction("Blog");
-            }
-            else
-            {
-                return View(blog);
-            }
-        }
+        //    if (ModelState.IsValid)
+        //    {
+        //        repo.Add(blog);
+        //        return RedirectToAction("Blog");
+        //    }
+        //    else
+        //    {
+        //        return View(blog);
+        //    }
+        //}
 
-        [HttpPost]
-        public ActionResult EditBlog(Blog blog)
-        {
-            var repo = BlogRepoFactory.Create();
+        //[HttpPost]
+        //public ActionResult EditBlog(Blog blog)
+        //{
+        //    var repo = BlogRepoFactory.Create();
 
-            if (ModelState.IsValid)
-            {
-                repo.Edit(blog);
-                return RedirectToAction("Blog");
-            }
-            else
-            {
-                return View(blog);
-            }
-        }
+        //    if (ModelState.IsValid)
+        //    {
+        //        repo.Edit(blog);
+        //        return RedirectToAction("Blog");
+        //    }
+        //    else
+        //    {
+        //        return View(blog);
+        //    }
+        //}
     }
 }

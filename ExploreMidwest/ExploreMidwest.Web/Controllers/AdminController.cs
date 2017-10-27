@@ -23,22 +23,6 @@ namespace ExploreMidwest.Web.Controllers
             return View(new Blog());
         }
 
-        [HttpGet]
-        public ActionResult EditBlog(int BlogId)
-        {
-            var repo = BlogRepoFactory.Create();
-            var blog = repo.GetBlogById(BlogId);
-            repo.EditBlog(blog);
-            return View(blog);
-        }
-
-        [HttpGet]
-        public ActionResult DeleteBlog()
-        {
-            var repo = BlogRepoFactory.Create();
-            
-            return View(new Blog());
-        }
 
         [HttpPost]
         public ActionResult AddBlog(Blog blog)
@@ -56,6 +40,24 @@ namespace ExploreMidwest.Web.Controllers
                 }
             }
         }
+
+        [HttpGet]
+        public ActionResult EditBlog(int BlogId)
+        {
+            var repo = BlogRepoFactory.Create();
+            var blog = repo.GetBlogById(BlogId);
+            repo.EditBlog(blog);
+            return View(blog);
+        }
+
+        [HttpGet]
+        public ActionResult DeleteBlog()
+        {
+            var repo = BlogRepoFactory.Create();
+            
+            return View(new Blog());
+        }
+
 
 
         [HttpPost]

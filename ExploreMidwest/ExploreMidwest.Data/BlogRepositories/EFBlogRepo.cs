@@ -65,5 +65,9 @@ namespace ExploreMidwest.Data.BlogRepositories
             return context.Blog.Where(t => t.Title == title).ToList();
         }
 
+        public Blog GetBlogById(int BlogId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

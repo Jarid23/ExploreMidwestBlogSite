@@ -40,22 +40,23 @@ namespace ExploreMidwest.Web.Controllers
             return View(blog);
         }
 
-
         [HttpPost]
         public ActionResult AddBlog(Blog blog)
         {
             var repo = BlogRepoFactory.Create();
-            
-            if (ModelState.IsValid)
             {
-                repo.AddBlog(blog);
-                return RedirectToAction("Blog");
-            }
-            else
-            {
-                return View(blog);
+                if (ModelState.IsValid)
+                {
+                    repo.AddBlog(blog);
+                    return RedirectToAction("Blog");
+                }
+                else
+                {
+                    return View(blog);
+                }
             }
         }
+
 
         [HttpPost]
         public ActionResult EditBlog(Blog blog)
@@ -64,7 +65,7 @@ namespace ExploreMidwest.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                repo.EditBlog(blog);
+                repo.Edit(blog);
                 return RedirectToAction("Blog");
             }
             else
@@ -72,6 +73,7 @@ namespace ExploreMidwest.Web.Controllers
                 return View(blog);
             }
         }
+
 
         [HttpPost]
         public ActionResult DeleteBlog(Blog blog)
@@ -90,3 +92,5 @@ namespace ExploreMidwest.Web.Controllers
         }
     }
 }
+
+

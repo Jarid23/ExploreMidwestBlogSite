@@ -32,12 +32,16 @@ namespace ExploreMidwest.Web.Controllers
             switch (parameter)
             {
                 case "category":
+                    repo.GetBlogsByCategory(parameter);
                     break;
                 case "tags":
+                    repo.GetBlogsByTag(parameter);
                     break;
                 case "date":
+                    repo.GetBlogsByDate(parameter);
                     break;
                 case "title":
+                    repo.GetBlogsByTitle(parameter);
                     break;
             }
 

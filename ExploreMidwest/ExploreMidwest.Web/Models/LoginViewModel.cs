@@ -9,8 +9,7 @@ namespace ExploreMidwest.Web.Models
 {
     public class LoginViewModel
     {
-        [Required]
-        
+        [Required]       
         public string UserName { get; set; }
 
         [Required]

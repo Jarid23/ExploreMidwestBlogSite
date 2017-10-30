@@ -88,6 +88,15 @@
     <Compile Include="BlogRepositories\EFBlogRepo.cs" />
     <Compile Include="BlogRepositories\MockBlogRepo.cs" />
     <Compile Include="ExploreMidwestDBContext.cs" />
+    <Compile Include="Migrations\201710261832159_init.cs" />
+    <Compile Include="Migrations\201710261832159_init.Designer.cs">
+      <DependentUpon>201710261832159_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710302016399_addidentity.cs" />
+    <Compile Include="Migrations\201710302016399_addidentity.Designer.cs">
+      <DependentUpon>201710302016399_addidentity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PageRepositories\EFPageRepo.cs" />
     <Compile Include="PageRepositories\IPageRepo.cs" />
     <Compile Include="PageRepositories\MockPageRepo.cs" />
@@ -111,6 +120,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201710261832159_init.resx">
+      <DependentUpon>201710261832159_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710302016399_addidentity.resx">
+      <DependentUpon>201710302016399_addidentity.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -299,10 +299,11 @@
     <Content Include="Views\Admin\DeleteBlog.cshtml" />
     <Content Include="Views\Admin\EditBlog.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Admin\AddPage.cshtml" />
+    <Content Include="Views\Admin\EditPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Manager\" />
   </ItemGroup>
   <ItemGroup>

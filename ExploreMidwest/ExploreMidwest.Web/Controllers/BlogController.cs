@@ -21,7 +21,7 @@ namespace ExploreMidwest.Web.Controllers
         [Route("blog/{id}")]
         public Blog GetById(int id)
         {
-            return new Blog();
+            return repo.GetBlogById(id);
         }
 
         [Route("blog/{property}/{parameter}")]

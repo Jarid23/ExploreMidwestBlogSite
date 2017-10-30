@@ -99,27 +99,30 @@ namespace ExploreMidwest.Data.PageRepositories
 
         public void AddPage(Page page)
         {
-            throw new NotImplementedException();
+            _pages.Add(page);
         }
 
         public void EditPage(Page page)
         {
-            throw new NotImplementedException();
+            var found = _pages.FirstOrDefault(p => p.PageId == page.PageId);
+
+            if (found != null)
+                found = page;
         }
 
         public List<Page> GetAllPages()
         {
-            throw new NotImplementedException();
+            return _pages;
         }
 
         public Page GetPage(int pageId)
         {
-            throw new NotImplementedException();
+            return _pages.FirstOrDefault(p => p.PageId == pageId);
         }
 
         public void RemovePage(int pageId)
         {
-            throw new NotImplementedException();
+            _pages.RemoveAll(p => p.PageId == pageId);
         }
     }
 }

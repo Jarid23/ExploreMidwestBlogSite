@@ -13,20 +13,20 @@ namespace ExploreMidwest.Data.BlogRepositories
         ExploreMidwestDBContext context = new ExploreMidwestDBContext();
 
         public List<Blog> GetNumberOfBlogs(int number, int set)
-
         {
-            throw new NotImplementedException();
+            var toReturn = context.Blog.Include("Category").Include("Tags").OrderBy(b => b.BlogId).Skip(number * set).Take(number).ToList();
+            return toReturn;
         }
 
         public List<Blog> GetBlogsByCategory(string category)
         {
-            return context.Blog.Where(c => c.Category.CategoryType == category).ToList();
+            return context.Blog.Include("Category").Include("Tags").Where(c => c.Category.CategoryType == category).ToList();
         }
 
 
         public List<Blog> GetBlogsByDate(string date)
         {
-            return context.Blog.Where(d => d.Date.ToShortDateString() == date).ToList();
+            return context.Blog.Include("Category").Include("Tags").Where(d => d.Date.ToShortDateString() == date).ToList();
         }
 
         public void DeleteBlog(int blogId)
@@ -57,17 +57,17 @@ namespace ExploreMidwest.Data.BlogRepositories
         public List<Blog> GetBlogsByTag(string tag)
         {
             //return context.Tags.Where(t => t.Tags.)
-            throw new NotImplementedException();
+            return context.Blog.Include("Category").Include("Tags").Where(d => d.Tags.Where(t => t.TagName == tag).Count() >= 1).ToList();
         }
 
         public List<Blog> GetBlogsByTitle(string title)
         {
-            return context.Blog.Where(t => t.Title == title).ToList();
+            return context.Blog.Include("Category").Include("Tags").Where(t => t.Title == title).ToList();
         }
 
         public Blog GetBlogById(int BlogId)
         {
-            throw new NotImplementedException();
+            return context.Blog.Include("Category").Include("Tags").Where(d => d.BlogId == BlogId).FirstOrDefault();
         }
     }
 }

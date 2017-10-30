@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using ExploreMidwest.Model;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ExploreMidwest.Data
 {
-    public class ExploreMidwestDBContext : DbContext
+    public class ExploreMidwestDBContext : IdentityDbContext
     {
         public ExploreMidwestDBContext()
             : base("ExploreMidwest"){

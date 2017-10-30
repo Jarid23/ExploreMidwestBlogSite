@@ -220,11 +220,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201710261832159_init.cs" />
-    <Compile Include="Migrations\201710261832159_init.Designer.cs">
-      <DependentUpon>201710261832159_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -299,10 +294,11 @@
     <Content Include="Views\Admin\DeleteBlog.cshtml" />
     <Content Include="Views\Admin\EditBlog.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Admin\AddPage.cshtml" />
+    <Content Include="Views\Admin\EditPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Manager\" />
   </ItemGroup>
   <ItemGroup>
@@ -322,11 +318,6 @@
       <Project>{ebe3baf2-28d6-47ef-bae6-5b8848414d08}</Project>
       <Name>ExploreMidwest.Model</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201710261832159_init.resx">
-      <DependentUpon>201710261832159_init.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

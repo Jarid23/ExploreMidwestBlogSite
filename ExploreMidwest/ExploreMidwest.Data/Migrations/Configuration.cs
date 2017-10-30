@@ -1,6 +1,8 @@
 namespace ExploreMidwest.Data.Migrations
 {
     using ExploreMidwest.Model;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
@@ -16,6 +18,30 @@ namespace ExploreMidwest.Data.Migrations
 
         protected override void Seed(ExploreMidwest.Data.ExploreMidwestDBContext context)
         {
+            var userMgr = new UserManager<IdentityUser>(new UserStore<IdentityUser>(context));
+            var roleMgr = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+            if (!roleMgr.RoleExists("admin"))
+            {
+                roleMgr.Create(new IdentityRole() { Name = "admin" });
+            }
+
+            if (!userMgr.Users.Any(u => u.UserName == "admin"))
+            {
+                var user = new IdentityUser()
+                {
+                    UserName = "admin"
+                };
+                userMgr.Create(user, "testing123");
+            }
+            var finduser = userMgr.FindByName("admin");
+            // create the user with the manager class
+            if (!userMgr.IsInRole(finduser.Id, "admin"))
+            {
+                userMgr.AddToRole(finduser.Id, "admin");
+            }
+         
+
             context.Blog.AddOrUpdate(b => b.Title,
                 new Blog
                 {
@@ -261,6 +287,8 @@ namespace ExploreMidwest.Data.Migrations
                     IsInNavigation = true,
                     IsFinished = true,
                 });
+
+
         }
     }
 }

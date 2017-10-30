@@ -2,7 +2,7 @@
 var set = 0;
 
 $(document).ready(function () {
-    $('.detailDiv').hide();
+    $('#details').hide();
     set = 0;
     loadData();
 });
@@ -28,13 +28,13 @@ function getNumber(number, sets){
                     output += blogs[i].Date + '</div>'
                     output += '<div class="col-xs-9 innerDiv">'
                     output += blogs[i].Body
-                    output += '<div style="text-align:end"><a href="#" id="det1">Read full article</a></div></div></div>'
+                    output += '<div style="text-align:end"><button type="button" class="btn btn-default" onclick="FullArticle(' + blogs[i].BlogId + ')">Read full article</button></div></div></div>'
                 }
             }
             $('#BlogsArea').html(output);
         },
         error: function (jqxhr, techstatus, errorthrow) {
-            $('#outputMessage').val("Error no products found!");
+
         }
     })
 }
@@ -58,13 +58,39 @@ function search() {
                     output += blogs[i].Date + '</div>'
                     output += '<div class="col-xs-9 innerDiv">'
                     output += blogs[i].Body
-                    output += '<div style="text-align:end"><a href="#" id="det1">Read full article</a></div></div></div>'
+                    output += '<div style="text-align:end"><button type="button" class="btn btn-default" id="det' + blogs[i].BlogId + '">Read full article</button></div></div></div>'
                 }
             }
             $('#BlogsArea').html(output);
         },
         error: function (jqxhr, techstatus, errorthrow) {
-            $('#outputMessage').val("Error no products found!");
+
+        }
+    })
+}
+function FullArticle(id) {
+    $('#details').show();
+    $('#BlogsArea').hide();
+    $.ajax({
+        url: 'http://localhost:8080/blog/' + id,
+        type: 'GET',
+        success: function (blog) {
+            var output = "";
+            var i = 0;
+            output += '<div class="col-xs-offset-2 col-xs-8 detailDiv"><h2>' + blog.Title
+            output += '</h2 ><h4>' + blog.Category.CategoryType
+            output += '</h4 ><h4>' + blog.Date
+            output += '</h4 ></div><div class="col-xs-offset-2 col-xs-8 detailDiv"><p>' + blog.Body
+            output += '</p ></div><div class="col-xs-offset-2 col-xs-8 detailDiv"><p>'
+            for (i; i < blog.Tags.length; i++){
+                output += blog.Tags[i].TagName + ', '
+            }
+            output = output.slice(0, -2)
+            output += '</p ></div>'
+            $('#details').html(output);
+        },
+        error: function (jqxhr, techstatus, errorthrow) {
+
         }
     })
 }

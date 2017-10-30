@@ -4,34 +4,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ExploreMidwest.Model;
+using System.Data.Entity.Migrations;
 
 namespace ExploreMidwest.Data.PageRepositories
 {
     public class EFPageRepo : IPageRepo
     {
+        ExploreMidwestDBContext context = new ExploreMidwestDBContext();
+
         public void AddPage(Page page)
         {
-            throw new NotImplementedException();
+            context.Page.Add(page);
+            context.SaveChanges();
         }
 
         public void EditPage(Page page)
         {
-            throw new NotImplementedException();
+            context.Page.AddOrUpdate(page);
+            context.SaveChanges();
         }
 
         public List<Page> GetAllPages()
         {
-            throw new NotImplementedException();
+            var pages = from p in context.Page
+                        select p;
+            return pages.ToList();
         }
 
         public Page GetPage(int pageId)
         {
-            throw new NotImplementedException();
+            var page = (from p in context.Page where p.PageId == pageId select p).FirstOrDefault();
+            return page;
         }
 
         public void RemovePage(int pageId)
         {
-            throw new NotImplementedException();
+            var page = (from p in context.Page where p.PageId == pageId select p).FirstOrDefault();
+            context.Page.Remove(page);
+            context.SaveChanges();
         }
     }
 }

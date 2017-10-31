@@ -20,6 +20,15 @@ namespace ExploreMidwest.Web.Controllers
             return View();
         }
 
+        public ActionResult Logout()
+        {
+            var ctx = Request.GetOwinContext();
+            var authMgr = ctx.Authentication;
+
+            authMgr.SignOut("ApplicationCookie");
+            return RedirectToAction("Login");
+        }
+
         [AllowAnonymous]
         public ActionResult Login()
         {
@@ -27,6 +36,8 @@ namespace ExploreMidwest.Web.Controllers
 
             return View(model);
         }
+
+    
 
         [HttpPost]
         [AllowAnonymous]

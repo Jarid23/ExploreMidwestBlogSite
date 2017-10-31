@@ -26,6 +26,9 @@
                 @if (User.Identity.Name == "admin")
                 {
                     <li>
+                        @Html.ActionLink("Logout", "Logout", "Home")
+                    </li>
+                    <li>
                         @Html.ActionLink("Add Page", "AddPage", "Admin")
                     </li>
                     <li>

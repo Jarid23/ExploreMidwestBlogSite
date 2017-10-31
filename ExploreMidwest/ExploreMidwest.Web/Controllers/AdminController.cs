@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace ExploreMidwest.Web.Controllers
 {
-    //[Authorize(Roles = "admin")]
+   // [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         // GET: Admin

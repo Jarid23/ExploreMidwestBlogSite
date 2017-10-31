@@ -93,19 +93,21 @@ namespace ExploreMidwest.Web.Controllers
         }
 
         [HttpGet]
+        [ValidateInput(false)]
         public ActionResult AddPage()
         {
             return View(new Page());
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult AddPage(Page page)
         {
             var repo = PageRepoFactory.Create();
             if (ModelState.IsValid)
             {
                 repo.AddPage(page);
-                return RedirectToAction("Blog");
+                return RedirectToAction("Index", "Home");
             }
             else
             {

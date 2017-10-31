@@ -9,9 +9,10 @@ $(document).ready(function () {
 
 function loadData() {
     getNumber(num, set);
+    getPages();
 }
 
-function getNumber(number, sets){
+function getNumber(number, sets) {
     $.ajax({
         url: 'http://localhost:8080/blogs/' + number + '/' + sets,
         type: 'GET',
@@ -32,6 +33,29 @@ function getNumber(number, sets){
                 }
             }
             $('#BlogsArea').html(output);
+        },
+        error: function (jqxhr, techstatus, errorthrow) {
+
+        }
+    })
+}
+
+function getPages() {
+    $.ajax({
+        url: 'http://localhost:8080/pages',
+        type: 'GET',
+        success: function (pages) {
+            var output = "";
+            var i = 0;
+
+            for (i; i < pages.length; i++) {
+                if (pages[i].IsInNavigation) {
+                    output += '<li><a href="http://localhost:8080/Home/page/' + pages[i].PageId + '">'
+                    output += pages[i].Title
+                    output += '</a></li>'
+                }
+            }
+            $('#staticpages').html(output);
         },
         error: function (jqxhr, techstatus, errorthrow) {
 

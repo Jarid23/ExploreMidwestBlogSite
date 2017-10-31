@@ -20,15 +20,30 @@
                         Pages
                         <span class="caret"></span>
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Attractions</a></li>
-                        <li><a href="#">States</a></li>
-                        <li><a href="#">About Us</a></li>
+                    <ul class="dropdown-menu" id="staticpages">
                     </ul>
                 </li>
-                <li>@Html.ActionLink("Login", "Login")
-                
-                </li>
+                @if (User.Identity.Name == "admin")
+                {
+                    <li>
+                        @Html.ActionLink("Add Page", "AddPage", "Admin")
+                    </li>
+                    <li>
+                        @Html.ActionLink("Add Blog", "AddBlog", "Admin")
+                    </li>
+                    <li>
+                        @Html.ActionLink("Pending Posts", "PendingPosts", "Admin")
+                    </li>
+                    <li>
+                        @Html.ActionLink("Saved Pages", "SavedPages", "Admin")
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        @Html.ActionLink("Login", "Login")
+                    </li>
+                }
             </ul>
         </div>
     </nav>

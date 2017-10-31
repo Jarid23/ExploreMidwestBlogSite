@@ -1,6 +1,8 @@
 ﻿using ExploreMidwest.Data.BlogRepositories;
 using ExploreMidwest.Data.PageRepositories;
 using ExploreMidwest.Model;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,7 @@ using System.Web.Mvc;
 
 namespace ExploreMidwest.Web.Controllers
 {
-    //[Authorize(Roles = "admin")]
+   // [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         // GET: Admin
@@ -55,7 +57,7 @@ namespace ExploreMidwest.Web.Controllers
         public ActionResult DeleteBlog()
         {
             var repo = BlogRepoFactory.Create();
-            
+
             return View(new Blog());
         }
 
@@ -122,6 +124,43 @@ namespace ExploreMidwest.Web.Controllers
             var page = repo.GetPage(pageId);
 
             return View(page);
+        }
+
+        [HttpGet]
+        public ActionResult AddManager()
+        {
+            return View(new Manager());
+        }
+
+
+        [HttpPost]
+        public ActionResult AddManager(Manager manager)
+        {
+            if (ModelState.IsValid)
+            {
+                ExploreMidwest.Data.ExploreMidwestDBContext context = new Data.ExploreMidwestDBContext();
+
+                var userMgr = new UserManager<IdentityUser>(new UserStore<IdentityUser>(context));
+                var roleMgr = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+                if (!userMgr.Users.Any(u => u.UserName == manager.Name))
+                {
+                    var user = new IdentityUser()
+                    {
+                        UserName = manager.Name
+                    };
+                    userMgr.Create(user, manager.Password);
+                }
+                var findmanager = userMgr.FindByName(manager.Name);
+                // create the user with the manager class
+                if (!userMgr.IsInRole(findmanager.Id, "Manager"))
+                {
+                    userMgr.AddToRole(findmanager.Id, "Manager");
+                }
+                return RedirectToAction("Index", "Home");
+
+            }
+            return View(manager);
         }
     }
 }

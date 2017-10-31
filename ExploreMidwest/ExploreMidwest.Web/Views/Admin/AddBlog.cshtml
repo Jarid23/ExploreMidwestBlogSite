@@ -3,31 +3,40 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Add a blog post</title>
+    <title>Create a blog post</title>
 </head>
 <body>
-    <div class="col-xs-12">
-        <h3>Add Blog</h3>
-        @Html.ActionLink("Return to Admin Home", "Blog", "Admin")
+    <div class="row">
+        <div class="col-xs-3 divMain">
+            <h4>Blog Category Name</h4>
+            <select class="form-control" v-model="searchCategory" id="searchCategory">
+                <option value="">States&nbsp;&nbsp;</option>
+                <option value="new">New Category</option>
+            </select>
+        </div>
+        <div class="col-xs-9 divMain">
+            <h4>Blog Subject Name</h4>
+            <div>
+                <form  id="hd">
+                    <input contextmenu="Text Box" />
+                </form>
+            </div>
+        </div>
     </div>
+   
     <div class="row">
         <div class="col-xs-12">
-            @using (Html.BeginForm())
-            {
-                <div class="form-group">
-                    <label>Blog Post</label>
-                    @Html.TextBoxFor(b => b.BlogId, new { @class = "form-control", placeholder = "Blog" })
-                    @Html.ValidationMessageFor(b => b.BlogId)
-                </div>
-                <button type="submit" class="btn btn-sm btn-primary">Save</button>
-            }
+            <h4>Blog Content</h4>
+            <textarea id="txtContent"></textarea>
+        </div>
+        <div>
+            <button>Upload Image</button>
+            <button>Cancel</button>
+            <button>Submit</button>
         </div>
     </div>
 </body>
@@ -37,6 +46,6 @@
 
 
 
-  
+
 
 

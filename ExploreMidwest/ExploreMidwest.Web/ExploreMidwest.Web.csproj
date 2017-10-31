@@ -309,6 +309,9 @@
     <Folder Include="App_Data\" />
     <Folder Include="Views\Manager\" />
     <Folder Include="Views\Page\" />
+    <Content Include="Views\Manager\AddBlog.cshtml" />
+    <Content Include="Views\Admin\AddManager.cshtml" />
+    <Content Include="Views\Admin\DeleteManager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

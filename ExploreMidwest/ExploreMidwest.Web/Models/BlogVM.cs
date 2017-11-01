@@ -19,7 +19,8 @@ namespace ExploreMidwest.Web.Models
         }
 
         public void SetCategories(List<Category> category)
-        {             
+        {
+            category = category.OrderBy(c => c.CategoryType).ToList();
             foreach (var c in category)
             {
 
@@ -30,6 +31,11 @@ namespace ExploreMidwest.Web.Models
 
                 });
             }
+            CategoryItems.Add(new SelectListItem()
+            {
+                Value = "0",
+                Text = "New Category"
+            });
         }
     }
 }

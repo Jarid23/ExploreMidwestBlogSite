@@ -100,7 +100,7 @@ namespace ExploreMidwest.Web.Controllers
             if (ModelState.IsValid)
             {
                 repo.EditBlog(blog);
-                return RedirectToAction("Blog");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -117,7 +117,7 @@ namespace ExploreMidwest.Web.Controllers
             if (ModelState.IsValid)
             {
                 repo.DeleteBlog(blog.BlogId);
-                return RedirectToAction("Blog");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -173,13 +173,23 @@ namespace ExploreMidwest.Web.Controllers
                 {
                     page.IsFinished = true;
                 }
-                repo.AddPage(page);
+                repo.EditPage(page);
                 return RedirectToAction("Index", "Home");
             }
             else
             {
                 return View(page);
             }
+        }
+
+        [HttpGet]
+        public ActionResult DeletePage(int id)
+        {
+            var repo = PageRepoFactory.Create();
+
+            repo.RemovePage(id);
+
+            return RedirectToAction("SavedPages");
         }
 
         [HttpGet]

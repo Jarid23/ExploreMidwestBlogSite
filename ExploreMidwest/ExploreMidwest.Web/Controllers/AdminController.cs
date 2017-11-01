@@ -1,4 +1,5 @@
-﻿using ExploreMidwest.Data.BlogRepositories;
+﻿using ExploreMidwest.Data;
+using ExploreMidwest.Data.BlogRepositories;
 using ExploreMidwest.Data.PageRepositories;
 using ExploreMidwest.Model;
 using ExploreMidwest.Web.Models;
@@ -45,7 +46,13 @@ namespace ExploreMidwest.Web.Controllers
         [ValidateInput(false)]
         public ActionResult AddBlog()
         {
-            return View(new BlogVM());
+            BlogVM model = new BlogVM();
+
+            var context = new ExploreMidwestDBContext();
+
+            model.SetCategories(context.Category.ToList());
+
+            return View(model);
         }
 
 

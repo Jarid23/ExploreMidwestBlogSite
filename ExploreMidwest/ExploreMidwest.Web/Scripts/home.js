@@ -106,7 +106,7 @@ function search() {
                     output += '<div class="col-xs-9 blogDiv"><div class="col-xs-3 titleDiv"><h4>'
                     output += blogs[i].Title + '</h4><br /><h5>'
                     output += blogs[i].Category.CategoryType + '</h5>'
-                    output += blogs[i].Date + '</div>'
+                    output += blogs[i].Date.slice(0, 10) + '</div>'
                     output += '<div class="col-xs-9 innerDiv">'
                     output += blogs[i].Body
                     output += '<div style="text-align:end"><button type="button" class="btn btn-default" id="det' + blogs[i].BlogId + '">Read full article</button></div></div></div>'

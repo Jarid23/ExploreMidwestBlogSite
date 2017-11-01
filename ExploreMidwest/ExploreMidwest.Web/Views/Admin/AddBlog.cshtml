@@ -8,19 +8,11 @@
 <div class="row">     
     @using (Html.BeginForm())
     {
+        @Html.HiddenFor(m => m.Blog)
           <div class="col-xs-3 divMain">
-                <h4>Blog Category Name</h4>
-                @*<select class="form-control" v-model="searchCategory" id="searchCategory">                   
-                    <option value="">States&nbsp;&nbsp;</option>
-                    <option value="IL">Illinois</option>
-                    <option value="MI">Michigan</option>
-                    <option value="MN">Minnesota</option>
-                    <option value="WI">Wisconsin</option>
-                    <option value="new" id="cat">New Category</option>
-                    @Html.DropDownListFor(c => c.Blog.Category.CategoryId, Model.CategoryItems, "-choose category", new { @class ="form-control"})
-                </select>*@
+                <h4>Blog Category Name</h4>               
               <div>
-                  @Html.DropDownListFor(c => c.Blog.Category.CategoryId, Model.CategoryItems, "-choose category", new { @class = "form-control" })
+                  @Html.DropDownListFor(c => c.Blog.Category.CategoryId, Model.CategoryItems, "-choose category-", new { @class = "form-control" })
                   @Html.ValidationMessageFor(m => m.CategoryItems)
               </div>
                 <div class="control" id="newCategory">
@@ -30,24 +22,21 @@
             </div>
             <div class="col-xs-9 divMain">
                 <h4>Blog Subject Name</h4>                
-                <div>
-                    <form  class="control" id="hd">
-                        <input style ="font-size: 14pt" id="subject" contextmenu="Text Box" />
-                        
-                    </form>
+                <div class="form-group" style="font-size: 14pt">
+                    @Html.TextBoxFor(t => t.Blog.Title, new { @class = "form-group"})       
+                    @Html.ValidationMessageFor(t => t.Blog.Title)
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-xs-12 control" >
                     <h4>Blog Content</h4>
-                    <textarea id="txtContent"></textarea>
-                    
+                    @Html.TextAreaFor(m => m.Blog.Body)                   
                 </div>
                 <div>
                     <button id="upload-button" class="btn btn-primary btn-sm">Upload Image</button>
                     <button id="cancel-button" class="btn btn-primary btn-sm">Cancel</button>
-                    <button id="submit-button" class="btn btn-primary btn-sm">Submit</button>
+                    <button type ="submit" id="submit-button" class="btn btn-primary btn-sm">Submit</button>
                 </div>
             </div>
 

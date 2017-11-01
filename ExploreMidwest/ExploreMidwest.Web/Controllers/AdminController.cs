@@ -49,6 +49,11 @@ namespace ExploreMidwest.Web.Controllers
             BlogVM model = new BlogVM();
 
             var context = new ExploreMidwestDBContext();
+            model.Blog = new Blog()
+            {
+                Category = new Category(),
+                Tags = new List<Tags>()
+            };
 
             model.SetCategories(context.Category.ToList());
 
@@ -58,17 +63,20 @@ namespace ExploreMidwest.Web.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult AddBlog(Blog blog)
+        public ActionResult AddBlog(BlogVM blog)
         {
             var repo = BlogRepoFactory.Create();
             {
                 if (ModelState.IsValid)
                 {
-                    repo.AddBlog(blog);
+                    blog.Blog.Date = DateTime.Today;
+                    repo.AddBlog(blog.Blog);
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
+                    var context = new ExploreMidwestDBContext();
+                    blog.SetCategories(context.Category.ToList());
                     return View(blog);
                 }
             }

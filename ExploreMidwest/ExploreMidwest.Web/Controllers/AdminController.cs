@@ -1,6 +1,7 @@
 ﻿using ExploreMidwest.Data.BlogRepositories;
 using ExploreMidwest.Data.PageRepositories;
 using ExploreMidwest.Model;
+using ExploreMidwest.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,7 @@ using System.Web.Mvc;
 
 namespace ExploreMidwest.Web.Controllers
 {
-<<<<<<< HEAD
-   // [Authorize(Roles = "admin")]
-=======
-    //[Authorize(Roles = "admin")]
->>>>>>> 3901d4a2bf4a788ac7277ecc185300075b8eb847
+
     public class AdminController : Controller
     {
         // GET: Admin
@@ -25,7 +22,7 @@ namespace ExploreMidwest.Web.Controllers
         [HttpGet]
         public ActionResult AddBlog()
         {
-            return View(new Blog());
+            return View(new BlogVM());
         }
 
 
@@ -37,7 +34,7 @@ namespace ExploreMidwest.Web.Controllers
                 if (ModelState.IsValid)
                 {
                     repo.AddBlog(blog);
-                    return RedirectToAction("Blog");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {

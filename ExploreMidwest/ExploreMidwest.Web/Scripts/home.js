@@ -9,6 +9,8 @@ $(document).ready(function () {
 
 function loadData() {
     getNumber(num, set);
+    $('#newCategory').hide();
+    newCategory();
 }
 
 function getNumber(number, sets){
@@ -38,6 +40,26 @@ function getNumber(number, sets){
         }
     })
 }
+
+
+
+function newCategory() {
+    $('#searchCategory').on('change', function () {
+        if ($(this).val() == "new") {
+            $('#newCategory').show();
+        }
+        else {
+            $('#newCategory').hide();
+        }
+    });
+
+    //$('#newCategory').hide();
+}
+
+
+
+
+
 
 function search() {
     var para = $('#searchTerm').val();

@@ -42,7 +42,7 @@
 input,
 select
  {
-    max-width: 280px;
+    /*max-width: 280px;*/
 }
 
 #hd {
@@ -59,4 +59,18 @@ select
     background-image: url(bg.gif);
     background-position: bottom right;
     background-repeat: no-repeat;
+}
+
+#upload-button {
+    float: left;
+    margin : 10px;
+    border : 5px;
+   
+   
+}
+
+#submit-button, #cancel-button {
+    float: left;
+    margin: 10px;
+    border: -5px;
 }

@@ -1,46 +1,56 @@
-﻿@model ExploreMidwest.Model.Blog
+﻿@model ExploreMidwest.Web.Models.BlogVM
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create a blog post</title>
-</head>
-<body>
-    <div class="row">
-        <div class="col-xs-3 divMain">
-            <h4>Blog Category Name</h4>
-            <select class="form-control" v-model="searchCategory" id="searchCategory">
-                <option value="">States&nbsp;&nbsp;</option>
-                <option value="new">New Category</option>
-            </select>
-        </div>
-        <div class="col-xs-9 divMain">
-            <h4>Blog Subject Name</h4>
-            <div>
-                <form  id="hd">
-                    <input contextmenu="Text Box" />
-                </form>
-            </div>
-        </div>
-    </div>
    
-    <div class="row">
-        <div class="col-xs-12">
-            <h4>Blog Content</h4>
-            <textarea id="txtContent"></textarea>
-        </div>
-        <div>
-            <button>Upload Image</button>
-            <button>Cancel</button>
-            <button>Submit</button>
-        </div>
-    </div>
-</body>
-</html>
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div class="row">     
+    @using (Html.BeginForm())
+    {
+          <div class="col-xs-3 divMain">
+                <h4>Blog Category Name</h4>
+                <select class="form-control" v-model="searchCategory" id="searchCategory">                   
+                    <option value="">States&nbsp;&nbsp;</option>
+                    <option value="IL">Illinois</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="new" id="cat">New Category</option>
+                    @*@Html.DropDownListFor(c => c.Blog.Category.CategoryId, Model.CategoryItems, "-choose category", new { @class ="form-control"})*@
+                </select>
+                <div class="control" id="newCategory">
+                    <h5>New Category</h5>                   
+                    <input type="text" />
+                </div>
+            </div>
+            <div class="col-xs-9 divMain">
+                <h4>Blog Subject Name</h4>                
+                <div>
+                    <form  class="control" id="hd">
+                        <input style ="font-size: 14pt" id="subject" contextmenu="Text Box" />
+                        
+                    </form>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 control" >
+                    <h4>Blog Content</h4>
+                    <textarea id="txtContent"></textarea>
+                    
+                </div>
+                <div>
+                    <button id="upload-button" class="btn btn-primary btn-sm">Upload Image</button>
+                    <button id="cancel-button" class="btn btn-primary btn-sm">Cancel</button>
+                    <button id="submit-button" class="btn btn-primary btn-sm">Submit</button>
+                </div>
+            </div>
+
+    }
+          
+          
+</div>
 
 
 

@@ -108,7 +108,7 @@ namespace ExploreMidwest.Web.Controllers
             if (ModelState.IsValid)
             {
                 repo.EditBlog(blog);
-                return RedirectToAction("Blog");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -125,7 +125,7 @@ namespace ExploreMidwest.Web.Controllers
             if (ModelState.IsValid)
             {
                 repo.DeleteBlog(blog.BlogId);
-                return RedirectToAction("Blog");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -181,13 +181,23 @@ namespace ExploreMidwest.Web.Controllers
                 {
                     page.IsFinished = true;
                 }
-                repo.AddPage(page);
+                repo.EditPage(page);
                 return RedirectToAction("Index", "Home");
             }
             else
             {
                 return View(page);
             }
+        }
+
+        [HttpGet]
+        public ActionResult DeletePage(int id)
+        {
+            var repo = PageRepoFactory.Create();
+
+            repo.RemovePage(id);
+
+            return RedirectToAction("SavedPages");
         }
 
         [HttpGet]
@@ -223,6 +233,41 @@ namespace ExploreMidwest.Web.Controllers
                 }
                 return RedirectToAction("Index", "Home");
 
+            }
+            return View(manager);
+        }
+
+
+        [HttpGet]
+        public ActionResult DeleteManager()
+        {
+            return View(new DeleteManager());
+        }
+
+        [HttpPost]
+        public ActionResult DeleteManager(DeleteManager manager)
+        {
+            if (ModelState.IsValid)
+            {
+                ExploreMidwest.Data.ExploreMidwestDBContext context = new Data.ExploreMidwestDBContext();
+
+                var userMgr = new UserManager<IdentityUser>(new UserStore<IdentityUser>(context));
+                var roleMgr = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+               
+                var findmanager = userMgr.FindByName(manager.Name);
+                // create the user with the manager class
+                if (findmanager != null)
+                {
+                    userMgr.Delete(findmanager);
+                }
+                else
+                {
+                    return View(manager);
+                }
+                return RedirectToAction("Index", "Home");
+
+                
             }
             return View(manager);
         }

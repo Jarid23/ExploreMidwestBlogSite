@@ -21,6 +21,29 @@ namespace ExploreMidwest.Data.Migrations
             var userMgr = new UserManager<IdentityUser>(new UserStore<IdentityUser>(context));
             var roleMgr = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
+            if (!roleMgr.RoleExists("Manager"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Manager";
+                roleMgr.Create(role);
+            }
+
+            if (!userMgr.Users.Any(u => u.UserName == "manager"))
+            {
+                var user = new IdentityUser()
+                {
+                    UserName = "manager"
+                };
+                userMgr.Create(user, "testing1234");
+            }
+            var findmanager = userMgr.FindByName("manager");
+            // create the user with the manager class
+            if (!userMgr.IsInRole(findmanager.Id, "manager"))
+            {
+                userMgr.AddToRole(findmanager.Id, "manager");
+            }
+
+
             if (!roleMgr.RoleExists("admin"))
             {
                 roleMgr.Create(new IdentityRole() { Name = "admin" });

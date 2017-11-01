@@ -5,6 +5,6 @@
 }
 
 <h2>@Model.Title</h2>
-@Html.TextAreaFor(m => m.Body)
+@Html.Raw(Model.Body)
 @Html.HiddenFor(m => m.PageId)
 

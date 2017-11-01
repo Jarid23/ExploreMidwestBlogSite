@@ -158,7 +158,7 @@ namespace ExploreMidwest.Data.Migrations
                           "Bonus: Navigating through one is a crazy-fun way to spend an autumn afternoon",
                     Category = new Category
                     {
-                        CategoryId = 4,
+                        CategoryId = 2,
                         CategoryType = "Wisconsin"
                     },
                     Tags = new List<Tags>
@@ -181,7 +181,7 @@ namespace ExploreMidwest.Data.Migrations
                            "from state tourism and natural resources groups.",
                     Category = new Category
                     {
-                        CategoryId = 5,
+                        CategoryId = 3,
                         CategoryType = "Minnesota"
                     },
                     Tags = new List<Tags>
@@ -206,8 +206,8 @@ namespace ExploreMidwest.Data.Migrations
                            " “I’ve never tasted anything like it. I steam a lot of veggies in it; I throw it in pasta sauces",
                     Category = new Category
                     {
-                        CategoryId = 6,
-                        CategoryType = "Illionis"
+                        CategoryId = 4,
+                        CategoryType = "Illionois"
                     },
                     Tags = new List<Tags>
                     {

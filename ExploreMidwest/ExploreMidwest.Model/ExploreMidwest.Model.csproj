@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Blog.cs" />
     <Compile Include="Category.cs" />
+    <Compile Include="DeleteManager.cs" />
     <Compile Include="Manager.cs" />
     <Compile Include="Page.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

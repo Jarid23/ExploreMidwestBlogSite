@@ -36,8 +36,8 @@ function getNumber(number, sets) {
 
             for (i; i < blogs.length; i++) {
                 if (blogs[i].IsFinished) {
-                    output += '<div class="col-xs-3 blogDiv">Image</div>'
-                    output += '<div class="col-xs-9 blogDiv"><div class="col-xs-3 titleDiv"><h4>'
+                    output += '<div class="col-xs-2 blogDiv">Image</div>'
+                    output += '<div class="col-xs-10 blogDiv"><div class="col-xs-3 titleDiv"><h4>'
                     output += blogs[i].Title + '</h4><br /><h5>'
                     output += blogs[i].Category.CategoryType + '</h5><br />'
                     output += blogs[i].Date.slice(0,10) + '</div>'
@@ -123,6 +123,7 @@ function FullArticle(id) {
     $('#details').show("slow");
     $('#BlogsArea').hide();
     $('.next').hide();
+    $('.divTop').hide();
     $.ajax({
         url: 'http://localhost:8080/blog/' + id,
         type: 'GET',
@@ -131,7 +132,7 @@ function FullArticle(id) {
             var i = 0;
             output += '<div class="col-xs-offset-2 col-xs-8 detailDiv"><h3>' + blog.Title
             output += '</h3 ><h4>' + blog.Category.CategoryType
-            output += '</h4 ><h4>' + blog.Date
+            output += '</h4 ><h4>' + blog.Date.slice(0, 10)
             output += '</h4 ></div><div class="col-xs-offset-2 col-xs-8 detailDiv"><p>' + blog.Body
             output += '</p ></div><div class="col-xs-offset-2 col-xs-8 detailDiv"><p>'
             for (i; i < blog.Tags.length; i++){

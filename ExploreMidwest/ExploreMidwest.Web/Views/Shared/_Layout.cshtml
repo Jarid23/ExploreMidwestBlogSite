@@ -12,7 +12,8 @@
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Explore Midwest</a>
+                @Html.ActionLink("Explore Midwest","Index","Home", new { @class ="navbar-brand"})
+                @*<a class="navbar-brand" href="#">Explore Midwest</a>*@
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
@@ -85,8 +86,9 @@
 
     </div>
     <hr />
-    <footer>
-        <p>&copy; @DateTime.Now.Year - Explore MW</p>
+    <footer style="text-align:center">
+        <p>&copy; @DateTime.Now.Year - Explore Midwest&nbsp;&nbsp;|&nbsp;&nbsp;<span class="glyphicon glyphicon-home"></span>&nbsp; 
+        1234 Main Street, Minneapolis, MN&nbsp;&nbsp;|&nbsp;&nbsp;<span class="glyphicon glyphicon-phone"></span>&nbsp;612.123.4567</p>
     </footer>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

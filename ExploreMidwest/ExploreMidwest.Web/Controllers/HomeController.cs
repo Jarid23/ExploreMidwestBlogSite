@@ -1,4 +1,6 @@
-﻿using ExploreMidwest.Web.Models;
+﻿using ExploreMidwest.Data.PageRepositories;
+using ExploreMidwest.Model;
+using ExploreMidwest.Web.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -37,7 +39,17 @@ namespace ExploreMidwest.Web.Controllers
             return View(model);
         }
 
-    
+        [AllowAnonymous]
+        public ActionResult Page(int id)
+        {
+            Page model = new Page();
+
+            var repo = PageRepoFactory.Create();
+
+            model = repo.GetPage(id);
+
+            return View(model);
+        }
 
         [HttpPost]
         [AllowAnonymous]
@@ -66,7 +78,7 @@ namespace ExploreMidwest.Web.Controllers
             {
                 // successful login, set up their cookies and send them on their way
                 var identity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-               // authManager.SignIn(new AuthenticationProperties { IsPersistent = model.RememberMe }, identity);
+                authManager.SignIn(new AuthenticationProperties { IsPersistent = true }, identity);
 
                 if (!string.IsNullOrEmpty(returnUrl))
                     return Redirect(returnUrl);

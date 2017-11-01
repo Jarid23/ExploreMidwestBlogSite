@@ -37,6 +37,11 @@ namespace ExploreMidwest.Data.PageRepositories
             return page;
         }
 
+        public List<Page> GetUnfinshedPages()
+        {
+            return context.Page.Where(p => p.IsFinished == false).ToList();
+        }
+
         public void RemovePage(int pageId)
         {
             var page = (from p in context.Page where p.PageId == pageId select p).FirstOrDefault();

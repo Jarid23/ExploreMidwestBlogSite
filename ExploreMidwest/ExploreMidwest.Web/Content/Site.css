@@ -3,6 +3,23 @@
     padding-bottom: 20px;
 }
 
+h4 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+h3{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+h2 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+h1 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+p {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+
 .divMain {
     padding: 4px 4px 4px 4px;
 }
@@ -12,25 +29,29 @@
     height: 50px;
 }
 
+.innerDiv {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    height: 70%;
+    white-space:inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 
 .blogDiv {
     border: solid;
     border-color: azure;
     margin-bottom: 4px;
-    background-color: beige;
+    background-color: white;
     height: 175px;
 }
 
 .detailDiv {
     border:solid;
-    border-color: darkcyan;
-    background-color: beige;
+    border-color: azure;
+    background-color: white;
 }
-
-.innerDiv{
-
-}
-
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -42,7 +63,7 @@
 input,
 select
  {
-    max-width: 280px;
+    /*max-width: 280px;*/
 }
 
 #hd {
@@ -59,4 +80,18 @@ select
     background-image: url(bg.gif);
     background-position: bottom right;
     background-repeat: no-repeat;
+}
+
+#upload-button {
+    float: left;
+    margin : 10px;
+    border : 5px;
+   
+   
+}
+
+#submit-button, #cancel-button {
+    float: left;
+    margin: 10px;
+    border: -5px;
 }

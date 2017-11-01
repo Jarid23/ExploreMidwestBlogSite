@@ -23,8 +23,8 @@
                 <button class="btn btn-md btn-danger">Cancel</button>&nbsp;&nbsp;
                 <button type="submit" class="btn btn-md btn-primary">Save</button>&nbsp;&nbsp;
                 <br /><br />
-                @Html.CheckBoxFor(p => p.IsFinished) &nbsp;Publish<br />
-                @Html.CheckBoxFor(p => p.IsInNavigation) &nbsp;Display in navigation menu
+                @Html.CheckBoxFor(p => p.IsFinished, new { @id = "finished" }) &nbsp;Publish <br />
+                @Html.CheckBoxFor(p => p.IsInNavigation, new { @id = "navigation" }) &nbsp;Display in navigation menu
                 @Html.HiddenFor(p => p.PageId)
                 @Html.HiddenFor(p => p.Url)
             </div>

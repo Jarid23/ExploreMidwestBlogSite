@@ -69,5 +69,15 @@ namespace ExploreMidwest.Data.BlogRepositories
         {
             return context.Blog.Include("Category").Include("Tags").Where(d => d.BlogId == BlogId).FirstOrDefault();
         }
+
+        public List<Blog> GetUnpublishedBlogs()
+        {
+            return context.Blog.Include("Category").Include("Tags").Where(d => d.IsFinished == false).ToList();
+        }
+
+        public List<Blog> GetSavedFromAuthor(string author)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

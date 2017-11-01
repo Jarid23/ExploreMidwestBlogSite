@@ -196,5 +196,15 @@ namespace ExploreMidwest.Data.BlogRepositories
         {
             return _blogs.Skip(number * set).Take(number).ToList();
         }
+
+        public List<Blog> GetSavedFromAuthor(string author)
+        {
+            return _blogs.Where(b => b.IsFinished == false).ToList();
+        }
+
+        public List<Blog> GetUnpublishedBlogs()
+        {
+            return _blogs.Where(b => b.IsFinished == false).ToList();
+        }
     }
 }

@@ -35,10 +35,6 @@ namespace ExploreMidwest.Web.Controllers
             {
                 return View(blog);
             }
-
-
         }
-
-
     }
 }

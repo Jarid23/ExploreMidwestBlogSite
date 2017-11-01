@@ -11,6 +11,7 @@ namespace ExploreMidwest.Data.PageRepositories
     {
         Page GetPage(int pageId);
         List<Page> GetAllPages();
+        List<Page> GetUnfinshedPages();
         void AddPage(Page page);
         void RemovePage(int pageId);
         void EditPage(Page page);

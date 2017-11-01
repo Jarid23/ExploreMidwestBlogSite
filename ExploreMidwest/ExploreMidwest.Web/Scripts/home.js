@@ -1,6 +1,11 @@
 ﻿var num = 5;
 var set = 0;
 
+$('#nextblog').click(function () {
+    set += 1;
+    loadData();
+}) 
+
 $(document).ready(function () {
     $('#details').hide();
     set = 0;
@@ -147,3 +152,5 @@ function FullArticle(id) {
         }
     })
 }
+
+ 

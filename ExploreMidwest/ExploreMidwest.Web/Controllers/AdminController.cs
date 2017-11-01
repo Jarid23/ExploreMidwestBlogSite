@@ -218,6 +218,41 @@ namespace ExploreMidwest.Web.Controllers
             }
             return View(manager);
         }
+
+
+        [HttpGet]
+        public ActionResult DeleteManager()
+        {
+            return View(new DeleteManager());
+        }
+
+        [HttpPost]
+        public ActionResult DeleteManager(DeleteManager manager)
+        {
+            if (ModelState.IsValid)
+            {
+                ExploreMidwest.Data.ExploreMidwestDBContext context = new Data.ExploreMidwestDBContext();
+
+                var userMgr = new UserManager<IdentityUser>(new UserStore<IdentityUser>(context));
+                var roleMgr = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+               
+                var findmanager = userMgr.FindByName(manager.Name);
+                // create the user with the manager class
+                if (findmanager != null)
+                {
+                    userMgr.Delete(findmanager);
+                }
+                else
+                {
+                    return View(manager);
+                }
+                return RedirectToAction("Index", "Home");
+
+                
+            }
+            return View(manager);
+        }
     }
 }
 

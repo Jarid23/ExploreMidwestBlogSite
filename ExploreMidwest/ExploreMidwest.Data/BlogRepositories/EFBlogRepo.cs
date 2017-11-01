@@ -77,7 +77,7 @@ namespace ExploreMidwest.Data.BlogRepositories
 
         public List<Blog> GetSavedFromAuthor(string author)
         {
-            throw new NotImplementedException();
+            return context.Blog.Include("Category").Include("Tags").Where(d => d.Author == author).Where(b => b.IsFinished == false).ToList();
         }
     }
 }

@@ -63,7 +63,7 @@ namespace ExploreMidwest.Data.Migrations
             {
                 userMgr.AddToRole(finduser.Id, "admin");
             }
-         
+
 
             context.Blog.AddOrUpdate(b => b.Title,
                 new Blog
@@ -217,14 +217,14 @@ namespace ExploreMidwest.Data.Migrations
                             TagName = "#WineTrail"
 
                         },
-                                           
+
                     },
                     IsFinished = false,
                     IsDeleted = false,
                     Date = DateTime.Parse("08/02/2017")
 
                 }
-                
+
                 );
 
             context.Page.AddOrUpdate(p => p.Title,

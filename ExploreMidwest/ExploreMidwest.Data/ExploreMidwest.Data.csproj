@@ -108,6 +108,10 @@
     <Compile Include="Migrations\201710302016399_addidentity.Designer.cs">
       <DependentUpon>201710302016399_addidentity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711011934430_Author.cs" />
+    <Compile Include="Migrations\201711011934430_Author.Designer.cs">
+      <DependentUpon>201711011934430_Author.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PageRepositories\EFPageRepo.cs" />
     <Compile Include="PageRepositories\IPageRepo.cs" />
@@ -139,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710302016399_addidentity.resx">
       <DependentUpon>201710302016399_addidentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711011934430_Author.resx">
+      <DependentUpon>201711011934430_Author.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

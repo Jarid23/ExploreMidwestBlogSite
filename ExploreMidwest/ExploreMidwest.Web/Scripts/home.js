@@ -9,12 +9,9 @@ $(document).ready(function () {
 
 function loadData() {
     getNumber(num, set);
-<<<<<<< HEAD
     $('#newCategory').hide();
     newCategory();
-=======
     getPages();
->>>>>>> 41cb4cc5726f4f3bc9b353cfe31f3d5f49987cdd
 }
 
 $('#navigation').click(function () {
@@ -57,9 +54,6 @@ function getNumber(number, sets) {
     })
 }
 
-<<<<<<< HEAD
-
-
 function newCategory() {
     $('#searchCategory').on('change', function () {
         if ($(this).val() == "new") {
@@ -73,12 +67,6 @@ function newCategory() {
     //$('#newCategory').hide();
 }
 
-
-
-
-
-
-=======
 function getPages() {
     $.ajax({
         url: 'http://localhost:8080/pages',
@@ -102,7 +90,6 @@ function getPages() {
     })
 }
 
->>>>>>> 41cb4cc5726f4f3bc9b353cfe31f3d5f49987cdd
 function search() {
     var para = $('#searchTerm').val();
     var type = $('#searchCategory').val();

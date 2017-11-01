@@ -14,6 +14,8 @@ namespace ExploreMidwest.Data.BlogRepositories
         List<Blog> GetBlogsByCategory(string category);
         List<Blog> GetBlogsByDate(string date);
         List<Blog> GetBlogsByTag(string tag);
+        List<Blog> GetUnpublishedBlogs();
+        List<Blog> GetSavedFromAuthor(string author);
         Blog GetBlogById(int BlogId);
         void AddBlog(Blog blog);
         void DeleteBlog(int blogId);

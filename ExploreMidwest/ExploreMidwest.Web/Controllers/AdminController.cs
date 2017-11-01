@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace ExploreMidwest.Web.Controllers
 {
-   // [Authorize(Roles = "admin")]
+    [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         // GET: Admin
@@ -21,6 +21,27 @@ namespace ExploreMidwest.Web.Controllers
         }
 
         [HttpGet]
+        public ActionResult PendingPosts()
+        {
+            var repo = BlogRepoFactory.Create();
+
+            var model = repo.GetUnpublishedBlogs();
+
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult SavedPages()
+        {
+            var repo = PageRepoFactory.Create();
+
+            var model = repo.GetUnfinshedPages();
+
+            return View(model);
+        }
+
+        [HttpGet]
+        [ValidateInput(false)]
         public ActionResult AddBlog()
         {
             return View(new Blog());
@@ -28,6 +49,7 @@ namespace ExploreMidwest.Web.Controllers
 
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult AddBlog(Blog blog)
         {
             var repo = BlogRepoFactory.Create();
@@ -45,10 +67,11 @@ namespace ExploreMidwest.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult EditBlog(int BlogId)
+        [ValidateInput(false)]
+        public ActionResult EditBlog(int id)
         {
             var repo = BlogRepoFactory.Create();
-            var blog = repo.GetBlogById(BlogId);
+            var blog = repo.GetBlogById(id);
             repo.EditBlog(blog);
             return View(blog);
         }
@@ -108,6 +131,10 @@ namespace ExploreMidwest.Web.Controllers
             var repo = PageRepoFactory.Create();
             if (ModelState.IsValid)
             {
+                if (page.IsInNavigation)
+                {
+                    page.IsFinished = true;
+                }
                 repo.AddPage(page);
                 return RedirectToAction("Index", "Home");
             }
@@ -118,12 +145,33 @@ namespace ExploreMidwest.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult EditPage(int pageId)
+        [ValidateInput(false)]
+        public ActionResult EditPage(int id)
         {
             var repo = PageRepoFactory.Create();
-            var page = repo.GetPage(pageId);
+            var page = repo.GetPage(id);
 
             return View(page);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult EditPage(Page page)
+        {
+            var repo = PageRepoFactory.Create();
+            if (ModelState.IsValid)
+            {
+                if (page.IsInNavigation)
+                {
+                    page.IsFinished = true;
+                }
+                repo.AddPage(page);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View(page);
+            }
         }
 
         [HttpGet]

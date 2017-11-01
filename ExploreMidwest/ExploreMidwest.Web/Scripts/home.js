@@ -12,6 +12,18 @@ function loadData() {
     getPages();
 }
 
+$('#navigation').click(function () {
+    var paramChangeBoxes = $('input:checkbox.change');
+    if ($(this).is(':checked')) {
+        paramChangeBoxes.attr('disabled', 'disabled');
+        $('#finished').attr('disabled', 'disabled');
+    }
+    else {
+        paramChangeBoxes.removeAttr('disabled');
+        $('#finished').removeAttr('disabled');
+    }
+});
+
 function getNumber(number, sets) {
     $.ajax({
         url: 'http://localhost:8080/blogs/' + number + '/' + sets,

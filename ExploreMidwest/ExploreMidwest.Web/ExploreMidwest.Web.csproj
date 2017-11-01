@@ -304,11 +304,10 @@
     <Content Include="Views\Admin\AddPage.cshtml" />
     <Content Include="Views\Admin\EditPage.cshtml" />
     <Content Include="Views\Home\Page.cshtml" />
+    <Content Include="Views\Admin\PendingPosts.cshtml" />
+    <Content Include="Views\Admin\SavedPages.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Views\Manager\" />
-    <Folder Include="Views\Page\" />
     <Content Include="Views\Manager\AddBlog.cshtml" />
     <Content Include="Views\Admin\AddManager.cshtml" />
     <Content Include="Views\Admin\DeleteManager.cshtml" />
@@ -330,6 +329,10 @@
       <Project>{ebe3baf2-28d6-47ef-bae6-5b8848414d08}</Project>
       <Name>ExploreMidwest.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\Page\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

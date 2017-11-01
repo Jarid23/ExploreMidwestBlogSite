@@ -128,6 +128,11 @@ namespace ExploreMidwest.Data.PageRepositories
             return _pages.FirstOrDefault(p => p.PageId == pageId);
         }
 
+        public List<Page> GetUnfinshedPages()
+        {
+            return _pages.Where(p => p.IsFinished == false).ToList();
+        }
+
         public void RemovePage(int pageId)
         {
             _pages.RemoveAll(p => p.PageId == pageId);

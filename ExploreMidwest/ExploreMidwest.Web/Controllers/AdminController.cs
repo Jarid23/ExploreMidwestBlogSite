@@ -61,7 +61,6 @@ namespace ExploreMidwest.Web.Controllers
             return View(model);
         }
 
-
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult AddBlog(BlogVM b)
@@ -199,6 +198,15 @@ namespace ExploreMidwest.Web.Controllers
             repo.RemovePage(id);
 
             return RedirectToAction("SavedPages");
+        }
+
+        public ActionResult ResetPassword()
+        {
+            var context = new ExploreMidwestDBContext();
+
+            var userMgr = new UserManager<IdentityUser>(new UserStore<IdentityUser>(context));
+
+            return RedirectToAction("Login", "Home");
         }
 
         [HttpGet]

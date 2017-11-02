@@ -65,29 +65,72 @@ namespace ExploreMidwest.Data.Migrations
             }
 
 
+            context.Tags.AddOrUpdate(t => t.TagName,
+                new Tags
+                {
+                    TagName = "Fall"
+                },
+                new Tags
+                {
+                    TagName = "BeautifulFall"
+                },
+                new Tags
+                {
+                    TagName = "SummerHoliday"
+                },
+                new Tags
+                {
+                    TagName = "SummerGateAway"
+                },
+                new Tags
+                {
+                    TagName = "BestGateAway"
+                },
+                new Tags
+                {
+                    TagName = "WhoNeedsVenice"
+                },
+                new Tags
+                {
+                    TagName = "CornFarm"
+                },
+                new Tags
+                {
+                    TagName = "TenThousandLakes"
+                }
+
+            );
+
+            context.Category.AddOrUpdate(c => c.CategoryType,
+                new Category
+                {
+                    CategoryType = "Michigan"
+                },
+                new Category
+                {
+                    CategoryType = "Wisconsin"
+                },
+                new Category
+                {
+                    CategoryType = "Minnesota"
+                },
+                new Category
+                {
+                    CategoryType = "Illionois"
+                }
+                );
+
             context.Blog.AddOrUpdate(b => b.Title,
                 new Blog
                 {
                     Title = "Keweenaw Peninsula",
                     Body = "The only things crowding Michigan's Keweenaw Peninsula in autumn are miles of coastline, " +
                             "fall color and Lake Superior lore.",
-                    Category = new Category
-                    {
-                        CategoryId = 1,
-                        CategoryType = "Michigan"
-                    },
+                    Category = context.Category.SingleOrDefault(c => c.CategoryType == "Michigan"),
                     Tags = new List<Tags>
                     {
-                        new Tags
-                        {
-                            TagsId = 1,
-                            TagName = "#Fall"
-                        },
-                        new Tags
-                        {
-                            TagsId = 2,
-                            TagName = "#BeautifulFall"
-                        }
+                        context.Tags.SingleOrDefault(t => t.TagName == "Fall"),
+                        context.Tags.SingleOrDefault(t => t.TagName ==  "BeautifulFall")
                     },
                     IsFinished = true,
                     IsDeleted = false,
@@ -106,16 +149,8 @@ namespace ExploreMidwest.Data.Migrations
 
                     Tags = new List<Tags>
                     {
-                        new Tags
-                        {
-                            TagsId = 1,
-                            TagName = "#SummerHoliday"
-                        },
-                        new Tags
-                        {
-                            TagsId = 2,
-                            TagName = "#SummerGateAway"
-                        }
+                        context.Tags.SingleOrDefault(t => t.TagName == "SummerHoliday"),
+                        context.Tags.SingleOrDefault(t => t.TagName == "SummerGateAway")
                     },
                     IsFinished = true,
                     IsDeleted = false,
@@ -128,23 +163,11 @@ namespace ExploreMidwest.Data.Migrations
                     Body = "Who needs Venice, Italy? Get cozy in the cushioned seats of a Venetian gondola powered by " +
                             "a gondolier wearing a striped shirt and straw hat. For optimal romance, book a dinner package " +
                             "through the Dock Cafe and time a 45-minute gondola ride to watch the moon rise over the St. Croix River",
-                    Category = new Category
-                    {
-                        CategoryId = 3,
-                        CategoryType = "Minnesota"
-                    },
+                    Category = context.Category.SingleOrDefault(c => c.CategoryType == "Minnesota"),
                     Tags = new List<Tags>
                     {
-                        new Tags
-                        {
-                            TagsId = 1,
-                            TagName = "#BestGateAway"
-                        },
-                        new Tags
-                        {
-                            TagsId = 2,
-                            TagName = "#WhoNeedsVenice"
-                        }
+                        context.Tags.SingleOrDefault(t => t.TagName == "BestGateAway"),
+                        context.Tags.SingleOrDefault(t => t.TagName == "WhoNeedsVenice")
                     },
                     IsFinished = true,
                     IsDeleted = false,
@@ -156,18 +179,10 @@ namespace ExploreMidwest.Data.Migrations
                     Body = "As if pulling off huge harvests and supplying food to the world wasn't enough, " +
                           "Midwest farmers also have an artsy side. Elaborate corn mazes put their design skills on full display. " +
                           "Bonus: Navigating through one is a crazy-fun way to spend an autumn afternoon",
-                    Category = new Category
-                    {
-                        CategoryId = 2,
-                        CategoryType = "Wisconsin"
-                    },
+                    Category = context.Category.SingleOrDefault(c => c.CategoryType == "Wisconsin"),
                     Tags = new List<Tags>
                     {
-                        new Tags
-                        {
-                            TagsId = 1,
-                            TagName = "#CornFarm"
-                        }
+                        context.Tags.SingleOrDefault(t => t.TagName == "CornFarm")
                     },
                     IsFinished = true,
                     IsDeleted = false,
@@ -179,18 +194,10 @@ namespace ExploreMidwest.Data.Migrations
                     Title = "The Trick to Planning the Perfect Fall Getaway",
                     Body = "Time your autumn escape just right with these handy fall color reports " +
                            "from state tourism and natural resources groups.",
-                    Category = new Category
-                    {
-                        CategoryId = 3,
-                        CategoryType = "Minnesota"
-                    },
+                    Category = context.Category.SingleOrDefault(c => c.CategoryType == "Minnesota"),
                     Tags = new List<Tags>
                     {
-                        new Tags
-                        {
-                            TagsId = 1,
-                            TagName ="#TenThousandLakes"
-                        }
+                        context.Tags.SingleOrDefault(t => t.TagName == "TenThousandLakes")
                     },
                     IsFinished = true,
                     IsDeleted = false,
@@ -204,17 +211,13 @@ namespace ExploreMidwest.Data.Migrations
                            " “I used to have a problem calling wine creamy until this one,” Becky says, " +
                            " grinning as a familiar look of wonder spreads across Anne’s face and adding, " +
                            " “I’ve never tasted anything like it. I steam a lot of veggies in it; I throw it in pasta sauces",
-                    Category = new Category
-                    {
-                        CategoryId = 4,
-                        CategoryType = "Illionois"
-                    },
+                    Category = context.Category.SingleOrDefault(c => c.CategoryType == "Illionois"),
                     Tags = new List<Tags>
                     {
                         new Tags
                         {
                             TagsId = 1,
-                            TagName = "#WineTrail"
+                            TagName = "WineTrail"
 
                         },
 

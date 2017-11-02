@@ -10,5 +10,6 @@ namespace ExploreMidwest.Model
     {
         public int TagsId { get; set; }
         public string TagName { get; set; }
+        public List<Blog> Blogs { get; set; }
     }
 }

@@ -119,6 +119,7 @@ namespace ExploreMidwest.Data.Migrations
                     CategoryType = "Illionois"
                 }
                 );
+            context.SaveChanges();
 
             context.Blog.AddOrUpdate(b => b.Title,
                 new Blog
@@ -126,11 +127,11 @@ namespace ExploreMidwest.Data.Migrations
                     Title = "Keweenaw Peninsula",
                     Body = "The only things crowding Michigan's Keweenaw Peninsula in autumn are miles of coastline, " +
                             "fall color and Lake Superior lore.",
-                    Category = context.Category.SingleOrDefault(c => c.CategoryType == "Michigan"),
+                    Category = context.Category.FirstOrDefault(c => c.CategoryType == "Michigan"),
                     Tags = new List<Tags>
                     {
-                        context.Tags.SingleOrDefault(t => t.TagName == "Fall"),
-                        context.Tags.SingleOrDefault(t => t.TagName ==  "BeautifulFall")
+                        context.Tags.FirstOrDefault(t => t.TagName == "Fall"),
+                        context.Tags.FirstOrDefault(t => t.TagName ==  "BeautifulFall")
                     },
                     IsFinished = true,
                     IsDeleted = false,
@@ -141,16 +142,12 @@ namespace ExploreMidwest.Data.Migrations
                     Title = "Cana Island Lighthouse ",
                     Body = "The 100-step climb to the top of Cana Island Lighthouse in Bailey's Harbor rewards visitors with " +
                            "some of the best views of Lake Michigan's Door County shoreline",
-                    Category = new Category
-                    {
-                        CategoryId = 2,
-                        CategoryType = "Wisconsin"
-                    },
+                    Category = context.Category.FirstOrDefault(c => c.CategoryType == "Wisconsin"),
 
                     Tags = new List<Tags>
                     {
-                        context.Tags.SingleOrDefault(t => t.TagName == "SummerHoliday"),
-                        context.Tags.SingleOrDefault(t => t.TagName == "SummerGateAway")
+                        context.Tags.FirstOrDefault(t => t.TagName == "SummerHoliday"),
+                        context.Tags.FirstOrDefault(t => t.TagName == "SummerGateAway")
                     },
                     IsFinished = true,
                     IsDeleted = false,
@@ -163,11 +160,11 @@ namespace ExploreMidwest.Data.Migrations
                     Body = "Who needs Venice, Italy? Get cozy in the cushioned seats of a Venetian gondola powered by " +
                             "a gondolier wearing a striped shirt and straw hat. For optimal romance, book a dinner package " +
                             "through the Dock Cafe and time a 45-minute gondola ride to watch the moon rise over the St. Croix River",
-                    Category = context.Category.SingleOrDefault(c => c.CategoryType == "Minnesota"),
+                    Category = context.Category.FirstOrDefault(c => c.CategoryType == "Minnesota"),
                     Tags = new List<Tags>
                     {
-                        context.Tags.SingleOrDefault(t => t.TagName == "BestGateAway"),
-                        context.Tags.SingleOrDefault(t => t.TagName == "WhoNeedsVenice")
+                        context.Tags.FirstOrDefault(t => t.TagName == "BestGateAway"),
+                        context.Tags.FirstOrDefault(t => t.TagName == "WhoNeedsVenice")
                     },
                     IsFinished = true,
                     IsDeleted = false,
@@ -179,10 +176,10 @@ namespace ExploreMidwest.Data.Migrations
                     Body = "As if pulling off huge harvests and supplying food to the world wasn't enough, " +
                           "Midwest farmers also have an artsy side. Elaborate corn mazes put their design skills on full display. " +
                           "Bonus: Navigating through one is a crazy-fun way to spend an autumn afternoon",
-                    Category = context.Category.SingleOrDefault(c => c.CategoryType == "Wisconsin"),
+                    Category = context.Category.FirstOrDefault(c => c.CategoryType == "Wisconsin"),
                     Tags = new List<Tags>
                     {
-                        context.Tags.SingleOrDefault(t => t.TagName == "CornFarm")
+                        context.Tags.FirstOrDefault(t => t.TagName == "CornFarm")
                     },
                     IsFinished = true,
                     IsDeleted = false,
@@ -194,10 +191,10 @@ namespace ExploreMidwest.Data.Migrations
                     Title = "The Trick to Planning the Perfect Fall Getaway",
                     Body = "Time your autumn escape just right with these handy fall color reports " +
                            "from state tourism and natural resources groups.",
-                    Category = context.Category.SingleOrDefault(c => c.CategoryType == "Minnesota"),
+                    Category = context.Category.FirstOrDefault(c => c.CategoryType == "Minnesota"),
                     Tags = new List<Tags>
                     {
-                        context.Tags.SingleOrDefault(t => t.TagName == "TenThousandLakes")
+                        context.Tags.FirstOrDefault(t => t.TagName == "TenThousandLakes")
                     },
                     IsFinished = true,
                     IsDeleted = false,
@@ -211,7 +208,7 @@ namespace ExploreMidwest.Data.Migrations
                            " “I used to have a problem calling wine creamy until this one,” Becky says, " +
                            " grinning as a familiar look of wonder spreads across Anne’s face and adding, " +
                            " “I’ve never tasted anything like it. I steam a lot of veggies in it; I throw it in pasta sauces",
-                    Category = context.Category.SingleOrDefault(c => c.CategoryType == "Illionois"),
+                    Category = context.Category.FirstOrDefault(c => c.CategoryType == "Illionois"),
                     Tags = new List<Tags>
                     {
                         new Tags
@@ -230,89 +227,89 @@ namespace ExploreMidwest.Data.Migrations
 
                 );
 
-            context.Page.AddOrUpdate(p => p.Title,
-                new Page
-                {
-                    Title = "About Us",
-                    Body = "Explore Midwest was established to connect the world with the sites and activities that the Midwest region has to offer.",
-                    Url = "http://localhost:8080/aboutus",
-                    IsInNavigation = true,
-                    IsFinished = true
-                },
-                new Page
-                {
-                    Title = "Contact Us",
-                    Body = "If you have any questions, please reach out to us at: CustomerService@exploreMW.com",
-                    Url = "http://localhost:8080/contactus",
-                    IsInNavigation = true,
-                    IsFinished = true,
-                },
-                new Page
-                {
-                    Title = "Attractions",
-                    Body = "Attraction list to be added",
-                    Url = "http://localhost:8080/attractions",
-                    IsInNavigation = false,
-                    IsFinished = false,
-                },
-                new Page
-                {
-                    Title = "Minnesota",
-                    Body = "Minnesota offers an endless array of things to do on vacation. Outdoor pursuits include fishing and boating, " +
-                    "great golf, and some of the country’s best bike trails. There are excellent museums of all types, and options for " +
-                    "live theater abound. Numerous wineries, breweries and distilleries are open for tours and tastings. And shopping is always nearby, " +
-                    "including Mall of America, the state’s most-visited attraction.",
-                    Url = "http://localhost:8080/contactus",
-                    IsInNavigation = true,
-                    IsFinished = true,
-                },
-                new Page
-                {
-                    Title = "Wisconsin",
-                    Body = "Wisconsin offers a wide variety of things to do and endless opportunities to have fun. " +
-                    "Whether you enjoy scouting waterfalls and fishing spots or exploring cities packed with sports, " +
-                    "arts and culture, you'll find it here!",
-                    Url = "http://localhost:8080/contactus",
-                    IsInNavigation = true,
-                    IsFinished = true,
-                },
-                new Page
-                {
-                    Title = "North Dakota",
-                    Body = "From legendary outdoor adventures to the bright lights and excitement of our casinos, " +
-                    "there are a variety of things to see and do during your visit to North Dakota. Whether you’re " +
-                    "searching for history, family fun, shopping, arts and culture or nightlife, you’ve come to the right place.",
-                    Url = "http://localhost:8080/contactus",
-                    IsInNavigation = true,
-                    IsFinished = true,
-                },
-                new Page
-                {
-                    Title = "South Dakota",
-                    Body = "I suppose you could go check out Mount Rushmore",
-                    Url = "http://localhost:8080/contactus",
-                    IsInNavigation = true,
-                    IsFinished = true,
-                },
-                new Page
-                {
-                    Title = "Iowa",
-                    Body = "sits between the Missouri and Mississippi rivers. It’s known for its landscape of rolling " +
-                    "plains and cornfields. Landmarks in the capital, Des Moines, include the gold-domed, 19th-century " +
-                    "State Capitol Building, Pappajohn Sculpture Park and the Des Moines Art Center, noted for its contemporary " +
-                    "collections. The city of Cedar Rapids' Museum of Art has paintings by native Iowan Grant Wood.",
-                    Url = "http://localhost:8080/contactus",
-                    IsInNavigation = true,
-                    IsFinished = true,
-                },
-                new Page
-                {
-                    Title = "Illinois",
-                    Body = " Nicknamed 'the Prairie State', it's marked by farmland, forests, rolling hills and wetlands. Chicago, one of the largest cities in the U.S, is in the northeast on the shores of Lake Michigan. It’s famous for its skyscrapers, such as sleek, 1,451-ft. Willis Tower and the neo-Gothic Tribune Tower.",
-                    Url = "http://localhost:8080/contactus",
-                    IsInNavigation = true,
-                    IsFinished = true,
-                });
+            //context.Page.AddOrUpdate(p => p.Title,
+            //    new Page
+            //    {
+            //        Title = "About Us",
+            //        Body = "Explore Midwest was established to connect the world with the sites and activities that the Midwest region has to offer.",
+            //        Url = "http://localhost:8080/aboutus",
+            //        IsInNavigation = true,
+            //        IsFinished = true
+            //    },
+            //    new Page
+            //    {
+            //        Title = "Contact Us",
+            //        Body = "If you have any questions, please reach out to us at: CustomerService@exploreMW.com",
+            //        Url = "http://localhost:8080/contactus",
+            //        IsInNavigation = true,
+            //        IsFinished = true,
+            //    },
+            //    new Page
+            //    {
+            //        Title = "Attractions",
+            //        Body = "Attraction list to be added",
+            //        Url = "http://localhost:8080/attractions",
+            //        IsInNavigation = false,
+            //        IsFinished = false,
+            //    },
+            //    new Page
+            //    {
+            //        Title = "Minnesota",
+            //        Body = "Minnesota offers an endless array of things to do on vacation. Outdoor pursuits include fishing and boating, " +
+            //        "great golf, and some of the country’s best bike trails. There are excellent museums of all types, and options for " +
+            //        "live theater abound. Numerous wineries, breweries and distilleries are open for tours and tastings. And shopping is always nearby, " +
+            //        "including Mall of America, the state’s most-visited attraction.",
+            //        Url = "http://localhost:8080/contactus",
+            //        IsInNavigation = true,
+            //        IsFinished = true,
+            //    },
+            //    new Page
+            //    {
+            //        Title = "Wisconsin",
+            //        Body = "Wisconsin offers a wide variety of things to do and endless opportunities to have fun. " +
+            //        "Whether you enjoy scouting waterfalls and fishing spots or exploring cities packed with sports, " +
+            //        "arts and culture, you'll find it here!",
+            //        Url = "http://localhost:8080/contactus",
+            //        IsInNavigation = true,
+            //        IsFinished = true,
+            //    },
+            //    new Page
+            //    {
+            //        Title = "North Dakota",
+            //        Body = "From legendary outdoor adventures to the bright lights and excitement of our casinos, " +
+            //        "there are a variety of things to see and do during your visit to North Dakota. Whether you’re " +
+            //        "searching for history, family fun, shopping, arts and culture or nightlife, you’ve come to the right place.",
+            //        Url = "http://localhost:8080/contactus",
+            //        IsInNavigation = true,
+            //        IsFinished = true,
+            //    },
+            //    new Page
+            //    {
+            //        Title = "South Dakota",
+            //        Body = "I suppose you could go check out Mount Rushmore",
+            //        Url = "http://localhost:8080/contactus",
+            //        IsInNavigation = true,
+            //        IsFinished = true,
+            //    },
+            //    new Page
+            //    {
+            //        Title = "Iowa",
+            //        Body = "sits between the Missouri and Mississippi rivers. It’s known for its landscape of rolling " +
+            //        "plains and cornfields. Landmarks in the capital, Des Moines, include the gold-domed, 19th-century " +
+            //        "State Capitol Building, Pappajohn Sculpture Park and the Des Moines Art Center, noted for its contemporary " +
+            //        "collections. The city of Cedar Rapids' Museum of Art has paintings by native Iowan Grant Wood.",
+            //        Url = "http://localhost:8080/contactus",
+            //        IsInNavigation = true,
+            //        IsFinished = true,
+            //    },
+            //    new Page
+            //    {
+            //        Title = "Illinois",
+            //        Body = " Nicknamed 'the Prairie State', it's marked by farmland, forests, rolling hills and wetlands. Chicago, one of the largest cities in the U.S, is in the northeast on the shores of Lake Michigan. It’s famous for its skyscrapers, such as sleek, 1,451-ft. Willis Tower and the neo-Gothic Tribune Tower.",
+            //        Url = "http://localhost:8080/contactus",
+            //        IsInNavigation = true,
+            //        IsFinished = true,
+            //    });
 
 
         }

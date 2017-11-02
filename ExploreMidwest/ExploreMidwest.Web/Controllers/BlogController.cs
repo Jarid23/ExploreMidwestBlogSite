@@ -15,7 +15,8 @@ namespace ExploreMidwest.Web.Controllers
         [Route("blogs/{number}/{set}")]
         public List<Blog> Get(int number, int set)
         {
-            return repo.GetNumberOfBlogs(number, set);
+            List<Blog> toReturn = repo.GetNumberOfBlogs(number, set);
+            return toReturn;
         }
 
         [Route("blog/{id}")]
@@ -35,7 +36,7 @@ namespace ExploreMidwest.Web.Controllers
                     toReturn = repo.GetBlogsByCategory(parameter);
                     break;
                 case "tags":
-                    toReturn = repo.GetBlogsByTag("#" + parameter);
+                    toReturn = repo.GetBlogsByTag(parameter);
                     break;
                 case "date":
                     toReturn = repo.GetBlogsByDate(parameter);

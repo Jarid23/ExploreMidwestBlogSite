@@ -9,14 +9,18 @@ $('#nextblog').click(function () {
 $(document).ready(function () {
     set = 0;
     loadData();
+    updateArea();
 });
+
+function updateArea() {
+    getNumber(num, set);
+}
 
 function loadData() {
     $('#BlogsArea').show();
     $('#details').hide();
     $('.next').show();
     $('.divTop').show();
-    getNumber(num, set);
     $('#newCategory').hide();
     $('#reset').hide();
     newCategory();
@@ -111,14 +115,14 @@ function search() {
 
             for (i; i < blogs.length; i++) {
                 if (blogs[i].IsFinished) {
-                    output += '<div class="col-xs-3 blogDiv">Image</div>'
-                    output += '<div class="col-xs-9 blogDiv"><div class="col-xs-3 titleDiv"><h4>'
+                    output += '<div class="col-xs-2 blogDiv">Image</div>'
+                    output += '<div class="col-xs-10 blogDiv"><div class="col-xs-3 titleDiv"><h4>'
                     output += blogs[i].Title + '</h4><br /><h5>'
-                    output += blogs[i].Category.CategoryType + '</h5>'
+                    output += blogs[i].Category.CategoryType + '</h5><br />'
                     output += blogs[i].Date.slice(0, 10) + '</div>'
                     output += '<div class="col-xs-9 innerDiv">'
                     output += blogs[i].Body
-                    output += '<div style="text-align:end"><button type="button" class="btn btn-default" id="det' + blogs[i].BlogId + '">Read full article</button></div></div></div>'
+                    output += '</div><div style="text-align:end"><button type="button" class="btn btn-default" onclick="FullArticle(' + blogs[i].BlogId + ')">Read full article</button></div></div>'
                 }
             }
             $('#BlogsArea').html(output);

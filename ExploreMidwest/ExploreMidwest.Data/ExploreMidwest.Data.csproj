@@ -116,6 +116,14 @@
     <Compile Include="Migrations\201711021617541_Blogs in tags.Designer.cs">
       <DependentUpon>201711021617541_Blogs in tags.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711021854482_virtual.cs" />
+    <Compile Include="Migrations\201711021854482_virtual.Designer.cs">
+      <DependentUpon>201711021854482_virtual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711021904141_virtualblog.cs" />
+    <Compile Include="Migrations\201711021904141_virtualblog.Designer.cs">
+      <DependentUpon>201711021904141_virtualblog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PageRepositories\EFPageRepo.cs" />
     <Compile Include="PageRepositories\IPageRepo.cs" />
@@ -153,6 +161,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711021617541_Blogs in tags.resx">
       <DependentUpon>201711021617541_Blogs in tags.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711021854482_virtual.resx">
+      <DependentUpon>201711021854482_virtual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711021904141_virtualblog.resx">
+      <DependentUpon>201711021904141_virtualblog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

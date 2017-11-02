@@ -1,4 +1,5 @@
-﻿using ExploreMidwest.Data.BlogRepositories;
+﻿using ExploreMidwest.Data;
+using ExploreMidwest.Data.BlogRepositories;
 using ExploreMidwest.Model;
 using System;
 using System.Collections.Generic;
@@ -15,13 +16,23 @@ namespace ExploreMidwest.Web.Controllers
         [Route("blogs/{number}/{set}")]
         public List<Blog> Get(int number, int set)
         {
-            return repo.GetNumberOfBlogs(number, set);
+            List<Blog> toReturn = repo.GetNumberOfBlogs(number, set);
+            foreach (var item in toReturn)
+                foreach (var tag in item.Tags)
+                    tag.Blog = null;
+            return toReturn;
         }
 
         [Route("blog/{id}")]
         public Blog GetById(int id)
         {
-            return repo.GetBlogById(id);
+            var toReturn = repo.GetBlogById(id);
+            foreach (var tag in toReturn.Tags)
+            {
+                tag.Blog = null;
+                tag.TagName = "#" + tag.TagName;
+            }
+            return toReturn;
         }
 
         [Route("blog/{property}/{parameter}")]
@@ -35,7 +46,7 @@ namespace ExploreMidwest.Web.Controllers
                     toReturn = repo.GetBlogsByCategory(parameter);
                     break;
                 case "tags":
-                    toReturn = repo.GetBlogsByTag("#" + parameter);
+                    toReturn = repo.GetBlogsByTag(parameter);
                     break;
                 case "date":
                     toReturn = repo.GetBlogsByDate(parameter);
@@ -44,6 +55,10 @@ namespace ExploreMidwest.Web.Controllers
                     toReturn = repo.GetBlogsByTitle(parameter);
                     break;
             }
+
+            foreach (var item in toReturn)
+                foreach (var tag in item.Tags)
+                    tag.Blog = null;
 
             return toReturn;
         }

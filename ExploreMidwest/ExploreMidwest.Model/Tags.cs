@@ -10,6 +10,11 @@ namespace ExploreMidwest.Model
     {
         public int TagsId { get; set; }
         public string TagName { get; set; }
-        public List<Blog> Blogs { get; set; }
+        public virtual ICollection<Blog> Blog { get; set;}
+
+        public Tags()
+        {
+            Blog = new HashSet<Blog>();
+        }
     }
 }

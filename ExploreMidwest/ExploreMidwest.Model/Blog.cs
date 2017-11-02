@@ -12,10 +12,15 @@ namespace ExploreMidwest.Model
         public string Title { get; set; }
         public string Author { get; set; }
         public Category Category { get; set; }
-        public List<Tags> Tags { get; set; }
+        public ICollection<Tags> Tags { get; set; }
         public string Body { get; set; }
         public bool IsFinished { get; set; }
         public DateTime Date { get; set; }
         public bool IsDeleted { get; set; }
+
+        public Blog()
+        {
+            Tags = new HashSet<Tags>();
+        }
     }
 }

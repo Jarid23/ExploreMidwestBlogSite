@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ExploreMidwest.Model;
 using System.Data.Entity.Migrations;
+using System.Text.RegularExpressions;
 
 namespace ExploreMidwest.Data.BlogRepositories
 {
@@ -49,6 +50,22 @@ namespace ExploreMidwest.Data.BlogRepositories
 
         public void AddBlog(Blog blog)
         {
+            var regex = new Regex(@"(?<=#)\w+");
+            var matches = regex.Matches(blog.Body);
+
+            foreach (Match m in matches)
+            {
+                if (context.Tags.Where(t => t.TagName == m.Value).Count() == 0)
+                { 
+                    context.Tags.Add(new Tags { TagName=m.Value});
+                    context.SaveChanges();
+                }
+                blog.Tags.Add(context.Tags.SingleOrDefault(t => t.TagName == m.Value));
+
+
+                
+            }
+                blog.Category = context.Category.SingleOrDefault(c => c.CategoryId == blog.Category.CategoryId);
             context.Blog.Add(blog);
             context.SaveChanges();
         }
@@ -77,7 +94,7 @@ namespace ExploreMidwest.Data.BlogRepositories
 
         public List<Blog> GetSavedFromAuthor(string author)
         {
-            throw new NotImplementedException();
+            return context.Blog.Include("Category").Include("Tags").Where(d => d.Author == author).Where(b => b.IsFinished == false).ToList();
         }
     }
 }

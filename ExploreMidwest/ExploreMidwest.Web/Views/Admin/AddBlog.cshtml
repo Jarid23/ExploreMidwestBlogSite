@@ -9,18 +9,10 @@
     @using (Html.BeginForm())
     {
           <div class="col-xs-3 divMain">
-                <h4>Blog Category Name</h4>
-                @*<select class="form-control" v-model="searchCategory" id="searchCategory">                   
-                    <option value="">States&nbsp;&nbsp;</option>
-                    <option value="IL">Illinois</option>
-                    <option value="MI">Michigan</option>
-                    <option value="MN">Minnesota</option>
-                    <option value="WI">Wisconsin</option>
-                    <option value="new" id="cat">New Category</option>
-                    @Html.DropDownListFor(c => c.Blog.Category.CategoryId, Model.CategoryItems, "-choose category", new { @class ="form-control"})
-                </select>*@
+                <h4>Blog Category Name</h4>               
               <div>
-                  @Html.DropDownListFor(c => c.Blog.Category.CategoryId, Model.CategoryItems, "-choose category", new { @class = "form-control" })
+                  @Html.HiddenFor(m=>m.Blog.BlogId)
+                  @Html.DropDownListFor(c => c.Blog.Category.CategoryId, Model.CategoryItems, "-choose category-", new { @class = "form-control" })
                   @Html.ValidationMessageFor(m => m.CategoryItems)
               </div>
                 <div class="control" id="newCategory">
@@ -30,27 +22,51 @@
             </div>
             <div class="col-xs-9 divMain">
                 <h4>Blog Subject Name</h4>                
-                <div>
-                    <form  class="control" id="hd">
-                        <input style ="font-size: 14pt" id="subject" contextmenu="Text Box" />
-                        
-                    </form>
+                <div class="form-group" style="font-size: 14pt">
+                    @Html.TextBoxFor(t => t.Blog.Title, new { @class = "form-group"})       
+                    @Html.ValidationMessageFor(t => t.Blog.Title)
+
+                    <label>Date</label>
+                    @Html.TextBoxFor(t => t.Blog.Date, new { @class = "form-group" })
+
+                    <label>Author</label>
+                    @Html.TextBoxFor(t => t.Blog.Author, new { @class = "form-group" })
+
+                    
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-xs-12 control" >
                     <h4>Blog Content</h4>
-                    <textarea id="txtContent"></textarea>
+                    @Html.TextAreaFor(m => m.Blog.Body, new { @class = "form-group" , id="textarea"})
+
+                    <label>Tags</label>
+                    @Html.TextBoxFor(t => t.Blog.Tags, new { @class = "form-group" })
+
+                    @Html.HiddenFor(m => m.Blog.IsDeleted) 
+                    @Html.CheckBoxFor(m => m.Blog.IsFinished) Publish Blog
+
+                    <button type="submit" id="submit-button" class="btn btn-primary btn-sm">Submit</button>
                     
                 </div>
+
                 <div>
-                    <button id="upload-button" class="btn btn-primary btn-sm">Upload Image</button>
+                    <div>
+                        @using (Html.BeginForm ("Index", "Home", FormMethod.Post,
+                            new { enctype = "multipart/form-data"}))
+                        {
+                            
+                            <input type="file" name="file" id="file"/>
+                            <input type="submit" value="Upload Image"/>
+                            @*@ViewBag.Message*@
+                        }
+                    </div>
                     <button id="cancel-button" class="btn btn-primary btn-sm">Cancel</button>
-                    <button id="submit-button" class="btn btn-primary btn-sm">Submit</button>
+                    
                 </div>
             </div>
-
+            
     }
           
           

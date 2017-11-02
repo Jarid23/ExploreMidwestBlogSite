@@ -11,11 +11,12 @@ namespace ExploreMidwest.Web.Models
     {
         public Blog Blog { get; set; }
         
-        public List<SelectListItem> CategoryItems { get; set; }
+        public List<SelectListItem> CategoryItems { get; set; }       
 
         public BlogVM()
         {
             CategoryItems = new List<SelectListItem>();
+            Blog = new Blog();
         }
 
         public void SetCategories(List<Category> category)
@@ -23,7 +24,7 @@ namespace ExploreMidwest.Web.Models
             category = category.OrderBy(c => c.CategoryType).ToList();
             foreach (var c in category)
             {
-
+                
                 CategoryItems.Add(new SelectListItem()
                 {
                     Value = c.CategoryId.ToString(),
@@ -37,5 +38,8 @@ namespace ExploreMidwest.Web.Models
                 Text = "New Category"
             });
         }
+
+        
+
     }
 }

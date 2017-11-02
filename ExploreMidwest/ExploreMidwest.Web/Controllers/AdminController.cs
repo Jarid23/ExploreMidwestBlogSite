@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -49,29 +50,36 @@ namespace ExploreMidwest.Web.Controllers
             BlogVM model = new BlogVM();
 
             var context = new ExploreMidwestDBContext();
+            model.Blog = new Blog()
+            {
+                Category = new Category(),
+                Tags = new List<Tags>()
+            };
 
             model.SetCategories(context.Category.ToList());
 
             return View(model);
         }
 
-
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult AddBlog(Blog blog)
+        public ActionResult AddBlog(BlogVM b)
         {
             var repo = BlogRepoFactory.Create();
             {
                 if (ModelState.IsValid)
                 {
-                    repo.AddBlog(blog);
+                    b.Blog.Date = DateTime.Today;
+                    repo.AddBlog(b.Blog);
                     return RedirectToAction("Index", "Home");
-                }
+            }
                 else
                 {
-                    return View(blog);
-                }
+                var context = new ExploreMidwestDBContext();
+                b.SetCategories(context.Category.ToList());
+                return View(b);
             }
+        }
         }
 
         [HttpGet]
@@ -192,6 +200,15 @@ namespace ExploreMidwest.Web.Controllers
             return RedirectToAction("SavedPages");
         }
 
+        public ActionResult ResetPassword()
+        {
+            var context = new ExploreMidwestDBContext();
+
+            var userMgr = new UserManager<IdentityUser>(new UserStore<IdentityUser>(context));
+
+            return RedirectToAction("Login", "Home");
+        }
+
         [HttpGet]
         public ActionResult AddManager()
         {
@@ -262,6 +279,37 @@ namespace ExploreMidwest.Web.Controllers
                 
             }
             return View(manager);
+        }
+
+
+        [HttpGet]
+        public ActionResult UploadDocument()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult Index(HttpPostedFileBase file)
+        {
+            if(file != null && file.ContentLength > 0)
+                try
+                {
+                    string path = Path.Combine(Server.MapPath("~/Images"),
+                        Path.GetFileName(file.FileName));
+                    file.SaveAs(path);
+                    ViewBag.Message = "File upload successfully";
+                }
+                catch(Exception ex)
+                {
+                    ViewBag.Message = "Error: " + ex.Message.ToString();
+                }
+            else
+            {
+                ViewBag.Message = "You have not specified a file";
+            }
+            return View();
+            
         }
     }
 }

@@ -199,7 +199,7 @@ namespace ExploreMidwest.Data.BlogRepositories
 
         public List<Blog> GetSavedFromAuthor(string author)
         {
-            return _blogs.Where(b => b.IsFinished == false).ToList();
+            return _blogs.Where(b => b.Author == author).Where(b => b.IsFinished == false).ToList();
         }
 
         public List<Blog> GetUnpublishedBlogs()

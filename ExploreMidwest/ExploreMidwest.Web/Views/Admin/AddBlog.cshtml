@@ -33,8 +33,18 @@
                     <h4>Blog Content</h4>
                     @Html.TextAreaFor(m => m.Blog.Body)                   
                 </div>
+
                 <div>
-                    <button id="upload-button" class="btn btn-primary btn-sm">Upload Image</button>
+                    <div>
+                        @using (Html.BeginForm ("Index", "Home", FormMethod.Post,
+                            new { enctype = "multipart/form-data"}))
+                        {
+                            
+                            <input type="file" name="file" id="file"/>
+                            <input type="submit" value="Upload Image"/>
+                            @*@ViewBag.Message*@
+                        }
+                    </div>
                     <button id="cancel-button" class="btn btn-primary btn-sm">Cancel</button>
                     <button type ="submit" id="submit-button" class="btn btn-primary btn-sm">Submit</button>
                 </div>

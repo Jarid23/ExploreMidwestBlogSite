@@ -8,10 +8,10 @@
 <div class="row">     
     @using (Html.BeginForm())
     {
-        @Html.HiddenFor(m => m.Blog)
           <div class="col-xs-3 divMain">
                 <h4>Blog Category Name</h4>               
               <div>
+                  @Html.HiddenFor(m=>m.Blog.BlogId)
                   @Html.DropDownListFor(c => c.Blog.Category.CategoryId, Model.CategoryItems, "-choose category-", new { @class = "form-control" })
                   @Html.ValidationMessageFor(m => m.CategoryItems)
               </div>
@@ -25,13 +25,29 @@
                 <div class="form-group" style="font-size: 14pt">
                     @Html.TextBoxFor(t => t.Blog.Title, new { @class = "form-group"})       
                     @Html.ValidationMessageFor(t => t.Blog.Title)
+
+                    <label>Date</label>
+                    @Html.TextBoxFor(t => t.Blog.Date, new { @class = "form-group" })
+
+                    <label>Author</label>
+                    @Html.TextBoxFor(t => t.Blog.Author, new { @class = "form-group" })
+
+                    
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-xs-12 control" >
                     <h4>Blog Content</h4>
-                    @Html.TextAreaFor(m => m.Blog.Body)                   
+                    @Html.TextAreaFor(m => m.Blog.Body, new { @class = "form-group" , id="textarea"})
+
+                    <label>Tags</label>
+                    @Html.TextBoxFor(t => t.Blog.Tags, new { @class = "form-group" })
+
+                    @Html.HiddenFor(m => m.Blog.IsDeleted) 
+                    @Html.CheckBoxFor(m => m.Blog.IsFinished) Publish Blog
+
+                    
                 </div>
 
                 <div>
@@ -46,10 +62,10 @@
                         }
                     </div>
                     <button id="cancel-button" class="btn btn-primary btn-sm">Cancel</button>
-                    <button type ="submit" id="submit-button" class="btn btn-primary btn-sm">Submit</button>
+                    
                 </div>
             </div>
-
+            <button type="submit" id="submit-button" class="btn btn-primary btn-sm">Submit</button>
     }
           
           

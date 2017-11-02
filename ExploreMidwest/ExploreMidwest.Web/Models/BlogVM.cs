@@ -16,7 +16,7 @@ namespace ExploreMidwest.Web.Models
         public BlogVM()
         {
             CategoryItems = new List<SelectListItem>();
-           
+            Blog = new Blog();
         }
 
         public void SetCategories(List<Category> category)

@@ -3,8 +3,6 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
 <!DOCTYPE html>
 
 <html>
@@ -15,7 +13,7 @@
 <body>
     <div class="col-xs-12">
         <h3>Add Blog</h3>
-        @Html.ActionLink("Return to Manager Home", "Blog", "manager")
+       
     </div>
     <div class="row">
         <div class="col-xs-12">
@@ -26,6 +24,27 @@
                     @Html.TextBoxFor(b => b.BlogId, new { @class = "form-control", placeholder = "Blog" })
                     @Html.ValidationMessageFor(b => b.BlogId)
                 </div>
+                <div class="form-group">
+                    <label>Author</label>
+                    @Html.TextBoxFor(b => b.Author, new { @class = "form-control", placeholder = "Author" })
+                    @Html.ValidationMessageFor(b => b.Author)
+                </div>
+                <div class="form-group">
+                    <label>Title</label>
+                    @Html.TextBoxFor(b => b.Title, new { @class = "form-control", placeholder = "Title" })
+                    @Html.ValidationMessageFor(b => b.Title)
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    @Html.TextBoxFor(b => b.Category, new { @class = "form-control", placeholder = "Category" })
+                    @Html.ValidationMessageFor(b => b.Category)
+                </div>
+                <div class="form-group">
+                    <label>Tags</label>
+                    @Html.TextBoxFor(b => b.Tags, new { @class = "form-control", placeholder = "Tags" })
+                    @Html.ValidationMessageFor(b => b.Tags)
+                </div>
+
                 <button type="submit" class="btn btn-sm btn-primary">Save</button>
             }
         </div>

@@ -165,4 +165,6 @@ function FullArticle(id) {
     })
 }
 
- 
+$('#clearSearch').click(function(){
+    $('#searchTerm').val("");
+})

@@ -7,14 +7,18 @@ $('#nextblog').click(function () {
 }) 
 
 $(document).ready(function () {
-    $('#details').hide();
     set = 0;
     loadData();
 });
 
 function loadData() {
+    $('#BlogsArea').show();
+    $('#details').hide();
+    $('.next').show();
+    $('.divTop').show();
     getNumber(num, set);
     $('#newCategory').hide();
+    $('#reset').hide();
     newCategory();
     getPages();
 }
@@ -129,11 +133,14 @@ function FullArticle(id) {
     $('#BlogsArea').hide();
     $('.next').hide();
     $('.divTop').hide();
+    $('#reset').show();
     $.ajax({
         url: 'http://localhost:8080/blog/' + id,
         type: 'GET',
         success: function (blog) {
             var output = "";
+            var editdelete = "";
+
             var i = 0;
             output += '<div class="col-xs-offset-2 col-xs-8 detailDiv"><h3>' + blog.Title
             output += '</h3 ><h4>' + blog.Category.CategoryType
@@ -145,7 +152,12 @@ function FullArticle(id) {
             }
             output = output.slice(0, -2)
             output += '</p ></div>'
+
+            editdelete += '<a href="~/Admin/EditBlog/' + id + '">Edit</a> | '
+            editdelete += '<a href="~/Admin/DeleteBlog/' + id + '">Delete</a>'
+
             $('#details').html(output);
+            $('#editdelete').html(editdelete);
         },
         error: function (jqxhr, techstatus, errorthrow) {
 

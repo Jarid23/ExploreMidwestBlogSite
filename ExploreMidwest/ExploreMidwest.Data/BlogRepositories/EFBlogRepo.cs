@@ -49,6 +49,7 @@ namespace ExploreMidwest.Data.BlogRepositories
 
         public void AddBlog(Blog blog)
         {
+            blog.Category = context.Category.SingleOrDefault(c => c.CategoryId == blog.Category.CategoryId);
             context.Blog.Add(blog);
             context.SaveChanges();
         }

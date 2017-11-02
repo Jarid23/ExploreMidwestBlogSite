@@ -63,23 +63,23 @@ namespace ExploreMidwest.Web.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult AddBlog(BlogVM blog)
+        public ActionResult AddBlog(BlogVM b)
         {
             var repo = BlogRepoFactory.Create();
             {
                 if (ModelState.IsValid)
                 {
-                    blog.Blog.Date = DateTime.Today;
-                    repo.AddBlog(blog.Blog);
+                    b.Blog.Date = DateTime.Today;
+                    repo.AddBlog(b.Blog);
                     return RedirectToAction("Index", "Home");
-                }
+            }
                 else
                 {
-                    var context = new ExploreMidwestDBContext();
-                    blog.SetCategories(context.Category.ToList());
-                    return View(blog);
-                }
+                var context = new ExploreMidwestDBContext();
+                b.SetCategories(context.Category.ToList());
+                return View(b);
             }
+        }
         }
 
         [HttpGet]

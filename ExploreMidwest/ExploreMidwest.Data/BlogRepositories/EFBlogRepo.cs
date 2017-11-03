@@ -40,8 +40,10 @@ namespace ExploreMidwest.Data.BlogRepositories
 
         public void EditBlog(Blog blog)
         {
-           
+            var change = context.Blog.FirstOrDefault(b => b.BlogId == blog.BlogId);
             context.Blog.AddOrUpdate(blog);
+            change.Category = blog.Category;
+            change.Tags = blog.Tags;
             context.SaveChanges();
 
             //context.Entry(blog).State = System.Data.Entity.EntityState.Modified;

@@ -312,14 +312,13 @@ namespace ExploreMidwest.Web.Controllers
         [HttpPost]
         public ActionResult DeleteManager(DeleteManager manager)
         {
-            if (ModelState.IsValid)
+            if (!string.IsNullOrEmpty(manager.Name))
             {
                 ExploreMidwest.Data.ExploreMidwestDBContext context = new Data.ExploreMidwestDBContext();
 
                 var userMgr = new UserManager<IdentityUser>(new UserStore<IdentityUser>(context));
                 var roleMgr = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
-               
                 var findmanager = userMgr.FindByName(manager.Name);
                 // create the user with the manager class
                 if (findmanager != null)
@@ -333,6 +332,10 @@ namespace ExploreMidwest.Web.Controllers
                 return RedirectToAction("Index", "Home");
 
                 
+            }
+            else
+            {
+                ModelState.AddModelError("Name", "Please Enter A Name");
             }
             return View(manager);
         }

@@ -31,6 +31,7 @@ function loadData() {
     $('#details').hide();
     $('.next').show();
     $('.divTop').show();
+    $('#editdelete').hide();
     $('#newCategory').hide();
     $('#reset').hide();
     newCategory();
@@ -144,6 +145,7 @@ function search() {
 }
 function FullArticle(id) {
     $('#details').show("slow");
+    $('#editdelete').show();
     $('#BlogsArea').hide();
     $('.next').hide();
     $('.divTop').hide();
@@ -163,8 +165,8 @@ function FullArticle(id) {
             output += '</p ></div><div class="col-xs-offset-2 col-xs-8 detailDiv"><p>'
             output += '</p ></div>'
 
-            editdelete += '<a href="~/Admin/EditBlog/' + id + '">Edit</a> | '
-            editdelete += '<a href="~/Admin/DeleteBlog/' + id + '">Delete</a>'
+            editdelete += '<a href="/Admin/EditBlog/' + id + '">Edit</a> | '
+            editdelete += '<a href="/Admin/DeleteBlog/' + id + '">Delete</a>'
 
             $('#details').html(output);
             $('#editdelete').html(editdelete);

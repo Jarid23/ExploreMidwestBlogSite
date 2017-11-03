@@ -2,6 +2,8 @@
 using ExploreMidwest.Data.BlogRepositories;
 using ExploreMidwest.Model;
 using ExploreMidwest.Web.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +12,7 @@ using System.Web.Mvc;
 
 namespace ExploreMidwest.Web.Controllers
 {
-    [Authorize(Roles ="Manager")]
+    [Authorize(Roles ="Manager, admin")]
     public class ManagerController : Controller
     {
         IBlogRepo repo = BlogRepoFactory.Create();
@@ -19,6 +21,29 @@ namespace ExploreMidwest.Web.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult ChangePassword()
+        {
+            return View(new ChangePasswordVM());
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(ChangePasswordVM password)
+        {
+            if (password.newPassword == password.newPasswordConfirm)
+            {
+                var userMgr = new UserManager<IdentityUser>(new UserStore<IdentityUser>(context));
+
+                userMgr.ChangePassword(User.Identity.GetUserId(), password.oldPassword, password.newPassword);
+
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ModelState.AddModelError("newPassword", "Passwords must be the same");
+            }
+            return View(password);
         }
 
         [HttpGet]

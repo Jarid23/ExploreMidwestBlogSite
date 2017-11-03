@@ -11,8 +11,8 @@ namespace ExploreMidwest.Model
         public int BlogId { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
-        public Category Category { get; set; }
-        public ICollection<Tags> Tags { get; set; }
+        public virtual Category Category { get; set; }
+        public virtual ICollection<Tags> Tags { get; set; }
         public string Body { get; set; }
         public bool IsFinished { get; set; }
         public DateTime Date { get; set; }

@@ -32,7 +32,7 @@ namespace ExploreMidwest.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                repo.AddBlog(blog.Blog);
+               
                 return RedirectToAction("Index", "Home");
             }
             else

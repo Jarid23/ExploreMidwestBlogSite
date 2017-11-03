@@ -24,15 +24,15 @@ namespace ExploreMidwest.Web.Controllers
         [HttpGet]
         public ActionResult AddBlog()
         {
-            return View(new Blog());
+            return View(new BlogVM());
         }
 
         [HttpPost]
-        public ActionResult AddBlog(Blog blog)
+        public ActionResult AddBlog(BlogVM blog)
         {
             if (ModelState.IsValid)
             {
-                repo.AddBlog(blog);
+                repo.AddBlog(blog.Blog);
                 return RedirectToAction("Index", "Home");
             }
             else

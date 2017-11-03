@@ -6,8 +6,8 @@
 <div class="col-xs-7 divTop">
     <form class="navbar-form navbar-left" onsubmit="return false;">
         <div class="form-group">
-            <button class="btn btn-primary" type="button">
-                <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
+            <button class="btn btn-primary" type="button" id="clearSearch">
+                <span class="glyphicon glyphicon-ban-circle" aria-hidden="true" ></span>
                 Clear Search
             </button>
         </div>
@@ -21,7 +21,7 @@
                 <option value="title">Title</option>
             </select>
         </div>
-        <div class="form-group">
+        <div class="form-group" >
             <input type="text" class="form-control" placeholder="Search Term" v-model="searchTerm" id="searchTerm">
         </div>
     </form>

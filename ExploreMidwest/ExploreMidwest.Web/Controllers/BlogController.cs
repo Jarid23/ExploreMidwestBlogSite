@@ -17,9 +17,6 @@ namespace ExploreMidwest.Web.Controllers
         public List<Blog> Get(int number, int set)
         {
             List<Blog> toReturn = repo.GetNumberOfBlogs(number, set);
-            foreach (var item in toReturn)
-                foreach (var tag in item.Tags)
-                    tag.Blog = null;
             return toReturn;
         }
 
@@ -27,11 +24,6 @@ namespace ExploreMidwest.Web.Controllers
         public Blog GetById(int id)
         {
             var toReturn = repo.GetBlogById(id);
-            foreach (var tag in toReturn.Tags)
-            {
-                tag.Blog = null;
-                tag.TagName = "#" + tag.TagName;
-            }
             return toReturn;
         }
 
@@ -55,10 +47,6 @@ namespace ExploreMidwest.Web.Controllers
                     toReturn = repo.GetBlogsByTitle(parameter);
                     break;
             }
-
-            foreach (var item in toReturn)
-                foreach (var tag in item.Tags)
-                    tag.Blog = null;
 
             return toReturn;
         }

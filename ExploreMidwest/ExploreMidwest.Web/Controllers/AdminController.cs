@@ -47,14 +47,15 @@ namespace ExploreMidwest.Web.Controllers
         [ValidateInput(false)]
         public ActionResult AddBlog()
         {
-            BlogVM model = new BlogVM();
-
-            var context = new ExploreMidwestDBContext();
-            model.Blog = new Blog()
+            BlogVM model = new BlogVM()
             {
                 Category = new Category(),
-                Tags = new List<Tags>()
+                Tags = new List<Tags>(),
+                Author = User.Identity.Name,
+                Date = DateTime.Today
             };
+
+            var context = new ExploreMidwestDBContext();            
 
             model.SetCategories(context.Category.ToList());
 
@@ -66,16 +67,45 @@ namespace ExploreMidwest.Web.Controllers
         public ActionResult AddBlog(BlogVM b)
         {
             var repo = BlogRepoFactory.Create();
+            var context = new ExploreMidwestDBContext();
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                Blog blog = new Blog
                 {
+<<<<<<< HEAD
                     b.Blog.Date = DateTime.Today;
                     repo.AddBlog(b.Blog);
                     return RedirectToAction("Index", "Home");
+=======
+                    BlogId = b.BlogId,
+                    Body = b.Body,
+                    IsDeleted = b.IsDeleted,
+                    IsFinished = b.IsFinished,
+                    Tags = new List<Tags>(),
+                    Title = b.Title,
+                    Author = User.Identity.Name,
+                    Date = DateTime.Today
+                };
+                if(b.Category.CategoryId == 0)
+                {
+                    Category c = new Category
+                    {
+                        CategoryType = b.NewCategory
+                    };
+                    context.Category.Add(c);
+                    context.SaveChanges();
+                    blog.Category = context.Category.FirstOrDefault(g => g.CategoryType == c.CategoryType);
+>>>>>>> 43cb873f3d9f6892867cd5f4cebcaad71eb628b9
                 }
                 else
                 {
-                var context = new ExploreMidwestDBContext();
+                    blog.Category = context.Category.FirstOrDefault(c => c.CategoryId == b.Category.CategoryId);
+                }
+                repo.AddBlog(blog);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
                 b.SetCategories(context.Category.ToList());
                 return View(b);
                 }
@@ -88,49 +118,82 @@ namespace ExploreMidwest.Web.Controllers
         {
             var repo = BlogRepoFactory.Create();
             var blog = repo.GetBlogById(id);
-            repo.EditBlog(blog);
-            return View(blog);
+            var context = new ExploreMidwestDBContext();
+            Blog b = repo.GetBlogById(id);
+
+            var model = new BlogVM()
+            {
+                Author = b.Author,
+                Body = b.Body,
+                BlogId = b.BlogId,
+                Category = b.Category,
+                Date = b.Date,
+                IsDeleted = b.IsDeleted,
+                IsFinished = b.IsFinished,
+                Tags = b.Tags,
+                Title = b.Title
+            };
+
+            model.SetCategories(context.Category.ToList());
+
+            return View(model);
+        }        
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult EditBlog(BlogVM b)
+        {
+            var repo = BlogRepoFactory.Create();
+            var context = new ExploreMidwestDBContext();
+            if (ModelState.IsValid)
+            {
+                if (string.IsNullOrEmpty(b.Author))
+                {
+                    b.Author = User.Identity.Name;
+                }
+                Blog blog = new Blog
+                {
+                    BlogId = b.BlogId,
+                    Body = b.Body,
+                    IsDeleted = b.IsDeleted,
+                    IsFinished = b.IsFinished,
+                    Tags = new List<Tags>(),
+                    Title = b.Title,
+                    Author = b.Author,
+                    Date = DateTime.Today
+                };
+                if (b.Category.CategoryId == 0)
+                {
+                    Category c = new Category
+                    {
+                        CategoryType = b.NewCategory
+                    };
+                    context.Category.Add(c);
+                    context.SaveChanges();
+                    blog.Category = context.Category.FirstOrDefault(g => g.CategoryType == c.CategoryType);
+                }
+                else
+                {
+                    blog.Category = context.Category.FirstOrDefault(c => c.CategoryId == b.Category.CategoryId);
+                }
+                repo.EditBlog(blog);
+                return RedirectToAction("PendingPosts");
+            }
+            else
+            {
+                b.SetCategories(context.Category.ToList());
+                return View(b);
+            }
         }
 
         [HttpGet]
-        public ActionResult DeleteBlog()
+        public ActionResult DeleteBlog(int id)
         {
             var repo = BlogRepoFactory.Create();
 
-            return View(new Blog());
-        }
+            repo.DeleteBlog(id);
 
-        [HttpPost]
-        public ActionResult EditBlog(Blog blog)
-        {
-            var repo = BlogRepoFactory.Create();
-
-            if (ModelState.IsValid)
-            {
-                repo.EditBlog(blog);
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                return View(blog);
-            }
-        }
-
-
-        [HttpPost]
-        public ActionResult DeleteBlog(Blog blog)
-        {
-            var repo = BlogRepoFactory.Create();
-
-            if (ModelState.IsValid)
-            {
-                repo.DeleteBlog(blog.BlogId);
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                return View(blog);
-            }
+            return RedirectToAction("PendingPosts");
         }
 
         [HttpGet]
@@ -182,7 +245,7 @@ namespace ExploreMidwest.Web.Controllers
                     page.IsFinished = true;
                 }
                 repo.EditPage(page);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("SavedPages");
             }
             else
             {

@@ -17,9 +17,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Body)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Url)
-        </th>
         <th></th>
     </tr>
 
@@ -30,9 +27,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Body)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Url)
         </td>
         <td>
             @Html.ActionLink("Edit", "EditPage", new { id=item.PageId }) |

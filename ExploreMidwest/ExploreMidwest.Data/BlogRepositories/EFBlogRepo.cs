@@ -15,7 +15,7 @@ namespace ExploreMidwest.Data.BlogRepositories
 
         public List<Blog> GetNumberOfBlogs(int number, int set)
         {
-            var toReturn = context.Blog.Include("Category").OrderBy(b => b.BlogId).Skip(number * set).Take(number).ToList();
+            var toReturn = context.Blog.Include("Category").OrderByDescending(b => b.Date).Where(b => b.IsFinished).Skip(number * set).Take(number).ToList();
             return toReturn;
         }
 

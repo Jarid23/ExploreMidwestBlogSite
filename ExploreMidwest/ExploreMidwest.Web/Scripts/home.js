@@ -5,6 +5,15 @@ $('#nextblog').click(function () {
     set += 1;
     loadData();
     updateArea();
+})
+
+$('#prev').click(function () {
+    if (set > 0)
+    {
+        set--;
+    }
+    loadData();
+    updateArea();
 }) 
 
 $(document).ready(function () {

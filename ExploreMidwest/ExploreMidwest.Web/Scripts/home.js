@@ -4,6 +4,7 @@ var set = 0;
 $('#nextblog').click(function () {
     set += 1;
     loadData();
+    updateArea();
 }) 
 
 $(document).ready(function () {
@@ -68,8 +69,8 @@ function getNumber(number, sets) {
 }
 
 function newCategory() {
-    $('#searchCategory').on('change', function () {
-        if ($(this).val() == "new") {
+    $('#Category_CategoryId').on('change', function () {
+        if ($(this).val() == "0") {
             $('#newCategory').show();
         }
         else {
@@ -151,10 +152,6 @@ function FullArticle(id) {
             output += '</h4 ><h4>' + blog.Date.slice(0, 10)
             output += '</h4 ></div><div class="col-xs-offset-2 col-xs-8 detailDiv"><p>' + blog.Body
             output += '</p ></div><div class="col-xs-offset-2 col-xs-8 detailDiv"><p>'
-            for (i; i < blog.Tags.length; i++){
-                output += blog.Tags[i].TagName + ', '
-            }
-            output = output.slice(0, -2)
             output += '</p ></div>'
 
             editdelete += '<a href="~/Admin/EditBlog/' + id + '">Edit</a> | '

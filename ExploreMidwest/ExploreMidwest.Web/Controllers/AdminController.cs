@@ -47,14 +47,15 @@ namespace ExploreMidwest.Web.Controllers
         [ValidateInput(false)]
         public ActionResult AddBlog()
         {
-            BlogVM model = new BlogVM();
-
-            var context = new ExploreMidwestDBContext();
-            model.Blog = new Blog()
+            BlogVM model = new BlogVM()
             {
                 Category = new Category(),
-                Tags = new List<Tags>()
+                Tags = new List<Tags>(),
+                Author = User.Identity.Name,
+                Date = DateTime.Today
             };
+
+            var context = new ExploreMidwestDBContext();            
 
             model.SetCategories(context.Category.ToList());
 
@@ -66,20 +67,42 @@ namespace ExploreMidwest.Web.Controllers
         public ActionResult AddBlog(BlogVM b)
         {
             var repo = BlogRepoFactory.Create();
+            var context = new ExploreMidwestDBContext();
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                Blog blog = new Blog
                 {
-                    b.Blog.Date = DateTime.Today;
-                    repo.AddBlog(b.Blog);
-                    return RedirectToAction("Index", "Home");
-            }
+                    BlogId = b.BlogId,
+                    Body = b.Body,
+                    IsDeleted = b.IsDeleted,
+                    IsFinished = b.IsFinished,
+                    Tags = new List<Tags>(),
+                    Title = b.Title,
+                    Author = User.Identity.Name,
+                    Date = DateTime.Today
+                };
+                if(b.Category.CategoryId == 0)
+                {
+                    Category c = new Category
+                    {
+                        CategoryType = b.NewCategory
+                    };
+                    context.Category.Add(c);
+                    context.SaveChanges();
+                    blog.Category = context.Category.FirstOrDefault(g => g.CategoryType == c.CategoryType);
+                }
                 else
                 {
-                var context = new ExploreMidwestDBContext();
+                    blog.Category = context.Category.FirstOrDefault(c => c.CategoryId == b.Category.CategoryId);
+                }
+                repo.AddBlog(blog);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
                 b.SetCategories(context.Category.ToList());
                 return View(b);
             }
-        }
         }
 
         [HttpGet]
@@ -88,8 +111,25 @@ namespace ExploreMidwest.Web.Controllers
         {
             var repo = BlogRepoFactory.Create();
             var blog = repo.GetBlogById(id);
-            repo.EditBlog(blog);
-            return View(blog);
+            var context = new ExploreMidwestDBContext();
+            Blog b = repo.GetBlogById(id);
+
+            var model = new BlogVM()
+            {
+                Author = b.Author,
+                Body = b.Body,
+                BlogId = b.BlogId,
+                Category = b.Category,
+                Date = b.Date,
+                IsDeleted = b.IsDeleted,
+                IsFinished = b.IsFinished,
+                Tags = b.Tags,
+                Title = b.Title
+            };
+
+            model.SetCategories(context.Category.ToList());
+
+            return View(model);
         }
 
         [HttpGet]

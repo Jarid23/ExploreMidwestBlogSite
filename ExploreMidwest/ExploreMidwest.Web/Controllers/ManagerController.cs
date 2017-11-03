@@ -52,8 +52,20 @@ namespace ExploreMidwest.Web.Controllers
 
         public ActionResult EditBlog(int id)
         {
-            var model = new BlogVM();
-            model.Blog = repo.GetBlogById(id);
+            Blog b = repo.GetBlogById(id);
+
+            var model = new BlogVM()
+            {
+                Author = b.Author,
+                Body = b.Body,
+                BlogId = b.BlogId,
+                Category =  b.Category,
+                Date = b.Date,
+                IsDeleted = b.IsDeleted,
+                IsFinished = b.IsFinished,
+                Tags = b.Tags,
+                Title = b.Title
+            };
 
             model.SetCategories(context.Category.ToList());
 

@@ -10,36 +10,38 @@
     {
           <div class="col-xs-offset-1 col-xs-2 divMain">
                 <h4>Blog Category Name</h4>               
-              <div>
-                  @Html.HiddenFor(m=>m.Blog.BlogId)
-                  @Html.DropDownListFor(c => c.Blog.Category.CategoryId, Model.CategoryItems, "-choose category-", new { @class = "form-control" })
-                  @Html.ValidationMessageFor(m => m.CategoryItems)
-              </div>
+                <div>
+                  <select class="form-control" data-val="true" data-val-number="The field CategoryId must be a number." data-val-required="The CategoryId field is required." id="Category_CategoryId" name="Category.CategoryId">
+                      <option value="">-choose category-</option>
+                      @for(int i = 0; i < Model.CategoryItems.Count; i++)
+                      {
+                          <option value=@Model.CategoryItems[i].Value >@Model.CategoryItems[i].Text</option>
+                      }
+                      <option value="0" id="searchCategory">New Category</option>
+                  </select>
+                      @Html.ValidationMessageFor(m => m.CategoryItems)
+                  </div>
                 <div class="control" id="newCategory">
                     <h5>New Category</h5>                   
-                    <input type="text" />
+                    <input type="text" name="NewCategory"/>
                 </div>
             </div>
             <div class="col-xs-offset-1 col-xs-10 divMain">
                 <h4>Blog Subject Name</h4>                
                 <div class="form-group" style="font-size: 14pt">
-                    @Html.HiddenFor(m => m.Blog.IsDeleted)
-                    @Html.HiddenFor(m => m.Blog.Tags) 
-                    @Html.HiddenFor(m => m.Blog.Date)                   
-                    @Html.HiddenFor(m => m.Blog.Author)                   
-                    @Html.HiddenFor(m => m.Blog.BlogId)
+                    
                   
-                    @Html.TextBoxFor(t => t.Blog.Title, new { @class = "form-group"})       
-                    @Html.ValidationMessageFor(t => t.Blog.Title)
+                    @Html.TextBoxFor(t => t.Title, new { @class = "form-group"})       
+                    @Html.ValidationMessageFor(t => t.Title)
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-xs-offset-1 col-xs-10 control" >
                     <h4>Blog Content</h4>
-                    @Html.TextAreaFor(m => m.Blog.Body, new { @class = "form-group" , id="textarea"})
+                    @Html.TextAreaFor(m => m.Body, new { @class = "form-group" , id="textarea"})
 
-                    @Html.CheckBoxFor(m => m.Blog.IsFinished) Publish Blog
+                    @Html.CheckBoxFor(m => m.IsFinished) Publish Blog
 
                     <button type="submit" id="submit-button" class="btn btn-primary btn-sm">Submit</button>
                     <button id="cancel-button" class="btn btn-primary btn-sm">Cancel</button>
@@ -62,6 +64,7 @@
             </div>
             
     }
+              
           
           
 </div>

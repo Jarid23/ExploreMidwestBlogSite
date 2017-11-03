@@ -9,14 +9,24 @@ namespace ExploreMidwest.Web.Models
 {
     public class BlogVM
     {
-        public Blog Blog { get; set; }
-        
+        public int BlogId { get; set; }
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public Category Category { get; set; }
+        public ICollection<Tags> Tags { get; set; }
+        public string Body { get; set; }
+        public bool IsFinished { get; set; }
+        public DateTime Date { get; set; }
+        public bool IsDeleted { get; set; }
+        public string NewCategory { get; set; }
+
         public List<SelectListItem> CategoryItems { get; set; }       
 
         public BlogVM()
         {
             CategoryItems = new List<SelectListItem>();
-            Blog = new Blog();
+            Tags = new List<Tags>();
+            Category = new Category();
         }
 
         public void SetCategories(List<Category> category)
@@ -32,11 +42,6 @@ namespace ExploreMidwest.Web.Models
 
                 });
             }
-            CategoryItems.Add(new SelectListItem()
-            {
-                Value = "0",
-                Text = "New Category"
-            });
         }
 
         

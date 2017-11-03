@@ -14,6 +14,10 @@ namespace ExploreMidwest.Web
             var corsSettings = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(corsSettings);
 
+            config.Formatters.JsonFormatter
+            .SerializerSettings
+            .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 

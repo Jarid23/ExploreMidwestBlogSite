@@ -72,11 +72,6 @@ namespace ExploreMidwest.Web.Controllers
             {
                 Blog blog = new Blog
                 {
-<<<<<<< HEAD
-                    b.Blog.Date = DateTime.Today;
-                    repo.AddBlog(b.Blog);
-                    return RedirectToAction("Index", "Home");
-=======
                     BlogId = b.BlogId,
                     Body = b.Body,
                     IsDeleted = b.IsDeleted,
@@ -84,9 +79,9 @@ namespace ExploreMidwest.Web.Controllers
                     Tags = new List<Tags>(),
                     Title = b.Title,
                     Author = User.Identity.Name,
-                    Date = DateTime.Today
+                    Date = DateTime.Now
                 };
-                if(b.Category.CategoryId == 0)
+                if (b.Category.CategoryId == 0)
                 {
                     Category c = new Category
                     {
@@ -95,7 +90,6 @@ namespace ExploreMidwest.Web.Controllers
                     context.Category.Add(c);
                     context.SaveChanges();
                     blog.Category = context.Category.FirstOrDefault(g => g.CategoryType == c.CategoryType);
->>>>>>> 43cb873f3d9f6892867cd5f4cebcaad71eb628b9
                 }
                 else
                 {
@@ -108,7 +102,6 @@ namespace ExploreMidwest.Web.Controllers
             {
                 b.SetCategories(context.Category.ToList());
                 return View(b);
-                }
             }
         }
 
@@ -160,7 +153,7 @@ namespace ExploreMidwest.Web.Controllers
                     Tags = new List<Tags>(),
                     Title = b.Title,
                     Author = b.Author,
-                    Date = DateTime.Today
+                    Date = DateTime.Now
                 };
                 if (b.Category.CategoryId == 0)
                 {

@@ -82,7 +82,7 @@ namespace ExploreMidwest.Web.Controllers
                     Tags = new List<Tags>(),
                     Title = b.Title,
                     Author = User.Identity.Name,
-                    Date = DateTime.Today
+                    Date = DateTime.Now
                 };
                 if (b.Category.CategoryId == 0)
                 {
@@ -133,47 +133,63 @@ namespace ExploreMidwest.Web.Controllers
             model.SetCategories(context.Category.ToList());
 
             return View(model);
+        }        
+
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult EditBlog(BlogVM b)
+        {
+            var repo = BlogRepoFactory.Create();
+            var context = new ExploreMidwestDBContext();
+            if (ModelState.IsValid)
+            {
+                if (string.IsNullOrEmpty(b.Author))
+                {
+                    b.Author = User.Identity.Name;
+                }
+                Blog blog = new Blog
+                {
+                    BlogId = b.BlogId,
+                    Body = b.Body,
+                    IsDeleted = b.IsDeleted,
+                    IsFinished = b.IsFinished,
+                    Tags = new List<Tags>(),
+                    Title = b.Title,
+                    Author = b.Author,
+                    Date = DateTime.Now
+                };
+                if (b.Category.CategoryId == 0)
+                {
+                    Category c = new Category
+                    {
+                        CategoryType = b.NewCategory
+                    };
+                    context.Category.Add(c);
+                    context.SaveChanges();
+                    blog.Category = context.Category.FirstOrDefault(g => g.CategoryType == c.CategoryType);
+                }
+                else
+                {
+                    blog.Category = context.Category.FirstOrDefault(c => c.CategoryId == b.Category.CategoryId);
+                }
+                repo.EditBlog(blog);
+                return RedirectToAction("PendingPosts");
+            }
+            else
+            {
+                b.SetCategories(context.Category.ToList());
+                return View(b);
+            }
         }
 
         [HttpGet]
-        public ActionResult DeleteBlog()
+        public ActionResult DeleteBlog(int id)
         {
             var repo = BlogRepoFactory.Create();
 
-            return View(new Blog());
-        }
+            repo.DeleteBlog(id);
 
-        [HttpPost]
-        public ActionResult EditBlog(Blog blog)
-        {
-            var repo = BlogRepoFactory.Create();
-
-            if (ModelState.IsValid)
-            {
-                repo.EditBlog(blog);
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                return View(blog);
-            }
-        }
-
-
-        [HttpPost]
-        public ActionResult DeleteBlog(Blog blog)
-        {
-            var repo = BlogRepoFactory.Create();
-
-            if (ModelState.IsValid)
-            {
-                repo.DeleteBlog(blog.BlogId);
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                return View(blog);
-            }
+            return RedirectToAction("PendingPosts");
         }
 
         [HttpGet]
@@ -225,7 +241,7 @@ namespace ExploreMidwest.Web.Controllers
                     page.IsFinished = true;
                 }
                 repo.EditPage(page);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("SavedPages");
             }
             else
             {
@@ -299,14 +315,17 @@ namespace ExploreMidwest.Web.Controllers
         [HttpPost]
         public ActionResult DeleteManager(DeleteManager manager)
         {
-            if (ModelState.IsValid)
+            if (!string.IsNullOrEmpty(manager.Name))
             {
                 ExploreMidwest.Data.ExploreMidwestDBContext context = new Data.ExploreMidwestDBContext();
 
                 var userMgr = new UserManager<IdentityUser>(new UserStore<IdentityUser>(context));
                 var roleMgr = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> f32a70f18fe122f3bf8feb9724163fde9ee9081c
                 var findmanager = userMgr.FindByName(manager.Name);
                 // create the user with the manager class
                 if (findmanager != null)
@@ -320,6 +339,10 @@ namespace ExploreMidwest.Web.Controllers
                 return RedirectToAction("Index", "Home");
 
 
+            }
+            else
+            {
+                ModelState.AddModelError("Name", "Please Enter A Name");
             }
             return View(manager);
         }

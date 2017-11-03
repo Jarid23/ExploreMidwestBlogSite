@@ -17,6 +17,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Date)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
             <th></th>
         </tr>
 
@@ -33,6 +36,9 @@
                     @Html.DisplayFor(modelItem => item.Date.Day) /
                     @Html.DisplayFor(modelItem => item.Date.Month) /
                     @Html.DisplayFor(modelItem => item.Date.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
                 </td>
                 @Html.HiddenFor(modelItem => item.IsFinished)
                 @Html.HiddenFor(modelItem => item.IsDeleted)

@@ -73,9 +73,6 @@ namespace ExploreMidwest.Web.Controllers
             var context = new ExploreMidwestDBContext();
             if (ModelState.IsValid)
             {
-<<<<<<< HEAD
-
-=======
                 Blog blog = new Blog
                 {
                     BlogId = b.BlogId,
@@ -102,7 +99,6 @@ namespace ExploreMidwest.Web.Controllers
                     blog.Category = context.Category.FirstOrDefault(c => c.CategoryId == b.Category.CategoryId);
                 }
                 repo.AddBlog(blog);
->>>>>>> f32a70f18fe122f3bf8feb9724163fde9ee9081c
                 return RedirectToAction("Index", "Home");
             }
             else

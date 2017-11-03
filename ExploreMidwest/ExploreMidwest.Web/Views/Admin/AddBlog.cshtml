@@ -39,14 +39,10 @@
             <div class="row">
                 <div class="col-xs-offset-1 col-xs-10 control">
                     <h4>Blog Content</h4>
-<<<<<<< HEAD
                     @Html.TextAreaFor(m => m.Body, new { @class = "form-group" , id="textarea"})
 
                     @Html.CheckBoxFor(m => m.IsFinished) Publish Blog
                     <br />                   
-=======
-                    @Html.TextAreaFor(m => m.Body, new { @class = "form-group", id = "textarea" })
->>>>>>> f32a70f18fe122f3bf8feb9724163fde9ee9081c
 
                     @Html.CheckBoxFor(m => m.IsFinished) Publish
                     <button type="submit" id="submit-button" class="btn btn-primary btn-sm">Submit</button>
@@ -54,9 +50,6 @@
                 </div>
             </div>            
     } 
-    
-
-<<<<<<< HEAD
 </div>
 
 <div class="row">
@@ -67,38 +60,3 @@
        <input type = "submit" value = "Upload" class="submit"/>
   }
 </div>
-=======
-                <div>
-                    <div class="col-xs-offset-1 col-xs-11">
-                        @using (Html.BeginForm("Index", "Home", FormMethod.Post,
-            new { enctype = "multipart/form-data" }))
-                        {
-
-                            <input type="file" name="file" id="file" />
-                            <input type="submit" value="Upload Image" />
-                            @*@ViewBag.Message*@
-                        }
-                    </div>
-
-
-                </div>
-            </div>
-
-    }
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> f32a70f18fe122f3bf8feb9724163fde9ee9081c

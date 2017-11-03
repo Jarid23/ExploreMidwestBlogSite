@@ -322,10 +322,6 @@ namespace ExploreMidwest.Web.Controllers
                 var userMgr = new UserManager<IdentityUser>(new UserStore<IdentityUser>(context));
                 var roleMgr = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
-<<<<<<< HEAD
-
-=======
->>>>>>> f32a70f18fe122f3bf8feb9724163fde9ee9081c
                 var findmanager = userMgr.FindByName(manager.Name);
                 // create the user with the manager class
                 if (findmanager != null)

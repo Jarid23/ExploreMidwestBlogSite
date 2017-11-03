@@ -9,8 +9,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+
 
 namespace ExploreMidwest.Web.Controllers
 {
@@ -55,7 +58,7 @@ namespace ExploreMidwest.Web.Controllers
                 Date = DateTime.Today
             };
 
-            var context = new ExploreMidwestDBContext();            
+            var context = new ExploreMidwestDBContext();
 
             model.SetCategories(context.Category.ToList());
 
@@ -81,7 +84,7 @@ namespace ExploreMidwest.Web.Controllers
                     Author = User.Identity.Name,
                     Date = DateTime.Today
                 };
-                if(b.Category.CategoryId == 0)
+                if (b.Category.CategoryId == 0)
                 {
                     Category c = new Category
                     {
@@ -303,7 +306,7 @@ namespace ExploreMidwest.Web.Controllers
                 var userMgr = new UserManager<IdentityUser>(new UserStore<IdentityUser>(context));
                 var roleMgr = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
-               
+
                 var findmanager = userMgr.FindByName(manager.Name);
                 // create the user with the manager class
                 if (findmanager != null)
@@ -316,7 +319,7 @@ namespace ExploreMidwest.Web.Controllers
                 }
                 return RedirectToAction("Index", "Home");
 
-                
+
             }
             return View(manager);
         }
@@ -330,28 +333,32 @@ namespace ExploreMidwest.Web.Controllers
 
 
         [HttpPost]
-        public ActionResult Index(HttpPostedFileBase file)
+        public ActionResult UploadFiles(HttpPostedFileBase file)
         {
-            if(file != null && file.ContentLength > 0)
-                try
-                {
-                    string path = Path.Combine(Server.MapPath("~/Images"),
-                        Path.GetFileName(file.FileName));
-                    file.SaveAs(path);
-                    ViewBag.Message = "File upload successfully";
-                }
-                catch(Exception ex)
-                {
-                    ViewBag.Message = "Error: " + ex.Message.ToString();
-                }
-            else
+            if (file != null)
             {
-                ViewBag.Message = "You have not specified a file";
+                string pic = System.IO.Path.GetFileName(file.FileName);
+                string path = System.IO.Path.Combine(
+                                       Server.MapPath("~/images"), pic);
+                // file is uploaded
+                file.SaveAs(path);
+
+                // save the image path path to the database or you can send image 
+                // directly to database
+                // in-case if you want to store byte[] ie. for DB
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    file.InputStream.CopyTo(ms);
+                    byte[] array = ms.GetBuffer();
+                }
+
             }
-            return View();
-            
+            // after successfully uploading redirect the user
+            return RedirectToAction("AddBlog");
         }
+
     }
 }
+
 
 

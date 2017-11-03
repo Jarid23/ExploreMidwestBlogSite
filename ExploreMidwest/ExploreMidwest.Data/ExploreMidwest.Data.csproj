@@ -124,6 +124,10 @@
     <Compile Include="Migrations\201711021904141_virtualblog.Designer.cs">
       <DependentUpon>201711021904141_virtualblog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711031927182_init1.cs" />
+    <Compile Include="Migrations\201711031927182_init1.Designer.cs">
+      <DependentUpon>201711031927182_init1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PageRepositories\EFPageRepo.cs" />
     <Compile Include="PageRepositories\IPageRepo.cs" />
@@ -167,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711021904141_virtualblog.resx">
       <DependentUpon>201711021904141_virtualblog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711031927182_init1.resx">
+      <DependentUpon>201711031927182_init1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

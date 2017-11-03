@@ -42,29 +42,22 @@
                     @Html.TextAreaFor(m => m.Body, new { @class = "form-group" , id="textarea"})
 
                     @Html.CheckBoxFor(m => m.IsFinished) Publish Blog
+                    <br />                   
 
                     <button type="submit" id="submit-button" class="btn btn-primary btn-sm">Submit</button>
-                    <button id="cancel-button" class="btn btn-primary btn-sm">Cancel</button>
+                    <button id="cancel-button" class="btn btn-primary btn-sm">Cancel</button>                
                 </div>
+            </div>            
+    } 
+    
 
-                <div>
-                    <div class="col-xs-offset-1 col-xs-11">
-                        @using (Html.BeginForm ("Index", "Home", FormMethod.Post,
-                            new { enctype = "multipart/form-data"}))
-                        {
-                            
-                            <input type="file" name="file" id="file"/>
-                            <input type="submit" value="Upload Image"/>
-                            @*@ViewBag.Message*@
-                        }
-                    </div>
-                    
-                    
-                </div>
-            </div>
-            
-    }
-              
-          
-          
+</div>
+
+<div class="row">
+  @using (Html.BeginForm("UploadFiles", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+  { 
+       <label for= "file">Upload Image:</label>
+       <input type = "file" name = "file" id = "file"/>
+       <input type = "submit" value = "Upload" class="submit"/>
+  }
 </div>

@@ -19,6 +19,7 @@ namespace ExploreMidwest.Web.Models
         public DateTime Date { get; set; }
         public bool IsDeleted { get; set; }
         public string NewCategory { get; set; }
+        public string ImageLocation { get; set; }
 
         public List<SelectListItem> CategoryItems { get; set; }       
 

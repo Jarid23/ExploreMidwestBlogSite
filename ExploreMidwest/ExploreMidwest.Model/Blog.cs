@@ -17,6 +17,7 @@ namespace ExploreMidwest.Model
         public bool IsFinished { get; set; }
         public DateTime Date { get; set; }
         public bool IsDeleted { get; set; }
+        public string ImageLocation { get; set; }
 
         public Blog()
         {

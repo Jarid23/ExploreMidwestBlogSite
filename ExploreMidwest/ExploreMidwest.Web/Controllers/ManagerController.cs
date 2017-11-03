@@ -32,10 +32,7 @@ namespace ExploreMidwest.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-<<<<<<< HEAD
-               
-=======
->>>>>>> 968d9261f891313b39413f609ff9222a3947aa08
+
                 return RedirectToAction("Index", "Home");
             }
             else

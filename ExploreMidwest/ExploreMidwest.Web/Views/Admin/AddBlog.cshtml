@@ -12,8 +12,19 @@
                 <h4>Blog Category Name</h4>               
               <div>
                   @Html.HiddenFor(m=>m.Blog.BlogId)
+                  @Html.HiddenFor(m => m.Blog.IsDeleted)
+                  @Html.HiddenFor(m => m.Blog.Tags)
+                  @Html.HiddenFor(m => m.Blog.Date)
+                  @Html.HiddenFor(m => m.Blog.Author)
+                  @Html.HiddenFor(m => m.Blog.BlogId)
+
+                  @Html.HiddenFor(m => m.Blog.Category.CategoryType))
+
+                  
+
                   @Html.DropDownListFor(c => c.Blog.Category.CategoryId, Model.CategoryItems, "-choose category-", new { @class = "form-control" })
                   @Html.ValidationMessageFor(m => m.CategoryItems)
+
               </div>
                 <div class="control" id="newCategory">
                     <h5>New Category</h5>                   
@@ -23,11 +34,7 @@
             <div class="col-xs-offset-1 col-xs-10 divMain">
                 <h4>Blog Subject Name</h4>                
                 <div class="form-group" style="font-size: 14pt">
-                    @Html.HiddenFor(m => m.Blog.IsDeleted)
-                    @Html.HiddenFor(m => m.Blog.Tags) 
-                    @Html.HiddenFor(m => m.Blog.Date)                   
-                    @Html.HiddenFor(m => m.Blog.Author)                   
-                    @Html.HiddenFor(m => m.Blog.BlogId)
+
                   
                     @Html.TextBoxFor(t => t.Blog.Title, new { @class = "form-group"})       
                     @Html.ValidationMessageFor(t => t.Blog.Title)

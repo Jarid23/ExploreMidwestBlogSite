@@ -72,14 +72,14 @@ namespace ExploreMidwest.Web.Controllers
                     b.Blog.Date = DateTime.Today;
                     repo.AddBlog(b.Blog);
                     return RedirectToAction("Index", "Home");
-            }
+                }
                 else
                 {
                 var context = new ExploreMidwestDBContext();
                 b.SetCategories(context.Category.ToList());
                 return View(b);
+                }
             }
-        }
         }
 
         [HttpGet]

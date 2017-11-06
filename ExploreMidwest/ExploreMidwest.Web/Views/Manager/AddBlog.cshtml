@@ -6,7 +6,7 @@
 
 }
 <div class="row">
-    @using (Html.BeginForm("EditBlog", "Manager", FormMethod.Post, new
+    @using (Html.BeginForm("AddBlog", "Manager", FormMethod.Post, new
     { enctype = "multipart/form-data" }))
     {
         @Html.HiddenFor(m => m.ImageLocation)
@@ -17,7 +17,14 @@
                     <option value="">-choose category-</option>
                     @for (int i = 0; i < Model.CategoryItems.Count; i++)
                     {
-                        <option value=@Model.CategoryItems[i].Value>@Model.CategoryItems[i].Text</option>
+                        if (Model.CategoryItems[i].Value == Model.Category.CategoryId.ToString())
+                        {
+                            <option selected value=@Model.CategoryItems[i].Value>@Model.CategoryItems[i].Text</option>
+                        }
+                        else
+                        {
+                            <option value=@Model.CategoryItems[i].Value>@Model.CategoryItems[i].Text</option>
+                        }
                     }
                     <option value="0" id="searchCategory">New Category</option>
                 </select>

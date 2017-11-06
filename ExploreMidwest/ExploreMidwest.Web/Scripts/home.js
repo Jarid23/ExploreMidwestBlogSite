@@ -58,11 +58,13 @@ function getNumber(number, sets) {
             var output = "";
             var i = 0;
 
+            //<img src="ExploreMidwest.Web/images/' + blogs[i].ImageLocation + '"
+
             for (i; i < blogs.length; i++) {
                 if (blogs[i].IsFinished) {
                     output += '<div class="col-xs-2 blogDiv"><img src="' + blogs[i].ImageLocation + '" width="100%" height="100%"></div>'
-                    output += '<div class="col-xs-10 blogDiv"><div class="col-xs-3 titleDiv"><h4>'
-                    output += blogs[i].Title + '</h4><br /><h5>'
+                    output += '<div class="col-xs-10 blogDiv"><div class="col-xs-3"><div class="titleDiv"><h4>'
+                    output += blogs[i].Title + '</h4></div><h5>'
                     output += blogs[i].Category.CategoryType + '</h5><br />'
                     output += blogs[i].Date.slice(0,10) + '</div>'
                     output += '<div class="col-xs-9 innerDiv">'
@@ -128,8 +130,8 @@ function search() {
             for (i; i < blogs.length; i++) {
                 if (blogs[i].IsFinished) {
                     output += '<div class="col-xs-2 blogDiv"><img src="' + blogs[i].ImageLocation + '" width="100%" height="100%"></div>'
-                    output += '<div class="col-xs-10 blogDiv"><div class="col-xs-3 titleDiv"><h4>'
-                    output += blogs[i].Title + '</h4><br /><h5>'
+                    output += '<div class="col-xs-10 blogDiv"><div class="col-xs-3"><div class="titleDiv"><h4>'
+                    output += blogs[i].Title + '</h4></div><h5>'
                     output += blogs[i].Category.CategoryType + '</h5><br />'
                     output += blogs[i].Date.slice(0, 10) + '</div>'
                     output += '<div class="col-xs-9 innerDiv">'

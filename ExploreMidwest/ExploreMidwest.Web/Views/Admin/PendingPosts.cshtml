@@ -29,7 +29,7 @@
                 <td width="20%">
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
-                <td width="60%">
+                <td class="pgBody" width="50%">
                     @Html.DisplayFor(modelItem => item.Body)
                 </td>
                 <td width="10%">
@@ -37,7 +37,7 @@
                     @Html.DisplayFor(modelItem => item.Date.Month) /
                     @Html.DisplayFor(modelItem => item.Date.Year)
                 </td>
-                <td>
+                <td width="10%">
                     @Html.DisplayFor(modelItem => item.Author)
                 </td>
                 @Html.HiddenFor(modelItem => item.IsFinished)

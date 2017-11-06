@@ -41,7 +41,7 @@ namespace ExploreMidwest.Web.Controllers
         {
             var repo = PageRepoFactory.Create();
 
-            var model = repo.GetUnfinshedPages();
+            var model = repo.GetAllPages();
 
             return View(model);
         }

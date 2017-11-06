@@ -44,7 +44,6 @@ namespace ExploreMidwest.Data.BlogRepositories
         {
             var regex = new Regex(@"(?<=#)\w+");
             var matches = regex.Matches(blog.Body);
-
             foreach (Match m in matches)
             {
                 if (context.Tags.Where(t => t.TagName == m.Value).Count() == 0)
@@ -60,6 +59,7 @@ namespace ExploreMidwest.Data.BlogRepositories
             var change = context.Blog.FirstOrDefault(b => b.BlogId == blog.BlogId);
             context.Blog.AddOrUpdate(blog);
             change.Category = context.Category.FirstOrDefault(c => c.CategoryId == blog.Category.CategoryId);
+            change.Tags.Clear();
             change.Tags = blog.Tags;
             context.SaveChanges();
 

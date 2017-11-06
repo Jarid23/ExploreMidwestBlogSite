@@ -159,7 +159,9 @@ namespace ExploreMidwest.Web.Controllers
                 IsDeleted = b.IsDeleted,
                 IsFinished = b.IsFinished,
                 Tags = b.Tags,
-                Title = b.Title
+                Title = b.Title,
+                ImageLocation = b.ImageLocation,
+                
             };
 
             model.SetCategories(context.Category.ToList());
@@ -228,7 +230,7 @@ namespace ExploreMidwest.Web.Controllers
                     blog.Category = context.Category.FirstOrDefault(c => c.CategoryId == b.Category.CategoryId);
                 }
                 repo.EditBlog(blog);
-                return RedirectToAction("PendingPosts");
+                return RedirectToAction("SavedBlogs");
             }
             else
             {

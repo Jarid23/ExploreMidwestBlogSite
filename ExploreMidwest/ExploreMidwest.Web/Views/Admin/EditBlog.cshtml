@@ -6,25 +6,26 @@
 
 }
 <div class="row">
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("EditBlog", "Admin", FormMethod.Post, new
+    { enctype = "multipart/form-data" }))
     {
+        @Html.HiddenFor(m => m.ImageLocation)
         @Html.HiddenFor(m => m.BlogId)
-        @Html.HiddenFor(m => m.Date)
         @Html.HiddenFor(m => m.Author)
+        @Html.HiddenFor(m => m.ImageLocation)
         <div class="col-xs-offset-1 col-xs-2 divMain">
             <h4>Blog Category Name</h4>
             <div>
-                <select class="form-control" data-val="true" data-val-number="The field CategoryId must be a number." data-val-required="The CategoryId field is required." id="Category_CategoryId" name="Category.CategoryId" selected=@Model.Category.CategoryId>
+                <select class="form-control" data-val="true" data-val-number="The field CategoryId must be a number." data-val-required="The CategoryId field is required." id="Category_CategoryId" name="Category.CategoryId">
                     <option value="">-choose category-</option>
                     @for (int i = 0; i < Model.CategoryItems.Count; i++)
                     {
-                        if (Model.CategoryItems[i].Value == Model.Category.CategoryId.ToString())
-                        {
-                            <option value=@Model.CategoryItems[i].Value selected>@Model.CategoryItems[i].Text</option>
+                        if (Model.CategoryItems[i].Value == Model.Category.CategoryId.ToString()) {
+                            <option selected value=@Model.CategoryItems[i].Value>@Model.CategoryItems[i].Text</option>
                         }
                         else
                         {
-                            <option value=@Model.CategoryItems[i].Value >@Model.CategoryItems[i].Text</option>
+                            <option value=@Model.CategoryItems[i].Value>@Model.CategoryItems[i].Text</option>
                         }
                     }
                     <option value="0" id="searchCategory">New Category</option>
@@ -36,47 +37,32 @@
                 <input type="text" name="NewCategory" />
             </div>
         </div>
-            <div class="col-xs-offset-1 col-xs-10 divMain">
-                <h4>Blog Subject Name</h4>
-                <div class="form-group" style="font-size: 14pt">
+        <div class="col-xs-offset-1 col-xs-10 divMain">
+            <h4>Blog Subject Name</h4>
+            <div class="form-group" style="font-size: 14pt">
 
 
-                    @Html.TextBoxFor(t => t.Title, new { @class = "form-group" })
-                    @Html.ValidationMessageFor(t => t.Title)
-                </div>
+                @Html.TextBoxFor(t => t.Title, new { @class = "form-group" })
+                @Html.ValidationMessageFor(t => t.Title)
             </div>
+        </div>
 
-            <div class="row">
-                <div class="col-xs-offset-1 col-xs-10 control">
-                    <h4>Blog Content</h4>
-                    @Html.TextAreaFor(m => m.Body, new { @class = "form-group", id = "textarea" })
+        <div class="row">
+            <div class="col-xs-offset-1 col-xs-10 control">
+                <h4>Blog Content</h4>
+                @Html.TextAreaFor(m => m.Body, new { @class = "form-group", id = "textarea" })
 
-                    @Html.CheckBoxFor(m => m.IsFinished) Publish Blog
-
-                    <button type="submit" id="submit-button" class="btn btn-primary btn-sm">Submit</button>
-                    <button id="cancel-button" class="btn btn-primary btn-sm">Cancel</button>
-                </div>
-
-                <div>
-                    <div class="col-xs-offset-1 col-xs-11">
-                        @using (Html.BeginForm("Index", "Home", FormMethod.Post,
-                    new { enctype = "multipart/form-data" }))
-                        {
-
-                            <input type="file" name="file" id="file" />
-                            <input type="submit" value="Upload Image" />
-                            @*@ViewBag.Message*@
-                        }
-                    </div>
-
-
-                </div>
+                @Html.CheckBoxFor(m => m.IsFinished) Publish Blog
+                <br />
+                <button type="submit" id="submit-button" class="btn btn-primary btn-sm">Submit</button>
+                <button id="cancel-button" class="btn btn-primary btn-sm">Cancel</button>
             </div>
-
+        </div>
+        <div class="row">
+            <label for="file">Upload Image:</label>
+            @Html.TextBoxFor(m => m.File, new { type = "file" })
+        </div>
     }
-
-
-
 </div>
 
 

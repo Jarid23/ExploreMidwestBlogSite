@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -73,17 +74,42 @@ namespace ExploreMidwest.Web.Controllers
             var context = new ExploreMidwestDBContext();
             if (ModelState.IsValid)
             {
-                Blog blog = new Blog
+                Blog blog = new Blog();
+                if (b.File != null)
                 {
-                    BlogId = b.BlogId,
-                    Body = b.Body,
-                    IsDeleted = b.IsDeleted,
-                    IsFinished = b.IsFinished,
-                    Tags = new List<Tags>(),
-                    Title = b.Title,
-                    Author = User.Identity.Name,
-                    Date = DateTime.Today
-                };
+                    string pic = Path.GetFileName(b.File.FileName);
+                    string path = Path.Combine(
+                                           Server.MapPath("~/images"), pic);
+                    // file is uploaded
+                    b.File.SaveAs(path);
+
+                    blog = new Blog
+                    {
+                        BlogId = b.BlogId,
+                        Body = b.Body,
+                        IsDeleted = b.IsDeleted,
+                        IsFinished = b.IsFinished,
+                        Tags = new List<Tags>(),
+                        Title = b.Title,
+                        Author = User.Identity.Name,
+                        Date = DateTime.Now,
+                        ImageLocation = "images/" + Path.GetFileName(b.File.FileName),
+                    };
+                }
+                else
+                {
+                    blog = new Blog
+                    {
+                        BlogId = b.BlogId,
+                        Body = b.Body,
+                        IsDeleted = b.IsDeleted,
+                        IsFinished = b.IsFinished,
+                        Tags = new List<Tags>(),
+                        Title = b.Title,
+                        Author = User.Identity.Name,
+                        Date = DateTime.Now,
+                    };
+                }
                 if (b.Category.CategoryId == 0)
                 {
                     Category c = new Category
@@ -147,17 +173,46 @@ namespace ExploreMidwest.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                Blog blog = new Blog
+                if (string.IsNullOrEmpty(b.Author))
                 {
-                    BlogId = b.BlogId,
-                    Body = b.Body,
-                    IsDeleted = b.IsDeleted,
-                    IsFinished = b.IsFinished,
-                    Tags = new List<Tags>(),
-                    Title = b.Title,
-                    Author = User.Identity.Name,
-                    Date = DateTime.Today
-                };
+                    b.Author = User.Identity.Name;
+                }
+                Blog blog = new Blog();
+                if (b.File != null)
+                {
+                    string pic = Path.GetFileName(b.File.FileName);
+                    string path = Path.Combine(
+                                           Server.MapPath("~/images"), pic);
+                    // file is uploaded
+                    b.File.SaveAs(path);
+                    blog = new Blog
+                    {
+                        BlogId = b.BlogId,
+                        Body = b.Body,
+                        IsDeleted = b.IsDeleted,
+                        IsFinished = b.IsFinished,
+                        Tags = new List<Tags>(),
+                        Title = b.Title,
+                        Author = User.Identity.Name,
+                        Date = DateTime.Now,
+                        ImageLocation = "images/" + Path.GetFileName(b.File.FileName),
+                    };
+                }
+                else
+                {
+                    blog = new Blog
+                    {
+                        BlogId = b.BlogId,
+                        Body = b.Body,
+                        IsDeleted = b.IsDeleted,
+                        IsFinished = b.IsFinished,
+                        Tags = new List<Tags>(),
+                        Title = b.Title,
+                        Author = User.Identity.Name,
+                        Date = DateTime.Now,
+                        ImageLocation = b.ImageLocation,
+                    };
+                }
                 if (b.Category.CategoryId == 0)
                 {
                     Category c = new Category
@@ -173,7 +228,7 @@ namespace ExploreMidwest.Web.Controllers
                     blog.Category = context.Category.FirstOrDefault(c => c.CategoryId == b.Category.CategoryId);
                 }
                 repo.EditBlog(blog);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("PendingPosts");
             }
             else
             {

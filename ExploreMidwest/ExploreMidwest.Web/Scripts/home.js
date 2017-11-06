@@ -60,7 +60,7 @@ function getNumber(number, sets) {
 
             for (i; i < blogs.length; i++) {
                 if (blogs[i].IsFinished) {
-                    output += '<div class="col-xs-2 blogDiv">Image</div>'
+                    output += '<div class="col-xs-2 blogDiv"><img src="' + blogs[i].ImageLocation + '" width="100%" height="100%"></div>'
                     output += '<div class="col-xs-10 blogDiv"><div class="col-xs-3 titleDiv"><h4>'
                     output += blogs[i].Title + '</h4><br /><h5>'
                     output += blogs[i].Category.CategoryType + '</h5><br />'
@@ -117,6 +117,7 @@ function getPages() {
 function search() {
     var para = $('#searchTerm').val();
     var type = $('#searchCategory').val();
+    $('.next').hide();
     $.ajax({
         url: 'http://localhost:8080/blog/' + type + '/' + para,
         type: 'GET',
@@ -126,7 +127,7 @@ function search() {
 
             for (i; i < blogs.length; i++) {
                 if (blogs[i].IsFinished) {
-                    output += '<div class="col-xs-2 blogDiv">Image</div>'
+                    output += '<div class="col-xs-2 blogDiv"><img src="' + blogs[i].ImageLocation + '" width="100%" height="100%"></div>'
                     output += '<div class="col-xs-10 blogDiv"><div class="col-xs-3 titleDiv"><h4>'
                     output += blogs[i].Title + '</h4><br /><h5>'
                     output += blogs[i].Category.CategoryType + '</h5><br />'

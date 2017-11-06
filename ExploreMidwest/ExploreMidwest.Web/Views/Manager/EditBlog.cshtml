@@ -6,9 +6,12 @@
 
 }
 <div class="row">
-    @using (Html.BeginForm("EditBlog", "Manager", FormMethod.Post, new
+    @using (Html.BeginForm("AddBlog", "Admin", FormMethod.Post, new
     { enctype = "multipart/form-data" }))
     {
+        @Html.HiddenFor(m => m.ImageLocation)
+        @Html.HiddenFor(m => m.BlogId)
+        @Html.HiddenFor(m => m.Author)
         @Html.HiddenFor(m => m.ImageLocation)
         <div class="col-xs-offset-1 col-xs-2 divMain">
             <h4>Blog Category Name</h4>

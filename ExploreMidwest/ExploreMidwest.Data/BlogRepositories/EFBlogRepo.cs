@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ExploreMidwest.Model;
 using System.Data.Entity.Migrations;
 using System.Text.RegularExpressions;
+using System.Data.Entity;
 
 namespace ExploreMidwest.Data.BlogRepositories
 {
@@ -27,7 +28,8 @@ namespace ExploreMidwest.Data.BlogRepositories
 
         public List<Blog> GetBlogsByDate(string date)
         {
-            return context.Blog.Include("Category").Where(d => d.Date.ToShortDateString() == date).ToList();
+            DateTime day = DateTime.Parse(date);
+            return context.Blog.Include("Category").Where(d => DbFunctions.TruncateTime(d.Date) == day.Date).ToList();
         }
 
         public void DeleteBlog(int blogId)
@@ -40,9 +42,24 @@ namespace ExploreMidwest.Data.BlogRepositories
 
         public void EditBlog(Blog blog)
         {
+            var regex = new Regex(@"(?<=#)\w+");
+            var matches = regex.Matches(blog.Body);
+
+            foreach (Match m in matches)
+            {
+                if (context.Tags.Where(t => t.TagName == m.Value).Count() == 0)
+                {
+                    context.Tags.Add(new Tags { TagName = m.Value });
+                    context.SaveChanges();
+                }
+                blog.Tags.Add(context.Tags.SingleOrDefault(t => t.TagName == m.Value));
+
+
+
+            }
             var change = context.Blog.FirstOrDefault(b => b.BlogId == blog.BlogId);
             context.Blog.AddOrUpdate(blog);
-            change.Category = blog.Category;
+            change.Category = context.Category.FirstOrDefault(c => c.CategoryId == blog.Category.CategoryId);
             change.Tags = blog.Tags;
             context.SaveChanges();
 

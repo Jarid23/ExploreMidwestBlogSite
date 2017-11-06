@@ -318,6 +318,7 @@
     <Content Include="Views\Manager\SavedBLogs.cshtml" />
     <Content Include="Views\Admin\UploadFiles.cshtml" />
     <Content Include="Views\Manager\ChangePassword.cshtml" />
+    <Content Include="Views\Manager\EditBlog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Manager\AddBlog.cshtml" />

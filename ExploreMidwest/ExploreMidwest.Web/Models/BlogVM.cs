@@ -20,6 +20,7 @@ namespace ExploreMidwest.Web.Models
         public bool IsDeleted { get; set; }
         public string NewCategory { get; set; }
         public string ImageLocation { get; set; }
+        public HttpPostedFileBase File { get; set; }
 
         public List<SelectListItem> CategoryItems { get; set; }       
 

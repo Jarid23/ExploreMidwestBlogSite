@@ -55,7 +55,7 @@ namespace ExploreMidwest.Web.Controllers
                 Category = new Category(),
                 Tags = new List<Tags>(),
                 Author = User.Identity.Name,
-                Date = DateTime.Today
+                Date = DateTime.Now,
             };
 
             var context = new ExploreMidwestDBContext();
@@ -73,17 +73,41 @@ namespace ExploreMidwest.Web.Controllers
             var context = new ExploreMidwestDBContext();
             if (ModelState.IsValid)
             {
-                Blog blog = new Blog
+                Blog blog = new Blog();
+                if (b.File != null)
                 {
-                    BlogId = b.BlogId,
-                    Body = b.Body,
-                    IsDeleted = b.IsDeleted,
-                    IsFinished = b.IsFinished,
-                    Tags = new List<Tags>(),
-                    Title = b.Title,
-                    Author = User.Identity.Name,
-                    Date = DateTime.Now
-                };
+                    string pic = Path.GetFileName(b.File.FileName);
+                    string path = Path.Combine(
+                                           Server.MapPath("~/images"), pic);
+                    // file is uploaded
+                    b.File.SaveAs(path);
+                    blog = new Blog
+                    {
+                        BlogId = b.BlogId,
+                        Body = b.Body,
+                        IsDeleted = b.IsDeleted,
+                        IsFinished = b.IsFinished,
+                        Tags = new List<Tags>(),
+                        Title = b.Title,
+                        Author = User.Identity.Name,
+                        Date = DateTime.Now,
+                        ImageLocation = "images/" + Path.GetFileName(b.File.FileName),
+                    };
+                }
+                else
+                {
+                    blog = new Blog
+                    {
+                        BlogId = b.BlogId,
+                        Body = b.Body,
+                        IsDeleted = b.IsDeleted,
+                        IsFinished = b.IsFinished,
+                        Tags = new List<Tags>(),
+                        Title = b.Title,
+                        Author = User.Identity.Name,
+                        Date = DateTime.Now,
+                    };
+                }
                 if (b.Category.CategoryId == 0)
                 {
                     Category c = new Category
@@ -122,18 +146,19 @@ namespace ExploreMidwest.Web.Controllers
                 Author = b.Author,
                 Body = b.Body,
                 BlogId = b.BlogId,
-                Category = b.Category,
+                Category = context.Category.FirstOrDefault(g => g.CategoryId == b.Category.CategoryId),
                 Date = b.Date,
                 IsDeleted = b.IsDeleted,
                 IsFinished = b.IsFinished,
                 Tags = b.Tags,
-                Title = b.Title
+                Title = b.Title,
+                ImageLocation = b.ImageLocation,
             };
 
             model.SetCategories(context.Category.ToList());
 
             return View(model);
-        }        
+        }
 
         [HttpPost]
         [ValidateInput(false)]
@@ -147,17 +172,42 @@ namespace ExploreMidwest.Web.Controllers
                 {
                     b.Author = User.Identity.Name;
                 }
-                Blog blog = new Blog
+                Blog blog = new Blog();
+                if (b.File != null)
                 {
-                    BlogId = b.BlogId,
-                    Body = b.Body,
-                    IsDeleted = b.IsDeleted,
-                    IsFinished = b.IsFinished,
-                    Tags = new List<Tags>(),
-                    Title = b.Title,
-                    Author = b.Author,
-                    Date = DateTime.Now
-                };
+                    string pic = Path.GetFileName(b.File.FileName);
+                    string path = Path.Combine(
+                                           Server.MapPath("~/images"), pic);
+                    // file is uploaded
+                    b.File.SaveAs(path);
+                    blog = new Blog
+                    {
+                        BlogId = b.BlogId,
+                        Body = b.Body,
+                        IsDeleted = b.IsDeleted,
+                        IsFinished = b.IsFinished,
+                        Tags = new List<Tags>(),
+                        Title = b.Title,
+                        Author = User.Identity.Name,
+                        Date = DateTime.Now,
+                        ImageLocation = "images/" + Path.GetFileName(b.File.FileName),
+                    };
+                }
+                else
+                {
+                    blog = new Blog
+                    {
+                        BlogId = b.BlogId,
+                        Body = b.Body,
+                        IsDeleted = b.IsDeleted,
+                        IsFinished = b.IsFinished,
+                        Tags = new List<Tags>(),
+                        Title = b.Title,
+                        Author = User.Identity.Name,
+                        Date = DateTime.Now,
+                        ImageLocation = b.ImageLocation,
+                    };
+                }
                 if (b.Category.CategoryId == 0)
                 {
                     Category c = new Category
@@ -342,42 +392,9 @@ namespace ExploreMidwest.Web.Controllers
             }
             return View(manager);
         }
-
-
-        [HttpGet]
-        public ActionResult UploadDocument()
-        {
-            return View();
-        }
-
-
-        [HttpPost]
-        public ActionResult UploadFiles(HttpPostedFileBase file)
-        {
-            if (file != null)
-            {
-                string pic = System.IO.Path.GetFileName(file.FileName);
-                string path = System.IO.Path.Combine(
-                                       Server.MapPath("~/images"), pic);
-                // file is uploaded
-                file.SaveAs(path);
-
-                // save the image path path to the database or you can send image 
-                // directly to database
-                // in-case if you want to store byte[] ie. for DB
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    file.InputStream.CopyTo(ms);
-                    byte[] array = ms.GetBuffer();
-                }
-
-            }
-            // after successfully uploading redirect the user
-            return RedirectToAction("AddBlog");
-        }
-
     }
 }
+
 
 
 

@@ -116,7 +116,7 @@ namespace ExploreMidwest.Data.Migrations
                 },
                 new Category
                 {
-                    CategoryType = "Illionois"
+                    CategoryType = "Illinois"
                 }
                 );
             context.SaveChanges();

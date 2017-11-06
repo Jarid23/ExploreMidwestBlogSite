@@ -41,7 +41,7 @@ namespace ExploreMidwest.Web.Controllers
         {
             var repo = PageRepoFactory.Create();
 
-            var model = repo.GetUnfinshedPages();
+            var model = repo.GetAllPages();
 
             return View(model);
         }
@@ -350,7 +350,7 @@ namespace ExploreMidwest.Web.Controllers
             return View();
         }
 
-
+        
         [HttpPost]
         public ActionResult UploadFiles(HttpPostedFileBase file)
         {
@@ -361,7 +361,6 @@ namespace ExploreMidwest.Web.Controllers
                                        Server.MapPath("~/images"), pic);
                 // file is uploaded
                 file.SaveAs(path);
-
                 // save the image path path to the database or you can send image 
                 // directly to database
                 // in-case if you want to store byte[] ie. for DB

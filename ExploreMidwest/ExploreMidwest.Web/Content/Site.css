@@ -7,6 +7,12 @@ p,h1,h2,h3,h4 {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
+.titleDiv {
+    height: 80px;
+    white-space:normal;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
 
 .divMain {
     padding: 4px 4px 4px 4px;
@@ -24,6 +30,13 @@ p,h1,h2,h3,h4 {
     white-space:inherit;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.pgBody {
+    max-width: 40px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 

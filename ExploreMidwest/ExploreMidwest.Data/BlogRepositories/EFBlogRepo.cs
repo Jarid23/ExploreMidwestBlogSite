@@ -63,9 +63,6 @@ namespace ExploreMidwest.Data.BlogRepositories
                     context.SaveChanges();
                 }
                 blog.Tags.Add(context.Tags.SingleOrDefault(t => t.TagName == m.Value));
-
-
-                
             }
                 blog.Category = context.Category.SingleOrDefault(c => c.CategoryId == blog.Category.CategoryId);
             context.Blog.Add(blog);

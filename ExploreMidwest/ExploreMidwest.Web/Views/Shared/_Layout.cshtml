@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
 <body style="background-color:azure">
@@ -41,7 +41,7 @@
                                 @Html.ActionLink("Pending Posts", "PendingPosts", "Admin")
                             </li>
                             <li>
-                                @Html.ActionLink("Saved Pages", "SavedPages", "Admin")
+                                @Html.ActionLink("Page Manager", "SavedPages", "Admin")
                             </li>
                             <li>
                                 @Html.ActionLink("Add Manager", "AddManager", "Admin")
@@ -99,8 +99,8 @@
         <p>&copy; @DateTime.Now.Year - Explore Midwest&nbsp;&nbsp;|&nbsp;&nbsp;<span class="glyphicon glyphicon-home"></span>&nbsp; 
         1234 Main Street, Minneapolis, MN&nbsp;&nbsp;|&nbsp;&nbsp;<span class="glyphicon glyphicon-phone"></span>&nbsp;612.123.4567</p>
     </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
     <script>tinymce.init({ selector: '#textarea' });</script>
     <script src="~/Scripts/home.js"></script>

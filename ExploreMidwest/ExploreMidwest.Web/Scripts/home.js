@@ -1,8 +1,11 @@
 ﻿var num = 5;
 var set = 0;
+var cap = 0;
 
 $('#nextblog').click(function () {
-    set += 1;
+    if (cap == 0) {
+        set += 1;
+    }
     loadData();
     updateArea();
 })
@@ -11,6 +14,7 @@ $('#prev').click(function () {
     if (set > 0)
     {
         set--;
+        cap = 0;
     }
     loadData();
     updateArea();
@@ -71,6 +75,9 @@ function getNumber(number, sets) {
                     output += blogs[i].Body
                     output += '</div><div style="text-align:end"><button type="button" class="btn btn-default" onclick="FullArticle(' + blogs[i].BlogId + ')">Read full article</button></div></div>'
                 }
+            }
+            if (i < num - 1) {
+                cap = 1;
             }
             $('#BlogsArea').html(output);
         },
@@ -169,7 +176,7 @@ function FullArticle(id) {
             output += '</p ></div><div class="col-xs-offset-2 col-xs-9 detailDiv"><p>'
             output += '</p ></div>'
 
-            editdelete += '<a href="/Admin/EditBlog/' + id + '">Edit</a> | '
+            editdelete += '<a href="/Manager/EditBlog/' + id + '">Edit</a> | '
             editdelete += '<a href="/Admin/DeleteBlog/' + id + '">Delete</a>'
 
             $('#details').html(output);
@@ -183,4 +190,8 @@ function FullArticle(id) {
 
 $('#clearSearch').click(function(){
     $('#searchTerm').val("");
+    $('#searchCategory').val("");
+    set = 0;
+    loadData();
+    updateArea();
 })

@@ -125,8 +125,8 @@ namespace ExploreMidwest.Data.Migrations
                 new Blog
                 {
                     Title = "Keweenaw Peninsula",
-                    Body = "The only things crowding Michigan's Keweenaw Peninsula in autumn are miles of coastline, " +
-                            "fall color and Lake Superior lore.",
+                    Body = "<p>The only things crowding Michigan's Keweenaw Peninsula in autumn are miles of coastline, " +
+                            "fall color and Lake Superior lore.</p><p>#Fall #BeautifulFall</p>",
                     Category = context.Category.FirstOrDefault(c => c.CategoryType == "Michigan"),
                     Tags = new List<Tags>
                     {
@@ -135,13 +135,15 @@ namespace ExploreMidwest.Data.Migrations
                     },
                     IsFinished = true,
                     IsDeleted = false,
+                    Author = "admin",
+                    ImageLocation = "images/KH2_1079 (2).jpg",
                     Date = DateTime.Parse("10/26/2017"),
                 },
                 new Blog
                 {
                     Title = "Cana Island Lighthouse ",
-                    Body = "The 100-step climb to the top of Cana Island Lighthouse in Bailey's Harbor rewards visitors with " +
-                           "some of the best views of Lake Michigan's Door County shoreline",
+                    Body = "<p>The 100-step climb to the top of Cana Island Lighthouse in Bailey's Harbor rewards visitors with " +
+                           "some of the best views of Lake Michigan's Door County shoreline</p><p>#SummerHoliday #SummerGateAway</p>",
                     Category = context.Category.FirstOrDefault(c => c.CategoryType == "Wisconsin"),
 
                     Tags = new List<Tags>
@@ -151,15 +153,17 @@ namespace ExploreMidwest.Data.Migrations
                     },
                     IsFinished = true,
                     IsDeleted = false,
+                    Author = "admin",
+                    ImageLocation = "images/KH2_1079 (2).jpg",
                     Date = DateTime.Parse("7/04/2017")
 
                 },
                 new Blog
                 {
                     Title = "Best Bets for Fall Fun in Stillwater",
-                    Body = "Who needs Venice, Italy? Get cozy in the cushioned seats of a Venetian gondola powered by " +
+                    Body = "<p>Who needs Venice, Italy? Get cozy in the cushioned seats of a Venetian gondola powered by " +
                             "a gondolier wearing a striped shirt and straw hat. For optimal romance, book a dinner package " +
-                            "through the Dock Cafe and time a 45-minute gondola ride to watch the moon rise over the St. Croix River",
+                            "through the Dock Cafe and time a 45-minute gondola ride to watch the moon rise over the St. Croix River</p><p>#BestGateAway #WhoNeedsVenice</p>",
                     Category = context.Category.FirstOrDefault(c => c.CategoryType == "Minnesota"),
                     Tags = new List<Tags>
                     {
@@ -168,14 +172,16 @@ namespace ExploreMidwest.Data.Migrations
                     },
                     IsFinished = true,
                     IsDeleted = false,
+                    Author = "admin",
+                    ImageLocation = "images/KH2_1079 (2).jpg",
                     Date = DateTime.Parse("05/10/2017")
                 },
                 new Blog
                 {
                     Title = "Get Lost in These Midwest Corn Mazes",
-                    Body = "As if pulling off huge harvests and supplying food to the world wasn't enough, " +
+                    Body = "<p>As if pulling off huge harvests and supplying food to the world wasn't enough, " +
                           "Midwest farmers also have an artsy side. Elaborate corn mazes put their design skills on full display. " +
-                          "Bonus: Navigating through one is a crazy-fun way to spend an autumn afternoon",
+                          "Bonus: Navigating through one is a crazy-fun way to spend an autumn afternoon</p><p>#CornFarm</p>",
                     Category = context.Category.FirstOrDefault(c => c.CategoryType == "Wisconsin"),
                     Tags = new List<Tags>
                     {
@@ -183,6 +189,8 @@ namespace ExploreMidwest.Data.Migrations
                     },
                     IsFinished = true,
                     IsDeleted = false,
+                    Author = "admin",
+                    ImageLocation = "images/KH2_1079 (2).jpg",
                     Date = DateTime.Parse("10/29/2017")
 
                 },
@@ -190,7 +198,7 @@ namespace ExploreMidwest.Data.Migrations
                 {
                     Title = "The Trick to Planning the Perfect Fall Getaway",
                     Body = "Time your autumn escape just right with these handy fall color reports " +
-                           "from state tourism and natural resources groups.",
+                           "from state tourism and natural resources groups.</p><p>#TenThousandLakes</p>",
                     Category = context.Category.FirstOrDefault(c => c.CategoryType == "Minnesota"),
                     Tags = new List<Tags>
                     {
@@ -198,16 +206,18 @@ namespace ExploreMidwest.Data.Migrations
                     },
                     IsFinished = true,
                     IsDeleted = false,
+                    Author = "admin",
+                    ImageLocation = "images/KH2_1079 (2).jpg",
                     Date = DateTime.Parse("03/22/2017")
                 },
                 new Blog
                 {
                     Title = "The good life along Illinois’ Shawnee Hills Wine Trail",
-                    Body = "Becky Schneider pours a taste of Golden Oak Aged Reserve in the sun-washed tasting room" +
+                    Body = "<p>Becky Schneider pours a taste of Golden Oak Aged Reserve in the sun-washed tasting room" +
                            " at Pomona Winery near Alto Pass, Illinois, and watches as Anne Pitts sips it. " +
                            " “I used to have a problem calling wine creamy until this one,” Becky says, " +
                            " grinning as a familiar look of wonder spreads across Anne’s face and adding, " +
-                           " “I’ve never tasted anything like it. I steam a lot of veggies in it; I throw it in pasta sauces",
+                           " “I’ve never tasted anything like it. I steam a lot of veggies in it; I throw it in pasta sauces</p><p></p>",
                     Category = context.Category.FirstOrDefault(c => c.CategoryType == "Illionois"),
                     Tags = new List<Tags>
                     {
@@ -215,6 +225,8 @@ namespace ExploreMidwest.Data.Migrations
                     },
                     IsFinished = false,
                     IsDeleted = false,
+                    Author = "Manager",
+                    ImageLocation = "images/KH2_1079 (2).jpg",
                     Date = DateTime.Parse("08/02/2017")
 
                 }

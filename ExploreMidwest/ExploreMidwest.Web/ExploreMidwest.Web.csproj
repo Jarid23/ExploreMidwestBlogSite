@@ -247,6 +247,7 @@
     <Content Include="ImageRepository\MinnesotaFall.jpg" />
     <Content Include="ImageRepository\ShawneeWineTrail.jpg" />
     <Content Include="ImageRepository\Stillwater.jpg" />
+    <Content Include="images\EMWLogo.PNG" />
     <Content Include="images\erd.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

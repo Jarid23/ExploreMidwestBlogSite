@@ -62,7 +62,7 @@ function getNumber(number, sets) {
 
             for (i; i < blogs.length; i++) {
                 if (blogs[i].IsFinished) {
-                    output += '<div class="col-xs-2 blogDiv"><img src="' + blogs[i].ImageLocation + '" width="100%" height="100%"></div>'
+                    output += '<div class="col-xs-2" style="height:135px; margin-top:8px"><img src="' + blogs[i].ImageLocation + '" width="100%" height="100%"></div>'
                     output += '<div class="col-xs-10 blogDiv"><div class="col-xs-3"><div class="titleDiv"><h4>'
                     output += blogs[i].Title + '</h4></div><h5>'
                     output += blogs[i].Category.CategoryType + '</h5><br />'
@@ -161,11 +161,12 @@ function FullArticle(id) {
             var editdelete = "";
 
             var i = 0;
-            output += '<div class="col-xs-offset-2 col-xs-8 detailDiv"><h3>' + blog.Title
+            output += '<div class="col-xs-2" style="height:150px"><img src="' + blog.ImageLocation + '" width="100%" height="100%"></div>' 
+            output += '<div class="col-xs-9 detailDiv"><h3>' + blog.Title
             output += '</h3 ><h4>' + blog.Category.CategoryType
             output += '</h4 ><h4>' + blog.Date.slice(0, 10)
-            output += '</h4 ></div><div class="col-xs-offset-2 col-xs-8 detailDiv"><p>' + blog.Body
-            output += '</p ></div><div class="col-xs-offset-2 col-xs-8 detailDiv"><p>'
+            output += '</h4 ></div><div class="col-xs-9 detailDiv"><p>' + blog.Body
+            output += '</p ></div><div class="col-xs-offset-2 col-xs-9 detailDiv"><p>'
             output += '</p ></div>'
 
             editdelete += '<a href="/Admin/EditBlog/' + id + '">Edit</a> | '

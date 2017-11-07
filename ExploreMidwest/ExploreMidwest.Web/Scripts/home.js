@@ -129,7 +129,7 @@ function search() {
 
             for (i; i < blogs.length; i++) {
                 if (blogs[i].IsFinished) {
-                    output += '<div class="col-xs-2 blogDiv"><img src="' + blogs[i].ImageLocation + '" width="100%" height="100%"></div>'
+                    output += '<div class="col-xs-2" style="height:135px; margin-top:8px"><img src="' + blogs[i].ImageLocation + '" width="100%" height="100%"></div>'
                     output += '<div class="col-xs-10 blogDiv"><div class="col-xs-3"><div class="titleDiv"><h4>'
                     output += blogs[i].Title + '</h4></div><h5>'
                     output += blogs[i].Category.CategoryType + '</h5><br />'

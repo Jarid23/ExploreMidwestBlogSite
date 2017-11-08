@@ -126,6 +126,10 @@ function getPages() {
 function search() {
     var para = $('#searchTerm').val();
     var type = $('#searchCategory').val();
+    if (para[0] == '#') {
+        para = para.substring(1);
+    }
+
     $('.next').hide();
     $.ajax({
         url: 'http://localhost:8080/blog/' + type + '/' + para,

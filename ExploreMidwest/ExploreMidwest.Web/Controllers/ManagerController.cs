@@ -195,7 +195,7 @@ namespace ExploreMidwest.Web.Controllers
                         IsFinished = b.IsFinished,
                         Tags = new List<Tags>(),
                         Title = b.Title,
-                        Author = User.Identity.Name,
+                        Author = b.Author,
                         Date = DateTime.Now,
                         ImageLocation = "images/" + Path.GetFileName(b.File.FileName),
                     };
@@ -210,7 +210,7 @@ namespace ExploreMidwest.Web.Controllers
                         IsFinished = b.IsFinished,
                         Tags = new List<Tags>(),
                         Title = b.Title,
-                        Author = User.Identity.Name,
+                        Author = b.Author,
                         Date = DateTime.Now,
                         ImageLocation = b.ImageLocation,
                     };
@@ -230,7 +230,7 @@ namespace ExploreMidwest.Web.Controllers
                     blog.Category = context.Category.FirstOrDefault(c => c.CategoryId == b.Category.CategoryId);
                 }
                 repo.EditBlog(blog);
-                return RedirectToAction("SavedBlogs");
+                return RedirectToAction("Index", "Home");
             }
             else
             {

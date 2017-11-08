@@ -36,6 +36,19 @@ namespace ExploreMidwest.Web.Controllers
             return View(model);
         }
 
+        public ActionResult PublishBlog(int id)
+        {
+            var repo = BlogRepoFactory.Create();
+
+            Blog blog = repo.GetBlogById(id);
+
+            blog.IsFinished = true;
+
+            repo.EditBlog(blog);
+
+            return RedirectToAction("PendingPosts");
+        }
+
         [HttpGet]
         public ActionResult SavedPages()
         {
@@ -44,202 +57,6 @@ namespace ExploreMidwest.Web.Controllers
             var model = repo.GetAllPages();
 
             return View(model);
-        }
-
-        [HttpGet]
-        [ValidateInput(false)]
-        public ActionResult AddBlog()
-        {
-            BlogVM model = new BlogVM()
-            {
-                Category = new Category(),
-                Tags = new List<Tags>(),
-                Author = User.Identity.Name,
-                Date = DateTime.Now,
-            };
-
-            var context = new ExploreMidwestDBContext();
-
-            model.SetCategories(context.Category.ToList());
-
-            return View(model);
-        }
-
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult AddBlog(BlogVM b)
-        {
-            var repo = BlogRepoFactory.Create();
-            var context = new ExploreMidwestDBContext();
-            if (ModelState.IsValid)
-            {
-                Blog blog = new Blog();
-                if (b.File != null)
-                {
-                    string pic = Path.GetFileName(b.File.FileName);
-                    string path = Path.Combine(
-                                           Server.MapPath("~/images"), pic);
-                    // file is uploaded
-                    b.File.SaveAs(path);
-                    blog = new Blog
-                    {
-                        BlogId = b.BlogId,
-                        Body = b.Body,
-                        IsDeleted = b.IsDeleted,
-                        IsFinished = b.IsFinished,
-                        Tags = new List<Tags>(),
-                        Title = b.Title,
-                        Author = User.Identity.Name,
-                        Date = DateTime.Now,
-                        ImageLocation = "images/" + Path.GetFileName(b.File.FileName),
-                    };
-                }
-                else
-                {
-                    blog = new Blog
-                    {
-                        BlogId = b.BlogId,
-                        Body = b.Body,
-                        IsDeleted = b.IsDeleted,
-                        IsFinished = b.IsFinished,
-                        Tags = new List<Tags>(),
-                        Title = b.Title,
-                        Author = User.Identity.Name,
-                        Date = DateTime.Now,
-                    };
-                }
-                if (b.Category.CategoryId == 0)
-                {
-                    Category c = new Category
-                    {
-                        CategoryType = b.NewCategory
-                    };
-                    context.Category.Add(c);
-                    context.SaveChanges();
-                    blog.Category = context.Category.FirstOrDefault(g => g.CategoryType == c.CategoryType);
-                }
-                else
-                {
-                    blog.Category = context.Category.FirstOrDefault(c => c.CategoryId == b.Category.CategoryId);
-                }
-                repo.AddBlog(blog);
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
-                b.SetCategories(context.Category.ToList());
-                return View(b);
-            }
-        }
-
-        [HttpGet]
-        [ValidateInput(false)]
-        public ActionResult EditBlog(int id)
-        {
-            var repo = BlogRepoFactory.Create();
-            var blog = repo.GetBlogById(id);
-            var context = new ExploreMidwestDBContext();
-            Blog b = repo.GetBlogById(id);
-
-            var model = new BlogVM()
-            {
-                Author = b.Author,
-                Body = b.Body,
-                BlogId = b.BlogId,
-                Category = context.Category.FirstOrDefault(g => g.CategoryId == b.Category.CategoryId),
-                Date = b.Date,
-                IsDeleted = b.IsDeleted,
-                IsFinished = b.IsFinished,
-                Tags = b.Tags,
-                Title = b.Title,
-                ImageLocation = b.ImageLocation,
-            };
-
-            model.SetCategories(context.Category.ToList());
-
-            return View(model);
-        }
-
-        [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult EditBlog(BlogVM b)
-        {
-            var repo = BlogRepoFactory.Create();
-            var context = new ExploreMidwestDBContext();
-            if (ModelState.IsValid)
-            {
-                if (string.IsNullOrEmpty(b.Author))
-                {
-                    b.Author = User.Identity.Name;
-                }
-                Blog blog = new Blog();
-                if (b.File != null)
-                {
-                    string pic = Path.GetFileName(b.File.FileName);
-                    string path = Path.Combine(
-                                           Server.MapPath("~/images"), pic);
-                    // file is uploaded
-                    b.File.SaveAs(path);
-                    blog = new Blog
-                    {
-                        BlogId = b.BlogId,
-                        Body = b.Body,
-                        IsDeleted = b.IsDeleted,
-                        IsFinished = b.IsFinished,
-                        Tags = new List<Tags>(),
-                        Title = b.Title,
-                        Author = User.Identity.Name,
-                        Date = DateTime.Now,
-                        ImageLocation = "images/" + Path.GetFileName(b.File.FileName),
-                    };
-                }
-                else
-                {
-                    blog = new Blog
-                    {
-                        BlogId = b.BlogId,
-                        Body = b.Body,
-                        IsDeleted = b.IsDeleted,
-                        IsFinished = b.IsFinished,
-                        Tags = new List<Tags>(),
-                        Title = b.Title,
-                        Author = User.Identity.Name,
-                        Date = DateTime.Now,
-                        ImageLocation = b.ImageLocation,
-                    };
-                }
-                if (b.Category.CategoryId == 0)
-                {
-                    Category c = new Category
-                    {
-                        CategoryType = b.NewCategory
-                    };
-                    context.Category.Add(c);
-                    context.SaveChanges();
-                    blog.Category = context.Category.FirstOrDefault(g => g.CategoryType == c.CategoryType);
-                }
-                else
-                {
-                    blog.Category = context.Category.FirstOrDefault(c => c.CategoryId == b.Category.CategoryId);
-                }
-                repo.EditBlog(blog);
-                return RedirectToAction("PendingPosts");
-            }
-            else
-            {
-                b.SetCategories(context.Category.ToList());
-                return View(b);
-            }
-        }
-
-        [HttpGet]
-        public ActionResult DeleteBlog(int id)
-        {
-            var repo = BlogRepoFactory.Create();
-
-            repo.DeleteBlog(id);
-
-            return RedirectToAction("PendingPosts");
         }
 
         [HttpGet]

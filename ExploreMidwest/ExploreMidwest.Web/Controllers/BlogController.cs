@@ -41,6 +41,10 @@ namespace ExploreMidwest.Web.Controllers
                     toReturn = repo.GetBlogsByTag(parameter);
                     break;
                 case "date":
+                    if(parameter[0] == '#')
+                    {
+                        parameter = parameter.Remove(0, 1);
+                    }
                     toReturn = repo.GetBlogsByDate(parameter);
                     break;
                 case "title":

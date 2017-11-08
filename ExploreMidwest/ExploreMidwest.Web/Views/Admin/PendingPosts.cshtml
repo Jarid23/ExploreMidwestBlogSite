@@ -43,8 +43,9 @@
                 @Html.HiddenFor(modelItem => item.IsFinished)
                 @Html.HiddenFor(modelItem => item.IsDeleted)
                 <td width="10%">
-                    @Html.ActionLink("Edit", "EditBlog", new { id = item.BlogId }) |
-                    @Html.ActionLink("Delete", "DeleteBlog", new { id = item.BlogId })
+                    @Html.ActionLink("Publish", "PublishBlog", "Admin", new { id = item.BlogId }, "") |
+                    @Html.ActionLink("Edit", "EditBlog", "Manager", new { id = item.BlogId }, "") |
+                    @Html.ActionLink("Delete", "DeleteBlog", "Admin", new { id = item.BlogId }, "")
                 </td>
             </tr>
         }
